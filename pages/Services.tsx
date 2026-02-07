@@ -137,15 +137,16 @@ const Services: React.FC = () => {
         </div>
       </section>
 
-      {/* Enterprise Architecture Diagram Section - Added */}
+      {/* Enterprise Architecture Diagram Section */}
       <section className="mt-16 mb-8">
         <h2 className="flex items-center gap-2 mb-8">
             <Server className="text-gray-800"/>
             DevSecOps Enterprise Architecture
         </h2>
         
-        <div className="not-prose bg-white border-2 border-black rounded-xl p-6 md:p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,0.1)] overflow-hidden">
-            <div className="flex flex-col gap-8 text-center text-xs font-bold">
+        {/* Changed overflow-hidden to overflow-x-auto for mobile responsiveness */}
+        <div className="not-prose bg-white border-2 border-black rounded-xl p-6 md:p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,0.1)] overflow-x-auto">
+            <div className="flex flex-col gap-8 text-center text-xs font-bold min-w-[600px]">
                 
                 {/* Flow inputs */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-end">
