@@ -4,6 +4,18 @@ import { Mail, Send } from 'lucide-react';
 const Careers: React.FC = () => {
   const openPositions = [
     {
+      title: "AI Security Specialist",
+      description: "Secure the future of machine learning against quantum threats. You will architect 'Model Armor' frameworks to protect weights, training data, and inference pipelines. Key responsibilities include implementing PQC-encrypted data lakes and ensuring AI-driven security agents are resilient against adversarial quantum attacks."
+    },
+    {
+      title: "Compliance Officer",
+      description: "Lead our regulatory strategy in the evolving global landscape. You must have deep expertise in EU DORA, NIS2, and GDPR, as well as the upcoming NIST PQC standards. You will bridge the gap between technical cryptographic implementations and legal mandates, ensuring our clients stay ahead of mandatory migration deadlines."
+    },
+    {
+      title: "DevSecOps Engineer (PQC Focus)",
+      description: "Integrate quantum-safe security directly into the heartbeat of software delivery. You will build and maintain CI/CD pipelines that automate CryptoBOM generation and HSM-backed artifact signing. Experience with Kubernetes, Terraform, and hardware-security-module (HSM) orchestration is vital for this high-impact role."
+    },
+    {
       title: "Head of Cryptography",
       description: "Lead our core research team in implementing NIST FIPS 203/204 algorithms. You will architect the hybrid key exchange protocols and oversee the HSM integration layer. We are looking for a visionary with a PhD in Mathematics or Computer Science and deep experience with lattice-based cryptography to guide our transition strategy."
     },

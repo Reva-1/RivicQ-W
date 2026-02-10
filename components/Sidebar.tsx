@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Github, Mail, Linkedin, Globe, Shield, Lock, Cpu, Globe2, Sparkles, Layout, Building, Lightbulb, Users, Scale, ShieldCheck, Microscope, BookOpen, Handshake } from 'lucide-react';
+import { Github, Mail, Linkedin, Globe, Shield, Lock, Cpu, Globe2, Sparkles, Layout, Building, Lightbulb, Users, Scale, ShieldCheck, Microscope, BookOpen, Handshake, Briefcase } from 'lucide-react';
 
 const Sidebar: React.FC = () => {
   const groups = [
@@ -47,6 +47,7 @@ const Sidebar: React.FC = () => {
         { name: 'Legal', path: '/legal', icon: <Scale size={12}/> },
         { name: 'Privacy', path: '/privacy', icon: <Shield size={12}/> },
         { name: 'Team', path: '/team', icon: <Users size={12}/> },
+        { name: 'Careers', path: '/careers', icon: <Briefcase size={12}/> },
         { name: 'Investors', path: '/investors', icon: <Building size={12}/> },
       ]
     }

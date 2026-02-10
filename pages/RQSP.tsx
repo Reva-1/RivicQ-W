@@ -2,7 +2,7 @@ import React from 'react';
 import { Zap, Workflow, ShieldAlert, Database, Lock, ShieldCheck, ArrowRight, Atom, Share2 } from 'lucide-react';
 
 const QuantumEntropyAnimation: React.FC = () => (
-  <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-40">
+  <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-20 group-hover:opacity-40 transition-opacity duration-700">
     <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
       {/* Central Root of Trust */}
       <div className="w-4 h-4 bg-blue-600 rounded-full blur-[2px] shadow-[0_0_20px_rgba(37,99,235,1)] z-10"></div>
@@ -22,19 +22,19 @@ const QuantumEntropyAnimation: React.FC = () => (
       @keyframes radiate {
         0% { transform: rotate(var(--rot)) translateY(0) scale(1); opacity: 0; }
         20% { opacity: 0.8; }
-        100% { transform: rotate(var(--rot)) translateY(120px) scale(0.1); opacity: 0; }
+        100% { transform: rotate(var(--rot)) translateY(140px) scale(0.1); opacity: 0; }
       }
       .animate-radiate {
-        animation: radiate 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        animation: radiate 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
       }
     `}</style>
   </div>
 );
 
 const HybridKEMAnimation: React.FC = () => (
-  <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-30">
+  <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-10 group-hover:opacity-30 transition-opacity duration-700">
     <div className="absolute inset-0 flex items-center justify-center">
-      <div className="relative w-64 h-32 flex items-center justify-center">
+      <div className="relative w-full h-full flex items-center justify-center">
         {/* Classical Element */}
         <div className="absolute animate-merge-left p-3 bg-slate-100 rounded-xl border border-slate-200">
           <Lock size={20} className="text-slate-900" />
@@ -44,22 +44,22 @@ const HybridKEMAnimation: React.FC = () => (
           <Zap size={20} className="text-white" />
         </div>
         {/* Pulse at Junction */}
-        <div className="w-12 h-12 bg-indigo-500/20 rounded-full animate-ping blur-xl"></div>
+        <div className="w-16 h-16 bg-blue-500/20 rounded-full animate-ping blur-2xl"></div>
       </div>
     </div>
     <style>{`
       @keyframes merge-left {
-        0% { transform: translateX(-100px); opacity: 0; }
-        40%, 60% { transform: translateX(-10px); opacity: 1; }
-        100% { transform: translateX(-100px); opacity: 0; }
+        0% { transform: translateX(-140px); opacity: 0; }
+        40%, 60% { transform: translateX(-15px); opacity: 1; }
+        100% { transform: translateX(-140px); opacity: 0; }
       }
       @keyframes merge-right {
-        0% { transform: translateX(100px); opacity: 0; }
-        40%, 60% { transform: translateX(10px); opacity: 1; }
-        100% { transform: translateX(100px); opacity: 0; }
+        0% { transform: translateX(140px); opacity: 0; }
+        40%, 60% { transform: translateX(15px); opacity: 1; }
+        100% { transform: translateX(140px); opacity: 0; }
       }
-      .animate-merge-left { animation: merge-left 4s ease-in-out infinite; }
-      .animate-merge-right { animation: merge-right 4s ease-in-out infinite; }
+      .animate-merge-left { animation: merge-left 5s ease-in-out infinite; }
+      .animate-merge-right { animation: merge-right 5s ease-in-out infinite; }
     `}</style>
   </div>
 );
