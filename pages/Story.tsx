@@ -1,5 +1,5 @@
 import React from 'react';
-import { GraduationCap, Award, Hospital, Rocket, Landmark, Github, Code, Zap, Globe, Target, ShieldCheck as ShieldIcon, Share2 } from 'lucide-react';
+import { GraduationCap, Award, Hospital, Rocket, Landmark, Github, Code, Zap, Globe, Target, ShieldCheck as ShieldIcon, Share2, Cpu } from 'lucide-react';
 
 const TimelineItem: React.FC<{ date: string, title: string, content: string, icon: React.ReactNode, type?: 'milestone' | 'challenge' }> = ({ date, title, content, icon, type = 'milestone' }) => (
   <div className="relative pl-12 pb-12 last:pb-0 group">
@@ -92,6 +92,12 @@ const Story: React.FC = () => {
             title="Official Launch"
             icon={<Globe size={16} className="text-blue-600"/>}
             content="RivicQ formally announced its mission to the global tech community, establishing its digital presence."
+          />
+          <TimelineItem 
+            date="January 2026"
+            title="Berlin Quantum Space"
+            icon={<Cpu size={16} className="text-indigo-600"/>}
+            content="RivicQ officially entered the Berlin Quantum Space, integrating into the city's elite network of quantum-computing research and industrial validation facilities."
           />
           <TimelineItem 
             date="January 22, 2026"

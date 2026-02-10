@@ -4,6 +4,10 @@ import { Mail, Send } from 'lucide-react';
 const Careers: React.FC = () => {
   const openPositions = [
     {
+      title: "HSM Engineer",
+      description: "Take command of our physical and cloud root-of-trust. You will be responsible for managing, configuring, and securing Hardware Security Modules (HSMs), specifically focusing on their integration with PQC algorithms. Your mission is to ensure strict FIPS 140-3 compliance for all key generation and storage processes across both cloud-based HSMs (AWS CloudHSM, Azure Dedicated HSM) and complex on-premise deployments."
+    },
+    {
       title: "AI Security Specialist",
       description: "Secure the future of machine learning against quantum threats. You will architect 'Model Armor' frameworks to protect weights, training data, and inference pipelines. Key responsibilities include implementing PQC-encrypted data lakes and ensuring AI-driven security agents are resilient against adversarial quantum attacks."
     },

@@ -8,7 +8,7 @@ const Team: React.FC = () => {
         We are a team of cryptographers, engineers, and researchers based in Berlin, Germany.
       </p>
 
-      <h3>Leadership</h3>
+      <h3>Founder</h3>
       <ul>
         <li>
             <strong>Revan Sai Ande</strong> &mdash; Founder
