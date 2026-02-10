@@ -2,54 +2,61 @@ import React from 'react';
 import { Zap, Workflow, ShieldAlert, Database, Lock, ShieldCheck, ArrowRight, Atom, Share2 } from 'lucide-react';
 
 const QuantumEntropyAnimation: React.FC = () => (
-  <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-30">
+  <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-40">
     <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-      {[...Array(8)].map((_, i) => (
+      {/* Central Root of Trust */}
+      <div className="w-4 h-4 bg-blue-600 rounded-full blur-[2px] shadow-[0_0_20px_rgba(37,99,235,1)] z-10"></div>
+      {/* Radiating Particles */}
+      {[...Array(12)].map((_, i) => (
         <div
           key={i}
-          className="absolute w-2 h-2 bg-blue-500 rounded-full animate-radiate"
+          className="absolute w-1.5 h-1.5 bg-blue-400 rounded-full animate-radiate"
           style={{
-            animationDelay: `${i * 0.4}s`,
-            transform: `rotate(${i * 45}deg) translateY(0)`,
-          }}
+            animationDelay: `${i * 0.25}s`,
+            '--rot': `${i * 30}deg`,
+          } as React.CSSProperties}
         />
       ))}
     </div>
     <style>{`
       @keyframes radiate {
-        0% { transform: rotate(var(--tw-rotate)) translateY(0); opacity: 0; }
-        20% { opacity: 1; }
-        100% { transform: rotate(var(--tw-rotate)) translateY(100px); opacity: 0; }
+        0% { transform: rotate(var(--rot)) translateY(0) scale(1); opacity: 0; }
+        20% { opacity: 0.8; }
+        100% { transform: rotate(var(--rot)) translateY(120px) scale(0.1); opacity: 0; }
       }
       .animate-radiate {
-        animation: radiate 3s linear infinite;
+        animation: radiate 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
       }
     `}</style>
   </div>
 );
 
 const HybridKEMAnimation: React.FC = () => (
-  <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-20">
+  <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-30">
     <div className="absolute inset-0 flex items-center justify-center">
-      <div className="relative w-40 h-20">
-        <div className="absolute left-0 top-1/2 -translate-y-1/2 w-8 h-8 bg-slate-400 rounded-lg animate-merge-left flex items-center justify-center">
-          <Lock size={12} className="text-white" />
+      <div className="relative w-64 h-32 flex items-center justify-center">
+        {/* Classical Element */}
+        <div className="absolute animate-merge-left p-3 bg-slate-100 rounded-xl border border-slate-200">
+          <Lock size={20} className="text-slate-900" />
         </div>
-        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-8 h-8 bg-purple-600 rounded-lg animate-merge-right flex items-center justify-center">
-          <Zap size={12} className="text-white" />
+        {/* PQC Element */}
+        <div className="absolute animate-merge-right p-3 bg-blue-600 rounded-xl shadow-lg shadow-blue-200">
+          <Zap size={20} className="text-white" />
         </div>
+        {/* Pulse at Junction */}
+        <div className="w-12 h-12 bg-indigo-500/20 rounded-full animate-ping blur-xl"></div>
       </div>
     </div>
     <style>{`
       @keyframes merge-left {
-        0% { transform: translate(0, -50%); opacity: 0.5; }
-        50% { transform: translate(70px, -50%); opacity: 1; }
-        100% { transform: translate(0, -50%); opacity: 0.5; }
+        0% { transform: translateX(-100px); opacity: 0; }
+        40%, 60% { transform: translateX(-10px); opacity: 1; }
+        100% { transform: translateX(-100px); opacity: 0; }
       }
       @keyframes merge-right {
-        0% { transform: translate(0, -50%); opacity: 0.5; }
-        50% { transform: translate(-70px, -50%); opacity: 1; }
-        100% { transform: translate(0, -50%); opacity: 0.5; }
+        0% { transform: translateX(100px); opacity: 0; }
+        40%, 60% { transform: translateX(10px); opacity: 1; }
+        100% { transform: translateX(100px); opacity: 0; }
       }
       .animate-merge-left { animation: merge-left 4s ease-in-out infinite; }
       .animate-merge-right { animation: merge-right 4s ease-in-out infinite; }

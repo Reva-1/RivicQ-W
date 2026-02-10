@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Github, Mail, Linkedin, Globe, Shield, Lock, Cpu, Globe2, Sparkles, Layout, Building, Lightbulb, Users, Scale, ShieldCheck, Microscope, BookOpen, Handshake } from 'lucide-react';
@@ -52,7 +53,7 @@ const Sidebar: React.FC = () => {
   ];
 
   return (
-    <aside className="w-full md:w-64 flex-shrink-0 md:fixed md:h-screen border-r border-slate-100 bg-white flex flex-col z-50">
+    <aside className="w-full md:w-64 flex-shrink-0 md:fixed md:h-screen border-r border-slate-200 bg-white/70 backdrop-blur-xl flex flex-col z-50">
       
       <div className="p-8 pb-6">
         <NavLink to="/" className="group block">
@@ -74,7 +75,7 @@ const Sidebar: React.FC = () => {
       <nav className="flex-grow overflow-y-auto px-8 py-4 space-y-8 scrollbar-hide">
         {groups.map((group, idx) => (
           <div key={idx}>
-            <h3 className="text-[10px] font-bold text-slate-300 uppercase tracking-widest mb-3 border-b border-slate-50 pb-1">
+            <h3 className="text-[10px] font-bold text-slate-300 uppercase tracking-widest mb-3 border-b border-slate-100/50 pb-1">
               {group.label}
             </h3>
             <div className="space-y-1">
@@ -92,7 +93,7 @@ const Sidebar: React.FC = () => {
                 >
                   {({ isActive }) => (
                     <>
-                      <div className={`w-1 h-1 rounded-full transition-all ${isActive ? 'bg-blue-600 scale-125' : 'bg-transparent group-hover:bg-slate-200'}`}></div>
+                      <div className={`w-1 h-1 rounded-full transition-all ${isActive ? 'bg-blue-600 scale-150' : 'bg-transparent group-hover:bg-slate-300'}`}></div>
                       {link.name}
                     </>
                   )}

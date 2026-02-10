@@ -1,5 +1,5 @@
 import React from 'react';
-import { GraduationCap, Award, Hospital, Rocket, Landmark, Github, Code, Zap, Globe, Target, ShieldCheck as ShieldIcon } from 'lucide-react';
+import { GraduationCap, Award, Hospital, Rocket, Landmark, Github, Code, Zap, Globe, Target, ShieldCheck as ShieldIcon, Share2 } from 'lucide-react';
 
 const TimelineItem: React.FC<{ date: string, title: string, content: string, icon: React.ReactNode, type?: 'milestone' | 'challenge' }> = ({ date, title, content, icon, type = 'milestone' }) => (
   <div className="relative pl-12 pb-12 last:pb-0 group">
@@ -45,10 +45,10 @@ const Story: React.FC = () => {
             content="Initial exploration of AI, Blockchain, and Quantum vulnerabilities through intensive hackathons at EthBerlin and Cardano."
           />
           <TimelineItem 
-            date="April 10, 2024"
-            title="First Public Demo"
-            icon={<Rocket size={16} className="text-slate-400"/>}
-            content="Prototyped the Rivic concept at Venture Cafe Berlin, receiving the first validation from the local startup ecosystem."
+            date="Early August 2024"
+            title="RivicID & Radar Hackathon"
+            icon={<Share2 size={16} className="text-blue-500"/>}
+            content="First major project: RivicID, a cross-chain identity protocol, was submitted to the Solana Radar Hackathon. Supported by the Superteam Solana community, this milestone validated our approach to decentralized, verifiable identity."
           />
           <TimelineItem 
             date="January 2025"
