@@ -3,55 +3,56 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>RivicQ - Quantum-Safe Cybersecurity</title>
-    <meta name="description" content="RivicQ is a Berlin-based Deep Tech startup building the transition layer for the post-quantum internet. FIPS 140-3 HSM & Post-Quantum Cryptography solutions." />
-    <meta name="keywords" content="Post-Quantum Cryptography, PQC, HSM, Quantum Safe, Cybersecurity, RivicQ, Berlin, Deep Tech, CryptoBOM, DevSecOps" />
-    <link rel="canonical" href="https://rivic.xyz" />
+    <title>RivicQ — Quantum-Safe Infrastructure</title>
+    <meta name="description" content="Berlin-based Deep Tech building the transition layer for a post-quantum world. FIPS 140-3 HSM & Post-Quantum Cryptography." />
     <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,200..900;1,200..900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,200..900;1,200..900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script>
       tailwind.config = {
         theme: {
           extend: {
             colors: {
-              primary: '#111111',
-              secondary: '#666666',
-              accent: '#06b6d4',
+              primary: '#000000',
+              accent: '#2563eb',
+              surface: '#f8fafc',
             },
             fontFamily: {
               serif: ['"Crimson Pro"', 'serif'],
               sans: ['Inter', 'sans-serif'],
             },
-            typography: {
-              DEFAULT: {
-                css: {
-                  color: '#333',
-                  a: {
-                    color: '#111',
-                    textDecoration: 'underline',
-                    textDecorationColor: '#ccc',
-                    '&:hover': {
-                      textDecorationColor: '#111',
-                    },
-                  },
-                  h1: { fontFamily: '"Crimson Pro", serif', fontWeight: '700' },
-                  h2: { fontFamily: '"Crimson Pro", serif', fontWeight: '600', marginTop: '2em' },
-                  h3: { fontFamily: '"Crimson Pro", serif', fontWeight: '600' },
-                  blockquote: { borderLeftColor: '#06b6d4' },
-                },
-              },
+            animation: {
+              'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'float': 'float 6s ease-in-out infinite',
             },
+            keyframes: {
+              float: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-10px)' },
+              }
+            }
           },
         },
       }
     </script>
     <style>
       body {
-        font-family: 'Crimson Pro', serif;
+        font-family: 'Inter', sans-serif;
         background-color: #ffffff;
-        color: #111111;
+        color: #0f172a;
         -webkit-font-smoothing: antialiased;
+        scroll-behavior: smooth;
       }
+      .font-serif { font-family: 'Crimson Pro', serif; }
+      
+      /* Remove scrollbar noise */
+      ::-webkit-scrollbar { width: 6px; }
+      ::-webkit-scrollbar-track { background: transparent; }
+      ::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
+      ::-webkit-scrollbar-thumb:hover { background: #cbd5e1; }
+
+      /* Prose refinement */
+      .prose h1, .prose h2, .prose h3 { color: #0f172a; font-family: 'Crimson Pro', serif; letter-spacing: -0.02em; }
+      .prose p { line-height: 1.75; color: #475569; }
     </style>
     <script type="importmap">
     {

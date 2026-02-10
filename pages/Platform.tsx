@@ -1,104 +1,232 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { Cpu, Activity, ShieldCheck, ScrollText, CheckCircle, ExternalLink, FileText, Zap, ShieldAlert, Workflow, Database, Lock, ArrowRight, Settings2, Github, LayoutGrid, Terminal } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Platform: React.FC = () => {
+  const [complexity, setComplexity] = useState(65);
+  const [shots, setShots] = useState(1024);
+  const [riskScore, setRiskScore] = useState(0);
+
+  useEffect(() => {
+    const baseRisk = complexity * 0.8;
+    const shotFactor = Math.log10(shots) * 5;
+    const finalScore = Math.min(100, Math.round(baseRisk + shotFactor));
+    setRiskScore(finalScore);
+  }, [complexity, shots]);
+
+  const workflowSteps = [
+    {
+      icon: <Github size={20} />,
+      title: "Code Commit",
+      desc: "Source Analysis",
+      detail: "RivicQ hooks into Git pushes to scan source code for legacy RSA/ECC primitives before they hit the build.",
+      role: "Repository Hook"
+    },
+    {
+      icon: <Terminal size={20} />,
+      title: "CI/CD Scan",
+      desc: "Static Testing",
+      detail: "Our runner analyzes binary dependencies and linked libraries for quantum-vulnerability within the pipeline.",
+      role: "DevOps Integration"
+    },
+    {
+      icon: <FileText size={20} />,
+      title: "CBOM Generation",
+      desc: "Asset Inventory",
+      detail: "A dynamic Cryptographic Bill of Materials is produced, cataloging all algorithms, keys, and expiry dates.",
+      role: "Documentation Engine"
+    },
+    {
+      icon: <ShieldAlert size={20} />,
+      title: "Policy Check",
+      desc: "Compliance Gate",
+      detail: "The Policy Engine evaluates the CBOM against mandates like DORA or CNSA 2.0 to ensure strict compliance.",
+      role: "Compliance Validator"
+    },
+    {
+      icon: <ShieldCheck size={20} />,
+      title: "Enforcement",
+      desc: "Secure Release",
+      detail: "Non-compliant builds are automatically blocked, and remediation PRs are issued to upgrade to PQC.",
+      role: "Infrastructure Guardian"
+    }
+  ];
+
   return (
-    <article className="prose prose-lg prose-slate max-w-none">
-      <h1>System Architecture</h1>
-      <p className="text-gray-500 font-sans text-sm uppercase tracking-wide">Technical Specification v1.3</p>
+    <article className="prose prose-slate max-w-none">
+      <header className="mb-16">
+        <h1 className="text-5xl font-bold mb-4 tracking-tight">Architecture & Logic</h1>
+        <p className="text-slate-400 text-[10px] font-mono uppercase tracking-[0.3em] font-bold">Protocol Specification v1.4</p>
+      </header>
 
-      <p>
-        The RivicQ architecture is designed as a multi-layered defense system that wraps legacy infrastructure in a quantum-safe shell. 
-        It operates on a "Hybrid by Default" principle, ensuring backwards compatibility while enforcing forward secrecy.
-      </p>
-
-      <h2>1. The HSM Layer (Root of Trust)</h2>
-      <p>
-        At the core of RivicQ is the Hardware Security Module layer. We do not trust software memory for key storage. 
-        All cryptographic operations—generation, signing, and decryption—occur within FIPS 140-3 validated boundaries.
-      </p>
-      
-      <div className="not-prose bg-gray-50 border border-gray-200 rounded-lg p-6 my-6 font-sans text-sm">
-        <h4 className="font-bold text-gray-900 mb-4">Hardware Abstraction Layer</h4>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="bg-white p-4 rounded border border-gray-100">
-                <h5 className="font-bold text-xs uppercase tracking-wide text-gray-500 mb-2">Cloud HSM Cluster</h5>
-                <ul className="space-y-1 text-gray-700">
-                    <li>• AWS CloudHSM (FIPS 140-2 L3)</li>
-                    <li>• Google Cloud KMS (HSM Protection)</li>
-                    <li>• Azure Dedicated HSM</li>
-                </ul>
+      <section className="mb-20">
+        <p className="text-lg text-slate-600 leading-relaxed">
+          The RivicQ architecture is a multi-layered security mesh that encapsulates legacy environments in a quantum-resistant shell, anchoring all cryptographic operations in validated hardware.
+        </p>
+        <div className="not-prose bg-slate-50 border border-slate-100 p-8 rounded-[2rem] flex flex-col md:flex-row items-center gap-8 my-12 transition-all hover:bg-white hover:shadow-xl">
+            <div className="p-4 bg-slate-900 text-white rounded-2xl shadow-sm">
+                <Lock size={32}/>
             </div>
-            <div className="bg-white p-4 rounded border border-gray-100">
-                <h5 className="font-bold text-xs uppercase tracking-wide text-gray-500 mb-2">Enterprise HSM (On-Prem)</h5>
-                <ul className="space-y-1 text-gray-700">
-                    <li>• Thales Luna Network HSM</li>
-                    <li>• Utimaco SecurityServer</li>
-                    <li>• Entrust nShield</li>
-                </ul>
+            <div className="flex-grow">
+                <h3 className="text-xl font-serif font-bold text-slate-900 m-0 mb-2">Powered by RQSP</h3>
+                <p className="text-sm text-slate-500 m-0 leading-relaxed italic">
+                    Infrastructure orchestrated by the Quantum Safe Security Protocol (RQSP).
+                </p>
             </div>
+            <Link to="/rqsp" className="px-6 py-3 bg-blue-600 text-white rounded-full text-xs font-bold hover:bg-blue-700 transition-all flex items-center gap-2 shrink-0">
+                Explore Protocol <ArrowRight size={14}/>
+            </Link>
         </div>
-      </div>
+      </section>
 
-      <h2>2. Post-Quantum Cryptography Layer</h2>
-      <p>
-        RivicQ implements the primary algorithms selected by NIST for standardization. Our implementation focuses on a <strong>Hybrid Mode</strong>, 
-        combining classical algorithms with PQC primitives.
-      </p>
-      
-      <div className="overflow-x-auto not-prose my-6">
-        <table className="min-w-full text-sm font-sans border-collapse text-left">
-          <thead>
-            <tr className="border-b border-gray-200 text-gray-500">
-              <th className="py-2 pr-4 font-semibold">Algorithm</th>
-              <th className="py-2 px-4 font-semibold">Type</th>
-              <th className="py-2 px-4 font-semibold">NIST Standard</th>
-              <th className="py-2 pl-4 font-semibold">Use Case</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-gray-100">
-            <tr>
-              <td className="py-3 pr-4 font-medium">ML-KEM (Kyber)</td>
-              <td className="py-3 px-4">Lattice-based</td>
-              <td className="py-3 px-4">FIPS 203</td>
-              <td className="py-3 pl-4">Key Encapsulation (Encryption)</td>
-            </tr>
-            <tr>
-              <td className="py-3 pr-4 font-medium">ML-DSA (Dilithium)</td>
-              <td className="py-3 px-4">Lattice-based</td>
-              <td className="py-3 px-4">FIPS 204</td>
-              <td className="py-3 pl-4">Digital Signatures</td>
-            </tr>
-            <tr>
-              <td className="py-3 pr-4 font-medium">SLH-DSA (SPHINCS+)</td>
-              <td className="py-3 px-4">Hash-based</td>
-              <td className="py-3 px-4">FIPS 205</td>
-              <td className="py-3 pl-4">Firmware Signing (Stateless)</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      {/* Workflow Section - Enhanced with more descriptive text */}
+      <section className="my-24 not-prose">
+        <div className="flex items-center gap-4 mb-16">
+          <div className="p-4 bg-slate-900 text-white rounded-2xl">
+            <Workflow size={24} />
+          </div>
+          <div>
+            <h2 className="text-3xl font-serif font-bold text-slate-900 m-0">End-to-End Audit Workflow</h2>
+            <p className="text-xs text-slate-500 font-bold uppercase tracking-widest mt-1">DevSecOps Pipeline Integration</p>
+          </div>
+        </div>
 
-      <h2>3. CryptoBOM & Governance</h2>
-      <p>
-        The Management Layer provides visibility. The <strong>CryptoBOM (Cryptographic Bill of Materials)</strong> engine scans codebases and container registries to inventory every cryptographic call.
-      </p>
-      <ul>
-        <li><strong>Discovery:</strong> Identifies weak primitives (e.g., SHA-1, RSA-1024).</li>
-        <li><strong>Policy Engine:</strong> Enforces "Quantum-Safe Only" policies for new deployments.</li>
-        <li><strong>Compliance Mapping:</strong> Automatically maps findings to PCI DSS v4.0 and ISO 27001 controls.</li>
-      </ul>
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+          {workflowSteps.map((step, i) => (
+            <div key={i} className="flex flex-col items-center text-center p-8 rounded-3xl border border-slate-100 bg-white hover:bg-slate-50 hover:border-slate-300 transition-all group relative">
+              <div className="relative z-10 w-14 h-14 bg-white border border-slate-100 rounded-2xl flex items-center justify-center text-slate-300 group-hover:border-blue-500 group-hover:text-blue-600 transition-all mb-6 shadow-sm">
+                {step.icon}
+                <div className="absolute -top-2 -right-2 bg-slate-900 text-white text-[8px] font-bold px-1.5 py-0.5 rounded border border-slate-800 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                    {step.role}
+                </div>
+              </div>
+              <h4 className="text-[10px] font-bold text-blue-600 mb-1 uppercase tracking-[0.2em]">{step.desc}</h4>
+              <h5 className="text-sm font-bold text-slate-900 mb-4">{step.title}</h5>
+              <p className="text-[10px] text-slate-500 leading-relaxed m-0 font-medium">
+                {step.detail}
+              </p>
+              
+              {i < workflowSteps.length - 1 && (
+                <div className="hidden lg:block absolute -right-6 top-1/2 -translate-y-1/2 text-slate-200 z-0">
+                  <ArrowRight size={16}/>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </section>
 
-      <h2>4. Integration Layer</h2>
-      <p>
-        Applications consume RivicQ services via a RESTful API or gRPC sidecar. The complexity of key negotiation, rotation, and HSM connection pooling is handled entirely by the RivicQ Gateway.
-      </p>
+      {/* simulator Section */}
+      <section className="my-24 not-prose">
+        <div className="flex items-center gap-4 mb-12">
+          <div className="p-3 bg-slate-900 text-white rounded-2xl">
+            <Activity size={24} />
+          </div>
+          <h2 className="text-3xl font-serif font-bold text-slate-900 m-0">Quantum Risk Simulation</h2>
+        </div>
+        
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+          <div className="bg-slate-950 rounded-[2.5rem] p-8 font-mono text-[11px] text-indigo-200 shadow-2xl">
+            <div className="flex justify-between items-center mb-6 text-slate-500 border-b border-white/10 pb-4">
+              <span className="flex items-center gap-2"><Cpu size={12}/> interactive_sim.py</span>
+              <span className="text-[9px] opacity-50 uppercase tracking-widest">Simulation Mode</span>
+            </div>
+            <pre className="overflow-x-auto leading-relaxed text-indigo-300">
+{`from rivicq_analyzer import CryptoAsset
 
-      <h2>5. eIDAS with ZKP</h2>
-      <p>
-        RivicQ extends trust beyond infrastructure to user identity. We integrate with <strong>eIDAS 2.0</strong> wallets using <strong>Zero-Knowledge Proofs (ZKP)</strong>. 
-        This enables users to prove attributes (like age or citizenship) without revealing sensitive underlying data. The ZKP circuits are cryptographically bound to the HSM Root of Trust, 
-        ensuring that identity assertions are both private and quantum-resistant.
-      </p>
+# Interactive Parameters
+asset = CryptoAsset.get("RSA-2048-Legacy")
+asset.update_complexity(${complexity})
+
+# Simulation depth for Shor's
+qc = asset.generate_circuit(shots=${shots})
+
+# Output Risk Factor
+print(f"Aggregated Risk Score: {asset.ttv_score}")`}
+            </pre>
+            <div className="mt-10 space-y-8">
+              <div className="space-y-3">
+                <div className="flex justify-between items-center">
+                  <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Asset Complexity</label>
+                  <span className="text-blue-400 font-bold">{complexity}</span>
+                </div>
+                <input 
+                  type="range" min="10" max="100" value={complexity} 
+                  onChange={(e) => setComplexity(parseInt(e.target.value))}
+                  className="w-full h-1 bg-slate-800 rounded-full appearance-none cursor-pointer accent-blue-500"
+                />
+              </div>
+              <div className="space-y-3">
+                <div className="flex justify-between items-center">
+                  <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Simulation Shots</label>
+                  <span className="text-blue-400 font-bold">{shots}</span>
+                </div>
+                <select 
+                  value={shots} 
+                  onChange={(e) => setShots(parseInt(e.target.value))}
+                  className="w-full bg-slate-900 border border-slate-800 rounded-lg py-2 px-3 text-blue-300 outline-none focus:border-blue-500 transition-colors"
+                >
+                  <option value="512">512 Shots</option>
+                  <option value="1024">1024 Shots</option>
+                  <option value="4096">4096 Shots</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-white border border-slate-100 rounded-[2.5rem] p-10 shadow-sm flex flex-col justify-between">
+            <div>
+              <div className="text-center mb-10">
+                 <div className={`text-7xl font-bold font-mono transition-colors duration-700 ${riskScore > 75 ? 'text-red-500' : 'text-slate-900'}`}>
+                    {riskScore}<span className="text-2xl text-slate-200">/100</span>
+                 </div>
+                 <div className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.3em] mt-2">Combined Risk Index</div>
+              </div>
+              <div className="space-y-8">
+                <div>
+                  <div className="flex justify-between text-xs font-bold mb-2">
+                    <span className="text-slate-500 uppercase tracking-wider">Exposure Density</span>
+                    <span className="text-slate-900">{Math.round(riskScore * 0.9)}%</span>
+                  </div>
+                  <div className="h-1.5 w-full bg-slate-50 rounded-full overflow-hidden">
+                    <div className={`h-full transition-all duration-700 ${riskScore > 75 ? 'bg-red-500' : 'bg-slate-900'}`} style={{ width: `${riskScore * 0.9}%` }}></div>
+                  </div>
+                </div>
+                <div>
+                  <div className="flex justify-between text-xs font-bold mb-2">
+                    <span className="text-slate-500 uppercase tracking-wider">Time-to-Vulnerability</span>
+                    <span className="text-slate-900">{(20 - (riskScore / 5)).toFixed(1)} Years</span>
+                  </div>
+                  <div className="h-1.5 w-full bg-slate-50 rounded-full overflow-hidden">
+                    <div className="h-full bg-blue-600 transition-all duration-700" style={{ width: `${100 - riskScore}%` }}></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="mt-12 p-5 bg-slate-50 rounded-2xl border border-slate-100 text-[11px] text-slate-600 leading-relaxed italic">
+              <strong>Policy Verdict:</strong> {riskScore > 75 ? 'High exposure identified. Immediate RQSP migration mandatory for legacy nodes.' : 'Infrastructure stable. Proceed with scheduled CryptoBOM rotation.'}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 className="text-3xl font-serif font-bold mb-10">Certification & Trust</h2>
+        <div className="not-prose grid md:grid-cols-2 gap-6">
+          {[
+            { icon: <ShieldCheck className="text-blue-600"/>, title: "FIPS 140-3 L3", desc: "Hardware boundary validation." },
+            { icon: <ScrollText className="text-slate-900"/>, title: "ISO 27001", desc: "Security management standards." },
+            { icon: <CheckCircle className="text-emerald-600"/>, title: "eIDAS 2.0", desc: "EU identity compliance ready." },
+            { icon: <FileText className="text-slate-400"/>, title: "PCI DSS v4.0", desc: "Payment network quantum-safety." }
+          ].map((cert, i) => (
+            <div key={i} className="p-6 border border-slate-100 rounded-2xl bg-white hover:border-slate-300 transition-all">
+              <div className="mb-4">{cert.icon}</div>
+              <h4 className="text-lg font-serif font-bold mb-2 m-0">{cert.title}</h4>
+              <p className="text-sm text-slate-500 m-0 leading-relaxed">{cert.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
 
     </article>
   );

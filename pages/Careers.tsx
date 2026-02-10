@@ -1,4 +1,5 @@
 import React from 'react';
+import { Mail, Send } from 'lucide-react';
 
 const Careers: React.FC = () => {
   const openPositions = [
@@ -52,12 +53,25 @@ const Careers: React.FC = () => {
           ))}
       </div>
 
-      <div className="mt-12 bg-gray-50 p-8 rounded text-sm border-l-4 border-gray-900">
-          <p className="font-bold text-lg mb-2">Don't see a fit?</p>
-          <p className="text-gray-600 mb-4">
-              We are always looking for passionate people interested in quantum computing, cybersecurity, and cryptography.
-          </p>
-          <a href="mailto:careers@rivic.xyz" className="text-black font-bold underline">Send us an open application.</a>
+      <div className="mt-20 not-prose">
+        <div className="bg-slate-900 rounded-[3rem] p-10 md:p-16 text-center text-white relative overflow-hidden shadow-2xl">
+          <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle, #3b82f6 1px, transparent 1px)', backgroundSize: '30px 30px' }}></div>
+          <div className="relative z-10">
+            <h2 className="text-3xl md:text-4xl font-serif font-bold mb-6 text-white">Don't see your dream role?</h2>
+            <p className="text-slate-400 text-lg mb-10 max-w-2xl mx-auto">
+              We're always looking for talented individuals passionate about PQC and deep tech security. Send us an open application and tell us how you can help secure the quantum future!
+            </p>
+            <a 
+              href="mailto:careers@rivic.xyz?subject=Open Application: Future Cryptography Leader" 
+              className="inline-flex items-center gap-3 px-10 py-5 bg-blue-600 text-white rounded-full font-bold hover:bg-blue-700 transition-all shadow-xl shadow-blue-500/20"
+            >
+              Send Open Application <Send size={18}/>
+            </a>
+            <p className="mt-8 text-[10px] uppercase tracking-[0.3em] font-bold text-slate-500">
+              Join the 2026 Founder Cohort
+            </p>
+          </div>
+        </div>
       </div>
     </article>
   );
