@@ -9,7 +9,7 @@
     <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,200..900;1,200..900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script>
-      tailwind.config = {
+      window.tailwind.config = {
         theme: {
           extend: {
             colors: {
@@ -57,15 +57,11 @@
         scroll-behavior: smooth;
         overflow-x: hidden;
       }
-      
-      /* Refined Blueprint background pattern */
       .bg-technical {
         background-image: radial-gradient(#3b82f633 1.5px, transparent 1.5px);
         background-size: 32px 32px;
         background-position: -16px -16px;
       }
-
-      /* Noise texture for depth */
       .noise-overlay::before {
         content: "";
         position: fixed;
@@ -78,17 +74,13 @@
         pointer-events: none;
         z-index: 1;
       }
-
       .font-serif { font-family: 'Crimson Pro', serif; }
-      
       ::-webkit-scrollbar { width: 6px; }
       ::-webkit-scrollbar-track { background: transparent; }
       ::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
       ::-webkit-scrollbar-thumb:hover { background: #cbd5e1; }
-
       .prose h1, .prose h2, .prose h3 { color: #0f172a; font-family: 'Crimson Pro', serif; letter-spacing: -0.02em; }
       .prose p { line-height: 1.75; color: #475569; }
-
       .animate-fadeIn {
         animation: fadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
       }
@@ -97,19 +89,22 @@
         to { opacity: 1; transform: translateY(0); }
       }
     </style>
-    <script type="importmap">
-    {
-      "imports": {
-        "react": "https://esm.sh/react@^19.2.4",
-        "react/": "https://esm.sh/react@^19.2.4/",
-        "react-router-dom": "https://esm.sh/react-router-dom@^7.13.0",
-        "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
-        "lucide-react": "https://esm.sh/lucide-react@^0.563.0"
-      }
-    }
-    </script>
-  </head>
+  <script type="importmap">
+{
+  "imports": {
+    "vite": "https://esm.sh/vite@^7.3.1",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "lucide-react": "https://esm.sh/lucide-react@^0.563.0",
+    "react-router-dom": "https://esm.sh/react-router-dom@^7.13.0",
+    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.4",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react": "https://esm.sh/react@^19.2.4"
+  }
+}
+</script>
+</head>
   <body class="noise-overlay">
     <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
   </body>
 </html>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Handshake, Percent, Award, Zap, ArrowRight, ShieldCheck, Users, Briefcase, Mail, Send, CheckCircle, Info, Quote } from 'lucide-react';
+import { Handshake, Percent, Award, Zap, ArrowRight, ShieldCheck, Users, Briefcase, Mail, Send, CheckCircle, Info } from 'lucide-react';
 
 const TierCard: React.FC<{ 
   title: string, 
@@ -92,7 +92,7 @@ const Partner: React.FC = () => {
                 </div>
                 <h4 className="text-sm font-bold text-slate-900 uppercase tracking-wide mb-3">Service Bundle Rebate</h4>
                 <p className="text-xs text-slate-500 leading-relaxed m-0">
-                  Automatic discount when combining HSM-as-a-Service with our CryptoBOM Enterprise scanning suite.
+                  Automatic discount when combining HSM-as-a-Service with our CryptoBOM Enterprise scanning suite (Available Q2 2026).
                 </p>
               </div>
             </div>
@@ -103,46 +103,6 @@ const Partner: React.FC = () => {
               </a>
               <div className="flex items-center gap-2 text-slate-400 text-[10px] font-bold uppercase tracking-widest">
                 <Info size={14} className="text-blue-500" /> Program Terms Apply
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Partner Testimonials Section */}
-      <section className="not-prose mb-24">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl font-serif font-bold text-slate-900 mb-4">Partner Success Stories</h2>
-          <div className="h-1 w-12 bg-blue-600 mx-auto rounded-full"></div>
-        </div>
-        <div className="grid md:grid-cols-2 gap-8">
-          <div className="p-8 bg-slate-50 border border-slate-100 rounded-[2rem] relative">
-            <Quote className="text-blue-600/10 absolute top-8 left-8" size={48} />
-            <div className="relative z-10">
-              <p className="text-slate-700 font-serif italic text-lg leading-relaxed mb-6">
-                "Integrating RivicQ's PQC HSM nodes allowed us to offer the first quantum-safe sovereign cloud in the Nordic region. We've seen a 40% increase in high-assurance government leads within six months."
-              </p>
-              <div className="flex items-center gap-4">
-                <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xs">EL</div>
-                <div>
-                  <h4 className="text-sm font-bold text-slate-900 m-0">Erik Lindström</h4>
-                  <p className="text-[10px] text-slate-500 uppercase tracking-widest m-0">CTO, Nordic Cloud Services</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="p-8 bg-slate-50 border border-slate-100 rounded-[2rem] relative">
-            <Quote className="text-emerald-600/10 absolute top-8 left-8" size={48} />
-            <div className="relative z-10">
-              <p className="text-slate-700 font-serif italic text-lg leading-relaxed mb-6">
-                "The Advisory Program gave us the audit toolkits needed to navigate DORA for our banking clients. It's transformed our compliance services from simple checkboxes into a strategic migration revenue stream."
-              </p>
-              <div className="flex items-center gap-4">
-                <div className="w-10 h-10 bg-emerald-600 rounded-full flex items-center justify-center text-white font-bold text-xs">SC</div>
-                <div>
-                  <h4 className="text-sm font-bold text-slate-900 m-0">Sarah Chen</h4>
-                  <p className="text-[10px] text-slate-500 uppercase tracking-widest m-0">Director, CyberNexus Advisory</p>
-                </div>
               </div>
             </div>
           </div>

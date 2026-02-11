@@ -1,6 +1,8 @@
+
 import React, { useState, useEffect } from 'react';
-import { Cpu, Activity, ShieldCheck, ScrollText, CheckCircle, ExternalLink, FileText, Zap, ShieldAlert, Workflow, Database, Lock, ArrowRight, Settings2, Github, LayoutGrid, Terminal, Info, Atom, Share2 } from 'lucide-react';
+import { Cpu, Activity, ShieldCheck, ScrollText, CheckCircle, ExternalLink, FileText, Zap, ShieldAlert, Workflow, Database, Lock, ArrowRight, Settings2, Github, LayoutGrid, Terminal, Info, Atom, Share2, Layers, Repeat } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import SystemArchitecture3D from '../components/SystemArchitecture3D';
 
 const Platform: React.FC = () => {
   const [complexity, setComplexity] = useState(65);
@@ -64,83 +66,138 @@ const Platform: React.FC = () => {
         <p className="text-slate-400 text-[10px] font-mono uppercase tracking-[0.3em] font-bold">Protocol Specification v1.4</p>
       </header>
 
-      <section className="mb-20">
-        <p className="text-lg text-slate-600 leading-relaxed">
-          The RivicQ architecture is a multi-layered security mesh that encapsulates legacy environments in a quantum-resistant shell, anchoring all cryptographic operations in validated hardware.
-        </p>
-        <div className="not-prose bg-white/50 backdrop-blur-sm border border-slate-100 p-8 rounded-[2rem] flex flex-col md:flex-row items-center gap-8 my-12 transition-all hover:bg-white hover:shadow-xl shadow-sm">
-            <div className="p-4 bg-slate-900 text-white rounded-2xl shadow-sm">
-                <Lock size={32}/>
+      {/* 3D Visual Section */}
+      <section className="not-prose -mx-8 md:-mx-16 mb-24">
+         <SystemArchitecture3D />
+      </section>
+
+      {/* High-Level Architecture Deep Dive */}
+      <section className="mb-24">
+        <div className="flex items-center gap-4 mb-10">
+          <div className="p-3 bg-blue-600 text-white rounded-2xl shadow-lg">
+            <Layers size={24} />
+          </div>
+          <div>
+            <h2 className="text-3xl font-serif font-bold text-slate-900 m-0">High-Level Architecture</h2>
+            <p className="text-xs text-slate-500 font-bold uppercase tracking-widest mt-1">The Three Pillars of Quantum Trust</p>
+          </div>
+        </div>
+
+        <div className="not-prose grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Pillar 1: Discovery */}
+          <div className="p-8 bg-white border border-slate-100 rounded-[2.5rem] shadow-sm hover:border-blue-500 hover:scale-[1.02] hover:shadow-xl hover:shadow-blue-500/5 transition-all duration-500 group cursor-default">
+            <div className="mb-6 flex items-center justify-between">
+              <div className="p-3 bg-blue-50 text-blue-600 rounded-xl group-hover:bg-blue-600 group-hover:text-white transition-all">
+                <Search size={24} />
+              </div>
+              <span className="text-[10px] font-bold text-blue-600 uppercase tracking-widest">Phase 01</span>
             </div>
-            <div className="flex-grow">
-                <h3 className="text-xl font-serif font-bold text-slate-900 m-0 mb-2 tracking-tight">Powered by RQSP</h3>
-                <p className="text-sm text-slate-500 m-0 leading-relaxed italic">
-                    Infrastructure orchestrated by the Quantum Safe Security Protocol (RQSP).
-                </p>
+            <h3 className="text-xl font-serif font-bold text-slate-900 mb-4 group-hover:text-blue-600 transition-colors">Discovery</h3>
+            <p className="text-sm text-slate-500 leading-relaxed mb-6">
+              Automated identification of cryptographic assets across the entire stack.
+            </p>
+            <ul className="space-y-3 m-0 p-0">
+              <li className="flex gap-3 text-xs text-slate-600">
+                <div className="w-1.5 h-1.5 rounded-full bg-blue-600 mt-1.5 shrink-0" />
+                <span><strong>Static Scan:</strong> Analysis of source code and binaries.</span>
+              </li>
+              <li className="flex gap-3 text-xs text-slate-600">
+                <div className="w-1.5 h-1.5 rounded-full bg-blue-600 mt-1.5 shrink-0" />
+                <span><strong>Dynamic Scan:</strong> Real-time TLS handshake monitoring.</span>
+              </li>
+            </ul>
+          </div>
+
+          {/* Pillar 2: Inventory */}
+          <div className="p-8 bg-white border border-slate-100 rounded-[2.5rem] shadow-sm hover:border-emerald-500 hover:scale-[1.02] hover:shadow-xl hover:shadow-emerald-500/5 transition-all duration-500 group cursor-default">
+            <div className="mb-6 flex items-center justify-between">
+              <div className="p-3 bg-emerald-50 text-emerald-600 rounded-xl group-hover:bg-emerald-600 group-hover:text-white transition-all">
+                <Database size={24} />
+              </div>
+              <span className="text-[10px] font-bold text-emerald-600 uppercase tracking-widest">Phase 02</span>
             </div>
-            <Link to="/rqsp" className="px-6 py-3 bg-blue-600 text-white rounded-full text-xs font-bold hover:bg-blue-700 transition-all flex items-center gap-2 shrink-0 shadow-lg shadow-blue-500/20">
-                Explore Protocol <ArrowRight size={14}/>
-            </Link>
+            <h3 className="text-xl font-serif font-bold text-slate-900 mb-4 group-hover:text-emerald-600 transition-colors">Inventory (CBOM)</h3>
+            <p className="text-sm text-slate-500 leading-relaxed mb-6">
+              Creation of a Cryptographic Bill of Materials (CycloneDX) for full auditability.
+            </p>
+            <ul className="space-y-3 m-0 p-0">
+              <li className="flex gap-3 text-xs text-slate-600">
+                <div className="w-1.5 h-1.5 rounded-full bg-emerald-600 mt-1.5 shrink-0" />
+                <span><strong>Cataloging:</strong> Mapping algorithms to specific microservices.</span>
+              </li>
+              <li className="flex gap-3 text-xs text-slate-600">
+                <div className="w-1.5 h-1.5 rounded-full bg-emerald-600 mt-1.5 shrink-0" />
+                <span><strong>Risk Scoring:</strong> Estimated "Harvest Now, Decrypt Later" impact.</span>
+              </li>
+            </ul>
+          </div>
+
+          {/* Pillar 3: Migration */}
+          <div className="p-8 bg-white border border-slate-100 rounded-[2.5rem] shadow-sm hover:border-indigo-500 hover:scale-[1.02] hover:shadow-xl hover:shadow-indigo-500/5 transition-all duration-500 group cursor-default">
+            <div className="mb-6 flex items-center justify-between">
+              <div className="p-3 bg-indigo-50 text-indigo-600 rounded-xl group-hover:bg-indigo-600 group-hover:text-white transition-all">
+                <Repeat size={24} />
+              </div>
+              <span className="text-[10px] font-bold text-indigo-600 uppercase tracking-widest">Phase 03</span>
+            </div>
+            <h3 className="text-xl font-serif font-bold text-slate-900 mb-4 group-hover:text-indigo-600 transition-colors">Migration</h3>
+            <p className="text-sm text-slate-500 leading-relaxed mb-6">
+              The "Crypto-Agility" phase where legacy keys are migrated to PQC.
+            </p>
+            <ul className="space-y-3 m-0 p-0">
+              <li className="flex gap-3 text-xs text-slate-600">
+                <div className="w-1.5 h-1.5 rounded-full bg-indigo-600 mt-1.5 shrink-0" />
+                <span><strong>Hybrid Envelopment:</strong> Wrapping legacy RSA in PQC tunnels.</span>
+              </li>
+              <li className="flex gap-3 text-xs text-slate-600">
+                <div className="w-1.5 h-1.5 rounded-full bg-indigo-600 mt-1.5 shrink-0" />
+                <span><strong>HSM Anchor:</strong> Hardware-level key rotation to ML-KEM.</span>
+              </li>
+            </ul>
+          </div>
         </div>
       </section>
 
-      {/* Enhanced Workflow Section */}
+      {/* Audit Workflow Section */}
       <section className="my-24 not-prose">
         <div className="flex items-center gap-4 mb-16">
           <div className="p-4 bg-slate-900 text-white rounded-2xl">
             <Workflow size={24} />
           </div>
           <div>
-            <h2 className="text-3xl font-serif font-bold text-slate-900 m-0">End-to-End Audit Workflow</h2>
-            <p className="text-xs text-slate-500 font-bold uppercase tracking-widest mt-1">DevSecOps Pipeline Lifecycle</p>
+            <h2 className="text-3xl font-serif font-bold text-slate-900 m-0">End-to-End Operational Lifecycle</h2>
+            <p className="text-xs text-slate-500 font-bold uppercase tracking-widest mt-1">DevSecOps Pipeline Integration</p>
           </div>
         </div>
 
         <div className="relative">
-          {/* Connecting Line (Desktop) */}
           <div className="hidden lg:block absolute top-[2.75rem] left-12 right-12 h-0.5 bg-slate-100 -z-0"></div>
-
           <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
             {workflowSteps.map((step, i) => (
               <div key={i} className="flex flex-col items-center text-center p-6 rounded-3xl border border-slate-100 bg-white/80 backdrop-blur-sm hover:bg-white hover:border-blue-200 hover:shadow-xl transition-all group relative z-10">
                 <div className="relative mb-6">
-                  {/* Icon Container */}
                   <div className="w-14 h-14 bg-white border border-slate-100 rounded-2xl flex items-center justify-center text-slate-400 group-hover:border-blue-500 group-hover:text-blue-600 transition-all shadow-sm">
                     {step.icon}
                   </div>
-                  
-                  {/* Tooltip / Role Tag */}
                   <div className="absolute -top-12 left-1/2 -translate-x-1/2 bg-slate-900 text-white text-[9px] font-bold px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-all pointer-events-none whitespace-nowrap shadow-xl">
-                    <div className="flex items-center gap-2">
-                      <span className="text-blue-400 uppercase tracking-widest">{step.role}</span>
-                    </div>
-                    {/* Tooltip arrow */}
+                    <span className="text-blue-400 uppercase tracking-widest">{step.role}</span>
                     <div className="absolute top-full left-1/2 -translate-x-1/2 border-8 border-transparent border-t-slate-900"></div>
                   </div>
-
-                  {/* Step Number Badge */}
                   <div className="absolute -bottom-2 -right-2 w-6 h-6 bg-slate-100 rounded-full border border-white text-slate-400 text-[10px] font-bold flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors">
                     0{i+1}
                   </div>
                 </div>
-
                 <div className="space-y-3">
                   <div className="flex flex-col">
                     <h4 className="text-[10px] font-bold text-blue-600 mb-1 uppercase tracking-[0.2em]">{step.desc}</h4>
                     <h5 className="text-sm font-bold text-slate-900 m-0">{step.title}</h5>
                   </div>
-                  
-                  <p className="text-[10px] text-slate-500 leading-relaxed m-0 font-medium">
-                    {step.detail}
-                  </p>
-
-                  {/* Context Label (Short Description) */}
+                  <p className="text-[10px] text-slate-500 leading-relaxed m-0 font-medium">{step.detail}</p>
                   <div className="pt-3 mt-3 border-t border-slate-50 flex items-center justify-center gap-1.5 opacity-60 group-hover:opacity-100 transition-opacity">
                     <Info size={10} className="text-slate-400" />
                     <span className="text-[9px] font-bold text-slate-500 uppercase tracking-tighter">{step.tooltip}</span>
                   </div>
                 </div>
-                
                 {i < workflowSteps.length - 1 && (
                   <div className="hidden lg:block absolute -right-6 top-[2.75rem] -translate-y-1/2 text-slate-200 z-0">
                     <ArrowRight size={16}/>
@@ -152,7 +209,7 @@ const Platform: React.FC = () => {
         </div>
       </section>
 
-      {/* Simulator Section - Explicitly Qiskit Driven */}
+      {/* Simulator Section */}
       <section className="my-24 not-prose">
         <div className="flex items-center gap-4 mb-12">
           <div className="p-3 bg-slate-900 text-white rounded-2xl">
@@ -229,7 +286,6 @@ rivicq_client.policy.update_risk_telemetry(risk_data)`}
                  <div className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.3em] mt-2">Aggregated Risk Telemetry</div>
               </div>
               
-              {/* Feedback Loop Visualization */}
               <div className="bg-blue-50/50 rounded-2xl p-6 border border-blue-100/50 mb-8 flex items-center gap-4">
                 <div className="p-3 bg-blue-600 text-white rounded-xl shadow-lg">
                   <Share2 size={20} className="animate-pulse" />
@@ -287,9 +343,15 @@ rivicq_client.policy.update_risk_telemetry(risk_data)`}
           ))}
         </div>
       </section>
-
     </article>
   );
 };
 
 export default Platform;
+
+const Search: React.FC<{ size?: number, className?: string }> = ({ size = 20, className = "" }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <circle cx="11" cy="11" r="8"></circle>
+    <path d="m21 21-4.3-4.3"></path>
+  </svg>
+);

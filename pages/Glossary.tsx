@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Book, Search, Info } from 'lucide-react';
 
@@ -24,74 +25,51 @@ const GlossaryItem: React.FC<{ term: string, definition: string, category: strin
 const Glossary: React.FC = () => {
   const items = [
     { 
-      term: "Shor's Algorithm", 
-      category: "Quantum Mechanics", 
-      definition: "A quantum computer algorithm for finding the prime factors of an integer. Developed in 1994, it proves that a sufficiently powerful quantum computer can efficiently break RSA and ECC encryption." 
+      term: "ML-KEM (Kyber)", 
+      category: "NIST Standard", 
+      definition: "Module-Lattice Key Encapsulation Mechanism (FIPS 203). The primary standard for establishing secure shared keys across networks in a post-quantum world." 
+    },
+    { 
+      term: "ML-DSA (Dilithium)", 
+      category: "NIST Standard", 
+      definition: "Module-Lattice Digital Signature Algorithm (FIPS 204). Used for authenticating messages and verifying identity in PQC-native environments." 
     },
     { 
       term: "Lattice-based Cryptography", 
       category: "Mathematics", 
-      definition: "A type of post-quantum cryptography that relies on the complexity of geometric lattice problems. Algorithms like Kyber (ML-KEM) and Dilithium (ML-DSA) are built on this foundation." 
+      definition: "A class of cryptographic primitives based on geometric lattice problems. They are the leading candidates for PQC due to their efficiency and resistance to Shor's algorithm." 
     },
     { 
       term: "Crypto-Agility", 
-      category: "Security Strategy", 
-      definition: "The ability of a system to quickly switch between multiple cryptographic primitives (algorithms) without significant infrastructure changes. This is critical for the PQC transition." 
+      category: "Strategy", 
+      definition: "The ability to switch between cryptographic algorithms without redesigning the underlying infrastructure. Essential for surviving the transition from classical to PQC." 
     },
     { 
-      term: "ML-KEM (Kyber)", 
-      category: "NIST Standard", 
-      definition: "Module-Lattice Key Encapsulation Mechanism. Standardized as FIPS 203, it is the primary algorithm for establishing secure shared keys across a network in a quantum world." 
+      term: "Shor's Algorithm", 
+      category: "Quantum Mechanics", 
+      definition: "A quantum computer algorithm that can efficiently factor large integers, thereby breaking current RSA and ECC encryption standards." 
     },
     { 
-      term: "Harvest Now, Decrypt Later (HNDL)", 
-      category: "Threat Vector", 
-      definition: "An attack strategy where adversaries intercept and store encrypted data today, waiting for future quantum computers to become powerful enough to decrypt it." 
-    },
-    { 
-      term: "Hybrid Cryptography", 
+      term: "Hybrid KEM", 
       category: "Implementation", 
-      definition: "A security model that combines a classical algorithm (like RSA or Curve25519) with a post-quantum algorithm. It ensures security even if one of the algorithms is later found to be weak." 
+      definition: "Combining a classical key exchange (like X25519) with a post-quantum one (ML-KEM) to provide layered security during the transition period." 
     }
   ];
 
   return (
     <article className="prose prose-slate max-w-none">
       <header className="mb-16">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-[10px] font-bold uppercase tracking-widest mb-6">
-          <Book size={10} /> Reference Library
-        </div>
         <h1 className="text-5xl font-bold mb-4">Glossary of Terms</h1>
-        <p className="text-xl text-slate-500 font-serif italic leading-relaxed">
-          Understanding the lexicon of the post-quantum transition.
+        <p className="text-xl text-slate-500 font-serif italic">
+          The technical lexicon of Post-Quantum Cryptography.
         </p>
       </header>
-
-      <section className="bg-slate-50 p-6 rounded-2xl border border-slate-100 mb-12 flex items-center gap-4 not-prose">
-        <Search className="text-slate-400" size={18}/>
-        <span className="text-sm text-slate-400 font-medium italic">Search functionality coming in v2.0...</span>
-      </section>
 
       <div className="not-prose">
         {items.map((item, i) => (
           <GlossaryItem key={i} {...item} />
         ))}
       </div>
-
-      <section className="mt-20 p-8 bg-blue-50 border border-blue-100 rounded-[2rem] flex items-start gap-6 not-prose">
-        <div className="p-3 bg-white rounded-xl shadow-sm">
-          <Info className="text-blue-600" size={20}/>
-        </div>
-        <div>
-          <h4 className="m-0 font-serif font-bold text-slate-900 text-lg mb-2">Technical Whitepapers</h4>
-          <p className="text-sm text-slate-600 leading-relaxed mb-4">
-            For a deeper mathematical dive, please request our internal research papers on Lattice Complexity and HSM Entropy Optimization.
-          </p>
-          <a href="mailto:research@rivic.xyz" className="text-blue-600 text-xs font-bold uppercase tracking-widest hover:underline">
-            Request Whitepapers
-          </a>
-        </div>
-      </section>
     </article>
   );
 };

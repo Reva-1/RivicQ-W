@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Check, Send, ShieldCheck, Mail, Target, Search, FileText, Building2, User } from 'lucide-react';
+import { Check, Send, ShieldCheck, Mail, Target, Building2, User } from 'lucide-react';
 
 const PricingCard: React.FC<{ 
   title: string, 
@@ -119,7 +119,8 @@ const Pricing: React.FC = () => {
           <PricingCard 
             title="Enterprise"
             price="Custom"
-            description="Strategic control for global, mission-critical infrastructure."
+            badge="Early Access Q2 2026"
+            description="Strategic control for global, mission-critical infrastructure. Pre-register for the Q2 2026 SaaS rollout."
             features={[
               "Unlimited Scanning Nodes",
               "Automated Remediation PRs",

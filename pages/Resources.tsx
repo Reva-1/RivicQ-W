@@ -1,5 +1,7 @@
+
 import React, { useState } from 'react';
-import { Copy, Check, ExternalLink, ShieldCheck, FileText, Github, BarChart3, Cloud, Landmark, Lock, Globe, ChevronDown, ChevronUp, Send, MessageSquare, Briefcase, Zap, Activity, Monitor, Workflow, ShieldAlert } from 'lucide-react';
+/* Added Info to the import list from lucide-react to fix "Cannot find name 'Info'" error */
+import { Copy, Check, ExternalLink, ShieldCheck, FileText, Github, BarChart3, Cloud, Landmark, Lock, Globe, ChevronDown, ChevronUp, Send, MessageSquare, Briefcase, Zap, Activity, Monitor, Workflow, ShieldAlert, ArrowRight, Layers, Search, Database, Repeat, Cpu, Terminal, Info } from 'lucide-react';
 
 const CodeBlock: React.FC<{ code: string, label?: string }> = ({ code, label }) => {
   const [copied, setCopied] = useState(false);
@@ -70,14 +72,6 @@ helm install cryptobom-agent rivicq/cbom-agent \\
     "payload_base64": "SGVsbG8gUXVhbnR1bQ=="
   }'`;
 
-  const [formSubmitted, setFormSubmitted] = useState(false);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setFormSubmitted(true);
-    setTimeout(() => setFormSubmitted(false), 5000);
-  };
-
   return (
     <article className="prose prose-lg prose-slate max-w-none">
       <h1>Resources & Tools</h1>
@@ -91,20 +85,110 @@ helm install cryptobom-agent rivicq/cbom-agent \\
           <div className="p-3 bg-blue-600 text-white rounded-2xl shadow-lg shadow-blue-100">
              <ShieldAlert size={28}/>
           </div>
-          <h2 className="m-0 text-3xl font-serif font-bold">RivicQ CryptoBOM SaaS</h2>
+          <h2 className="m-0 text-3xl font-serif font-bold">RivicQ CryptoBOM</h2>
         </div>
         
         <p>
             The Cryptographic Bill of Materials (CBOM) is the first step towards quantum safety. You cannot secure what you cannot see. 
             Our tool creates a dynamic inventory of all cryptographic assets in your software supply chain.
         </p>
+
+        {/* --- NEW ARCHITECTURE SECTION --- */}
+        <div className="not-prose my-16 p-8 md:p-12 bg-white border border-slate-100 rounded-[3rem] shadow-sm relative overflow-hidden">
+          <div className="absolute top-0 right-0 p-8 opacity-5 text-slate-900 pointer-events-none">
+            <Layers size={120} />
+          </div>
+          
+          <div className="text-center mb-12">
+            <h3 className="text-2xl font-serif font-bold text-slate-900 m-0">CryptoBOM Lifecycle Architecture</h3>
+            <p className="text-[10px] font-bold text-blue-600 uppercase tracking-[0.3em] mt-2">The Transition Logic: Discovery to PQC</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-1 relative">
+            {/* Phase 1: Discovery */}
+            <div className="flex flex-col items-center text-center p-6 border border-slate-50 bg-slate-50/30 rounded-3xl relative group">
+              <div className="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-blue-600 mb-6 group-hover:bg-blue-600 group-hover:text-white transition-all">
+                <Search size={20} />
+              </div>
+              <h4 className="text-sm font-bold text-slate-900 mb-2 uppercase tracking-wide">01. Discovery</h4>
+              <p className="text-[10px] text-slate-500 leading-relaxed mb-4">Scanning code & runtime traffic for legacy primitives.</p>
+              <div className="w-full space-y-2">
+                <div className="p-2 bg-white rounded-lg border border-slate-100 text-[9px] font-bold text-slate-600 flex items-center gap-2">
+                  <Terminal size={10} className="text-slate-400"/> OSS: Static CLI Scans
+                </div>
+                <div className="p-2 bg-indigo-50 rounded-lg border border-indigo-100 text-[9px] font-bold text-indigo-700 flex items-center gap-2">
+                  <Activity size={10}/> Ent: K8s Dynamic Agent
+                </div>
+              </div>
+            </div>
+
+            {/* Connecting Arrow */}
+            <div className="hidden md:flex items-center justify-center opacity-20 text-slate-400">
+              <ArrowRight size={24} />
+            </div>
+
+            {/* Phase 2: Inventory */}
+            <div className="flex flex-col items-center text-center p-6 border border-slate-50 bg-slate-50/30 rounded-3xl relative group">
+              <div className="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-indigo-600 mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-all">
+                <Database size={20} />
+              </div>
+              <h4 className="text-sm font-bold text-slate-900 mb-2 uppercase tracking-wide">02. Inventory</h4>
+              <p className="text-[10px] text-slate-500 leading-relaxed mb-4">Cataloging assets into a verifiable CBOM database.</p>
+              <div className="w-full space-y-2">
+                <div className="p-2 bg-white rounded-lg border border-slate-100 text-[9px] font-bold text-slate-600 flex items-center gap-2">
+                  <FileText size={10} className="text-slate-400"/> OSS: CycloneDX Exports
+                </div>
+                <div className="p-2 bg-blue-50 rounded-lg border border-blue-100 text-[9px] font-bold text-blue-700 flex items-center gap-2">
+                  <Monitor size={10}/> Ent: Managed Risk DB
+                </div>
+              </div>
+            </div>
+
+            {/* Connecting Arrow */}
+            <div className="hidden md:flex items-center justify-center opacity-20 text-slate-400">
+              <ArrowRight size={24} />
+            </div>
+
+            {/* Phase 3: Migration */}
+            <div className="flex flex-col items-center text-center p-6 border border-slate-50 bg-slate-50/30 rounded-3xl relative group">
+              <div className="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-emerald-600 mb-6 group-hover:bg-emerald-600 group-hover:text-white transition-all">
+                <Repeat size={20} />
+              </div>
+              <h4 className="text-sm font-bold text-slate-900 mb-2 uppercase tracking-wide">03. Migration</h4>
+              <p className="text-[10px] text-slate-500 leading-relaxed mb-4">Orchestrating rotation to PQC algorithms (ML-KEM).</p>
+              <div className="w-full space-y-2">
+                <div className="p-2 bg-white rounded-lg border border-slate-100 text-[9px] font-bold text-slate-600 flex items-center gap-2">
+                  <ShieldCheck size={10} className="text-slate-400"/> OSS: Advisory Fixes
+                </div>
+                <div className="p-2 bg-emerald-50 rounded-lg border border-emerald-100 text-[9px] font-bold text-emerald-700 flex items-center gap-2">
+                  <Lock size={10}/> Ent: HSM Key Mesh
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-12 pt-8 border-t border-slate-100 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="flex items-center gap-3">
+              <div className="p-2 bg-blue-50 text-blue-600 rounded-lg">
+                <Info size={16}/>
+              </div>
+              <p className="text-[10px] text-slate-500 font-medium m-0 max-w-sm leading-relaxed">
+                The OSS layer provides the baseline "visibility", while the Enterprise Architecture automates the "remediation" and "enforcement" of PQC standards.
+              </p>
+            </div>
+            <a href="/#/pricing#contact" className="inline-flex items-center gap-2 bg-slate-900 text-white px-6 py-3 rounded-xl font-bold text-[10px] uppercase tracking-widest hover:bg-blue-600 transition-all shadow-xl shadow-slate-100">
+              Request Full Enterprise Architecture <ArrowRight size={14}/>
+            </a>
+          </div>
+        </div>
+        {/* --- END ARCHITECTURE SECTION --- */}
         
         <CodeBlock code={helmCode} label="Helm Installation (Agent)" />
 
-        <div className="not-prose flex justify-between items-center mb-6">
+        <div className="not-prose flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
           <p className="text-sm text-slate-500 m-0">Interested in integrating our HSM-backed signing API?</p>
-          <a href="https://github.com/rivic-q" target="_blank" rel="noopener noreferrer" className="bg-white border-2 border-slate-900 text-slate-900 px-4 py-2 rounded font-bold text-sm hover:bg-slate-900 hover:text-white transition-all">
-            GitHub Docs
+          <a href="https://github.com/rivic-q" target="_blank" rel="noopener noreferrer" className="bg-white border-2 border-slate-900 text-slate-900 px-4 py-2 rounded font-bold text-sm hover:bg-slate-900 hover:text-white transition-all flex items-center gap-2">
+            <Github size={16}/> GitHub Docs
           </a>
         </div>
         
@@ -122,7 +206,10 @@ helm install cryptobom-agent rivicq/cbom-agent \\
                     <tr className="bg-slate-50 border-b border-slate-200">
                         <th className="p-4 font-bold text-slate-900">Feature</th>
                         <th className="p-4 font-bold text-slate-900 w-1/3">Open Source (Community)</th>
-                        <th className="p-4 font-bold text-slate-900 w-1/3 text-blue-600">Enterprise (SaaS)</th>
+                        <th className="p-4 font-bold text-slate-900 w-1/3 text-blue-600">
+                          Enterprise (SaaS)
+                          <div className="text-[9px] font-bold text-blue-500 uppercase tracking-widest mt-1 italic">Available Q2 2026</div>
+                        </th>
                     </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100">
@@ -192,7 +279,7 @@ helm install cryptobom-agent rivicq/cbom-agent \\
 
       <hr className="my-16 border-gray-100"/>
 
-      {/* Regulatory & Compliance Links */}
+      {/* Regulatory & Compliance Hub */}
       <section>
         <h2>Regulatory & Compliance Hub</h2>
         <p>
@@ -226,50 +313,6 @@ helm install cryptobom-agent rivicq/cbom-agent \\
         </div>
       </section>
 
-      {/* New Security & Compliance Section */}
-      <section className="mt-16">
-        <h2 className="flex items-center gap-3">
-          <ShieldCheck className="text-blue-600" />
-          Security & Compliance
-        </h2>
-        <p>
-          Access detailed technical standards and implementation checklists for your security transition.
-        </p>
-        <div className="not-prose grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-            <a href="https://csrc.nist.gov/projects/post-quantum-cryptography" target="_blank" rel="noopener noreferrer" className="p-6 border border-slate-200 rounded-2xl bg-white hover:border-blue-600 hover:shadow-lg transition-all flex justify-between items-center group">
-              <div>
-                <h4 className="m-0 text-slate-900 font-bold group-hover:text-blue-600">NIST PQC Standards Overview</h4>
-                <p className="text-xs text-slate-500 m-0 mt-1">NIST's official project for post-quantum crypto.</p>
-              </div>
-              <ExternalLink size={18} className="text-slate-300 group-hover:text-blue-600 shrink-0"/>
-            </a>
-            <a href="/#/resources" className="p-6 border border-slate-200 rounded-2xl bg-white hover:border-blue-600 hover:shadow-lg transition-all flex justify-between items-center group">
-              <div>
-                <h4 className="m-0 text-slate-900 font-bold group-hover:text-blue-600">FIPS 140-3 Validation Details</h4>
-                <p className="text-xs text-slate-500 m-0 mt-1">Hardware boundary security requirements.</p>
-              </div>
-              <ArrowRight size={18} className="text-slate-300 group-hover:text-blue-600 shrink-0"/>
-            </a>
-            <a href="/#/resources" className="p-6 border border-slate-200 rounded-2xl bg-white hover:border-blue-600 hover:shadow-lg transition-all flex justify-between items-center group">
-              <div>
-                <h4 className="m-0 text-slate-900 font-bold group-hover:text-blue-600">DORA Compliance Checklist</h4>
-                <p className="text-xs text-slate-500 m-0 mt-1">Checklist for financial institutions (EU).</p>
-              </div>
-              <ArrowRight size={18} className="text-slate-300 group-hover:text-blue-600 shrink-0"/>
-            </a>
-            <a href="https://www.bsi.bund.de/" target="_blank" rel="noopener noreferrer" className="p-6 border border-slate-200 rounded-2xl bg-white hover:border-blue-600 hover:shadow-lg transition-all flex justify-between items-center group">
-              <div>
-                <h4 className="m-0 text-slate-900 font-bold group-hover:text-blue-600">BSI Germany</h4>
-                <p className="text-xs text-slate-500 m-0 mt-1">Federal Office for Information Security.</p>
-              </div>
-              <ExternalLink size={18} className="text-slate-300 group-hover:text-blue-600 shrink-0"/>
-            </a>
-        </div>
-      </section>
-
-      <hr className="my-10 border-gray-100"/>
-
-      {/* FAQ Section */}
       <section id="faq">
         <h2>Frequently Asked Questions</h2>
         <div className="not-prose mt-8">
@@ -287,16 +330,8 @@ helm install cryptobom-agent rivicq/cbom-agent \\
           />
         </div>
       </section>
-
     </article>
   );
 };
 
 export default Resources;
-
-const ArrowRight: React.FC<{ size?: number, className?: string }> = ({ size = 20, className = "" }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-    <line x1="5" y1="12" x2="19" y2="12"></line>
-    <polyline points="12 5 19 12 12 19"></polyline>
-  </svg>
-);

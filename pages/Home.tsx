@@ -1,6 +1,7 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ShieldCheck, ArrowRight, Lock, Zap, Activity, ChevronDown, Rocket, Target, Scale } from 'lucide-react';
+import { ShieldCheck, ArrowRight, Lock, Zap, Activity, ChevronDown, Cpu, Target, Scale } from 'lucide-react';
 import HSMBlueprint from '../components/HSMBlueprint';
 
 const Home: React.FC = () => {
@@ -9,17 +10,17 @@ const Home: React.FC = () => {
       
       {/* Hero Section */}
       <section className="pt-12 md:pt-16 mb-12 relative">
-        <div className="max-w-2xl">
+        <div className="max-w-3xl">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50/50 backdrop-blur-sm border border-blue-100/50 text-blue-600 text-[10px] font-bold uppercase tracking-widest mb-8">
             <Activity size={10} className="text-blue-500 animate-pulse"/>
-            Protocol Status: Nominal
+            Protocol Status: Nominal • NIST FIPS 203/204 Ready
           </div>
           <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-[1.1] tracking-tight text-slate-900">
-            Infrastructure <br/> for <span className="text-blue-600">Quantum Trust.</span>
+            The Engine for <br/> <span className="text-blue-600">Quantum Resilience.</span>
           </h1>
           <div className="mb-10">
             <p className="text-xl md:text-2xl text-slate-500 font-serif italic leading-relaxed m-0">
-              RivicQ — <span className="text-slate-900 font-bold not-italic">Robust Integrated Verified Identity Computing & Quantum</span> — anchors digital identity in physical hardware, providing the transition layer for a post-quantum world.
+              RivicQ — <span className="text-slate-900 font-bold not-italic">Robust Integrated Verified Infrastructure Computing & Quantum</span> — addresses cryptographic debt by migrating mission-critical systems to lattice-based security.
             </p>
           </div>
           <div className="flex flex-wrap gap-4 not-prose mb-12">
@@ -30,31 +31,24 @@ const Home: React.FC = () => {
               Enterprise Inquiry
             </Link>
           </div>
-          
-          {/* Subtle scroll indicator */}
-          <div className="flex items-center gap-3 text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] animate-bounce">
-            <ChevronDown size={14} className="text-blue-600"/>
-            Technical Specifications Below
-          </div>
         </div>
       </section>
 
-      {/* Blueprint Container - Softened transition */}
-      <section className="not-prose -mx-8 md:-mx-16 relative py-12 overflow-hidden border-y border-slate-100/50 bg-white/30 backdrop-blur-sm">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-12 bg-gradient-to-b from-blue-600/20 to-transparent"></div>
+      {/* Core Technology: HSM Blueprint */}
+      <section className="not-prose -mx-8 md:-mx-16 mb-24">
+        <div className="px-8 md:px-16 mb-8">
+            <h2 className="text-3xl font-serif font-bold text-slate-900 m-0">FIPS 140-3 Hardware Boundary</h2>
+            <p className="text-xs text-blue-600 font-bold uppercase tracking-[0.3em] mt-2">Physical Root of Trust (RoT)</p>
+        </div>
         <HSMBlueprint />
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-px h-12 bg-gradient-to-t from-blue-600/20 to-transparent"></div>
       </section>
 
       {/* Why RivicQ? Section */}
-      <section className="py-24 not-prose relative">
-        {/* Visual cue: connecting line */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-16 bg-slate-100"></div>
-        
-        <div className="text-center mb-20 pt-16">
-          <h2 className="text-4xl md:text-5xl font-serif font-bold text-slate-900 mb-6 tracking-tight">Why RivicQ?</h2>
+      <section className="py-24 not-prose relative border-t border-slate-100">
+        <div className="text-center mb-20">
+          <h2 className="text-4xl md:text-5xl font-serif font-bold text-slate-900 mb-6 tracking-tight">Core Cryptographic Foundations</h2>
           <p className="text-lg text-slate-500 font-serif italic max-w-2xl mx-auto">
-            Security that isn't just quantum-safe, but operationally resilient.
+            Security anchored in high-entropy physics and lattice mathematics.
           </p>
         </div>
 
@@ -63,27 +57,27 @@ const Home: React.FC = () => {
             <div className="p-4 bg-blue-50 text-blue-600 rounded-2xl border border-blue-100/50 inline-block mb-6">
               <Zap size={24}/>
             </div>
-            <h3 className="text-xl font-bold text-slate-900 mb-4">Quantum-Safe Native</h3>
+            <h3 className="text-xl font-bold text-slate-900 mb-4">PQC Migration</h3>
             <p className="text-sm text-slate-600 leading-relaxed m-0">
-              Built natively on lattice-based primitives (ML-KEM/ML-DSA) from the first line of code, not as an afterthought.
+              Standardized implementation of ML-KEM (Kyber) and ML-DSA (Dilithium) to neutralize "Harvest Now, Decrypt Later" threats.
             </p>
           </div>
           <div className="p-8 rounded-[2.5rem] bg-white border border-slate-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] hover:-translate-y-1 transition-all duration-500">
             <div className="p-4 bg-emerald-50 text-emerald-600 rounded-2xl border border-emerald-100/50 inline-block mb-6">
               <Lock size={24}/>
             </div>
-            <h3 className="text-xl font-bold text-slate-900 mb-4">HSM Isolation</h3>
+            <h3 className="text-xl font-bold text-slate-900 mb-4">HSM Orchestration</h3>
             <p className="text-sm text-slate-600 leading-relaxed m-0">
-              All critical key material is generated and stored in FIPS 140-3 validated physical boundaries that never phone home.
+              FIPS 140-3 validated key generation where private entropy never leaves the physical boundary of the secure element.
             </p>
           </div>
           <div className="p-8 rounded-[2.5rem] bg-white border border-slate-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] hover:-translate-y-1 transition-all duration-500">
             <div className="p-4 bg-purple-50 text-purple-600 rounded-2xl border border-purple-100/50 inline-block mb-6">
               <Scale size={24}/>
             </div>
-            <h3 className="text-xl font-bold text-slate-900 mb-4">Global Compliance</h3>
+            <h3 className="text-xl font-bold text-slate-900 mb-4">CryptoBOM Analysis</h3>
             <p className="text-sm text-slate-600 leading-relaxed m-0">
-              Automate the mapping of your infrastructure to upcoming mandates like EU DORA and NIST CNSA 2.0.
+              Automated auditing of the software supply chain to identify and inventory vulnerable classical cryptographic primitives.
             </p>
           </div>
         </div>
@@ -93,15 +87,15 @@ const Home: React.FC = () => {
       <section className="py-24 border-t border-slate-100/50">
         <div className="grid md:grid-cols-2 gap-16 items-start">
           <div>
-            <h2 className="text-4xl font-serif font-bold mb-6 text-slate-900 leading-tight">Securing the data <br/> of the next decade.</h2>
+            <h2 className="text-4xl font-serif font-bold mb-6 text-slate-900 leading-tight">Addressing <br/> Cryptographic Debt.</h2>
             <p className="text-lg text-slate-600 leading-relaxed mb-8">
-              Classical encryption has an expiration date. RivicQ prevents "Harvest Now, Decrypt Later" attacks by implementing NIST-standard PQC primitives today.
+              Legacy RSA and ECC primitives are systemic risks. RivicQ provides the technical bridge to a quantum-safe future by isolating risk at the hardware layer.
             </p>
             <div className="space-y-4 not-prose">
               {[
-                { title: "FIPS 140-3 Certified", desc: "Hardware-anchored root of trust." },
-                { title: "Hybrid PQC Tunnels", desc: "Backwards compatible security tunnels." },
-                { title: "CryptoBOM Engine", desc: "Automated inventory of cryptographic debt." }
+                { title: "NIST FIPS 203/204", desc: "Implementation of global PQC standards." },
+                { title: "Hardware Root of Trust", desc: "Magnesium-alloy tamper-resistant boundaries." },
+                { title: "Continuous Monitoring", desc: "Real-time CBOM risk telemetry." }
               ].map((item, i) => (
                 <div key={i} className="flex items-center gap-4 p-4 rounded-2xl border border-slate-100 bg-white/50 backdrop-blur-sm hover:bg-white hover:border-slate-300 transition-all shadow-sm">
                   <div className="p-2 bg-slate-100 text-slate-900 rounded-lg">
@@ -118,32 +112,32 @@ const Home: React.FC = () => {
 
           <div className="bg-slate-900 text-white p-12 rounded-[2.5rem] relative overflow-hidden group shadow-[0_20px_50px_rgba(0,0,0,0.2)]">
             <div className="absolute top-0 right-0 p-8 opacity-10">
-              <Lock size={120}/>
+              <Cpu size={120}/>
             </div>
             <div className="absolute inset-0 bg-technical opacity-5"></div>
             <div className="relative z-10">
               <h3 className="text-white text-3xl font-serif mb-6 m-0">Berlin Hub</h3>
               <p className="text-slate-400 text-sm leading-relaxed mb-8">
-                Based in Adlershof WISTA Innovations-zentrum, we collaborate with resident cryptographers to define the next generation of security.
+                Based in Adlershof WISTA, we anchor our research in the city's elite quantum ecosystem, focusing on the intersection of hardware and PQC math.
               </p>
               <div className="flex flex-wrap items-center gap-8">
                  <div className="text-center">
-                    <span className="block text-2xl font-bold text-blue-400 tracking-tighter">2026</span>
-                    <span className="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Standardized</span>
+                    <span className="block text-2xl font-bold text-blue-400 tracking-tighter">ML-KEM</span>
+                    <span className="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Encapsulation</span>
                  </div>
                  <div className="w-px h-10 bg-slate-800 hidden sm:block"></div>
                  <div className="text-center">
                     <span className="block text-2xl font-bold text-indigo-400 tracking-tighter">TRL 4</span>
-                    <span className="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Readiness Level</span>
+                    <span className="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Tech Readiness</span>
                  </div>
                  <div className="w-px h-10 bg-slate-800 hidden sm:block"></div>
                  <div className="text-center">
-                    <span className="block text-2xl font-bold text-emerald-400 tracking-tighter">L3</span>
-                    <span className="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Security Level</span>
+                    <span className="block text-2xl font-bold text-emerald-400">L3</span>
+                    <span className="text-[10px] text-slate-500 uppercase tracking-widest font-bold">FIPS Security</span>
                  </div>
               </div>
               <Link to="/story" className="mt-10 inline-flex items-center gap-2 text-sm font-bold text-blue-400 hover:text-white transition-colors group/link">
-                Founder Journey <ArrowRight size={16} className="group-hover/link:translate-x-1 transition-transform"/>
+                Technical Journey <ArrowRight size={16} className="group-hover/link:translate-x-1 transition-transform"/>
               </Link>
             </div>
           </div>
