@@ -86,18 +86,18 @@ const Resources: React.FC = () => {
               external: true
             },
             { 
-              title: "FIPS 140-3 Validation Details", 
+              title: "FIPS 140-3 Technical Standards", 
               icon: <ShieldCheck size={20} className="text-indigo-600" />,
-              link: "#",
-              desc: "Requirements for HSM physical security boundaries.",
-              external: false
+              link: "https://csrc.nist.gov/pubs/fips/140-3/final",
+              desc: "Detailed security requirements for cryptographic modules and physical tamper protection.",
+              external: true
             },
             { 
-              title: "DORA Compliance Checklist", 
+              title: "EU DORA Compliance Framework", 
               icon: <Landmark size={20} className="text-emerald-600" />,
-              link: "#",
-              desc: "Operational resilience for financial entities.",
-              external: false
+              link: "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32022R2554",
+              desc: "Official legislative text for the Digital Operational Resilience Act and ICT risk requirements.",
+              external: true
             },
             { 
               title: "BSI Germany Guidelines", 

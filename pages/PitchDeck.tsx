@@ -29,7 +29,7 @@ const PitchDeck: React.FC = () => {
           </div>
         </div>
         
-        <div className="not-prose grid md:grid-cols-3 gap-8 mb-8">
+        <div className="not-prose grid md:grid-cols-3 gap-8 mb-6">
           <div className="p-8 bg-white border border-slate-100 rounded-[2.5rem] shadow-sm hover:border-blue-200 transition-all relative group overflow-hidden">
             <span className="text-[10px] font-bold text-blue-600 uppercase tracking-widest">TAM (2030)</span>
             <h4 className="text-4xl font-bold text-slate-900 mt-2 mb-4">$13.5B</h4>
@@ -44,6 +44,18 @@ const PitchDeck: React.FC = () => {
             <span className="text-[10px] font-bold text-blue-400 uppercase tracking-widest">SOM (Target)</span>
             <h4 className="text-4xl font-bold text-white mt-2 mb-4">$840M</h4>
             <p className="text-xs text-slate-400 leading-relaxed m-0">20% SAM penetration achievable by 2030 focusing on BFSI (28%) and Government sectors.</p>
+          </div>
+        </div>
+        
+        {/* Market References */}
+        <div className="not-prose flex flex-col md:flex-row gap-4 px-4 py-3 bg-slate-50 border border-slate-100 rounded-2xl">
+          <div className="flex items-center gap-2 text-[10px] text-slate-400 font-bold uppercase tracking-widest">
+            <Info size={12} className="text-blue-500" /> References:
+          </div>
+          <div className="flex flex-wrap gap-x-6 gap-y-2 text-[10px] text-slate-500 italic">
+            <span>[1] MarketsandMarkets: Post-Quantum Cryptography Market Forecast 2024-2030</span>
+            <span>[2] EU Commission DORA Impact Assessment & eIDAS Framework Reports</span>
+            <span>[3] RivicQ Internal Market Capture Strategy v1.2</span>
           </div>
         </div>
       </section>
