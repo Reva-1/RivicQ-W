@@ -1,11 +1,13 @@
+
 import React, { useState, useEffect } from 'react';
-import { ShieldCheck, Cpu, Box, Lock, Zap, X, Atom, CheckCircle2, Sparkles, Activity } from 'lucide-react';
+import { ShieldCheck, Cpu, Box, Lock, Zap, X, Atom, CheckCircle2, Sparkles, Activity, Loader2, Key } from 'lucide-react';
 
 type Layer = 'physical' | 'engine' | 'quantum' | null;
 
 const HSMBlueprint: React.FC = () => {
     const [activeLayer, setActiveLayer] = useState<Layer>(null);
     const [isBooting, setIsBooting] = useState(false);
+    const [bootStep, setBootStep] = useState(0);
     const [entropyBits, setEntropyBits] = useState<string>('10101100');
 
     // Simulated bitstream generation
@@ -17,12 +19,26 @@ const HSMBlueprint: React.FC = () => {
         return () => clearInterval(interval);
     }, []);
 
-    // Trigger secure boot animation when 'engine' is selected
+    // Trigger secure boot animation steps when 'engine' is selected
     useEffect(() => {
         if (activeLayer === 'engine') {
             setIsBooting(true);
-            const timer = setTimeout(() => setIsBooting(false), 3000);
-            return () => clearTimeout(timer);
+            setBootStep(0);
+            
+            const steps = [
+                () => setBootStep(1), // Initialization
+                () => setBootStep(2), // Root of Trust Handshake
+                () => setBootStep(3), // Signature Verification
+                () => setBootStep(4), // Success
+            ];
+
+            const timers = steps.map((step, i) => setTimeout(step, (i + 1) * 800));
+            const endTimer = setTimeout(() => setIsBooting(false), 4500);
+
+            return () => {
+                timers.forEach(clearTimeout);
+                clearTimeout(endTimer);
+            };
         }
     }, [activeLayer]);
 
@@ -81,6 +97,46 @@ const HSMBlueprint: React.FC = () => {
                 </div>
             )}
 
+            {/* Secure Boot Visualizer (Engine Layer Overlay) */}
+            {activeLayer === 'engine' && isBooting && (
+                <div className="absolute left-10 top-1/2 -translate-y-1/2 z-[60] w-64 space-y-4 pointer-events-none animate-fadeIn">
+                    <div className="p-5 bg-slate-900 rounded-2xl border border-slate-800 shadow-2xl">
+                        <div className="flex items-center gap-3 mb-4">
+                            <Activity size={16} className="text-blue-400 animate-pulse" />
+                            <span className="text-[10px] font-mono font-bold text-slate-300 uppercase tracking-widest">Secure Boot Sequence</span>
+                        </div>
+                        
+                        <div className="space-y-3">
+                            <div className={`flex items-center justify-between text-[9px] font-bold uppercase tracking-widest ${bootStep >= 1 ? 'text-blue-400' : 'text-slate-600'}`}>
+                                <span>1. Init Environment</span>
+                                {bootStep === 1 ? <Loader2 size={10} className="animate-spin" /> : bootStep > 1 && <CheckCircle2 size={10} />}
+                            </div>
+                            <div className={`flex items-center justify-between text-[9px] font-bold uppercase tracking-widest ${bootStep >= 2 ? 'text-blue-400' : 'text-slate-600'}`}>
+                                <span>2. RoT Handshake</span>
+                                {bootStep === 2 ? <Loader2 size={10} className="animate-spin" /> : bootStep > 2 && <CheckCircle2 size={10} />}
+                            </div>
+                            <div className={`flex items-center justify-between text-[9px] font-bold uppercase tracking-widest ${bootStep >= 3 ? 'text-blue-400' : 'text-slate-600'}`}>
+                                <span>3. Signature Verification</span>
+                                {bootStep === 3 ? <Loader2 size={10} className="animate-spin" /> : bootStep > 3 && <CheckCircle2 size={10} />}
+                            </div>
+                            <div className={`flex items-center justify-between text-[9px] font-bold uppercase tracking-widest ${bootStep >= 4 ? 'text-emerald-400' : 'text-slate-600'}`}>
+                                <span>4. Nominal Status</span>
+                                {bootStep === 4 && <CheckCircle2 size={10} />}
+                            </div>
+                        </div>
+
+                        {bootStep === 3 && (
+                            <div className="mt-4 pt-4 border-t border-slate-800 animate-pulse">
+                                <div className="text-[8px] font-mono text-blue-500 mb-1">COMPARING HASH_DIGEST...</div>
+                                <div className="h-1 bg-slate-800 rounded-full overflow-hidden">
+                                    <div className="h-full bg-blue-500 animate-[loading_1s_ease-in-out_infinite]"></div>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                </div>
+            )}
+
             {/* 3D Scene Container */}
             <div className="relative w-[320px] h-[320px] md:w-[500px] md:h-[500px] [perspective:4000px] mt-4 mb-16">
                 
@@ -94,8 +150,16 @@ const HSMBlueprint: React.FC = () => {
                                   [transform:translateZ(0px)] transition-all duration-700 cursor-pointer hover:bg-slate-50
                                   ${activeLayer === 'physical' ? '[transform:translateZ(-100px)] border-blue-600 border-2' : activeLayer ? 'opacity-10' : 'group-hover:[transform:translateZ(-40px)]'} flex items-center justify-center`}
                     >
-                         <div className="w-[85%] h-[85%] border-2 border-dashed border-slate-100 rounded-[3.5rem] flex items-center justify-center opacity-40">
+                         <div className="w-[85%] h-[85%] border-2 border-dashed border-slate-100 rounded-[3.5rem] flex items-center justify-center relative overflow-hidden">
                             <Box size={56} className="text-slate-200" strokeWidth={0.5} />
+                            
+                            {/* Visual RoT Anchor Point when booting engine */}
+                            {activeLayer === 'engine' && bootStep >= 2 && (
+                                <div className="absolute inset-0 flex items-center justify-center">
+                                    <div className="w-16 h-16 bg-blue-500/10 rounded-full border border-blue-500/20 animate-ping"></div>
+                                    <Key size={24} className="text-blue-500 absolute animate-bounce" />
+                                </div>
+                            )}
                          </div>
                     </div>
 
@@ -107,11 +171,25 @@ const HSMBlueprint: React.FC = () => {
                                   ${activeLayer === 'engine' ? '[transform:translateZ(20px)] border-blue-500 border-2 shadow-[0_0_50px_rgba(37,99,235,0.3)]' : activeLayer ? 'opacity-10' : 'group-hover:[transform:translateZ(80px)]'} flex items-center justify-center`}
                     >
                         <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
-                        <div className="relative z-10 flex flex-col items-center">
-                            <div className={`p-5 bg-slate-800 rounded-3xl border border-slate-700 transition-all duration-500 ${activeLayer === 'engine' ? 'scale-110 border-blue-500' : ''}`}>
-                                <Cpu size={48} className="text-blue-500" strokeWidth={1} />
+                        
+                        {/* Connecting Line to RoT during boot */}
+                        {activeLayer === 'engine' && bootStep >= 2 && bootStep < 4 && (
+                            <div className="absolute inset-0 [transform:translateZ(-50px)] pointer-events-none">
+                                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-0.5 h-32 bg-gradient-to-t from-blue-500/0 via-blue-500 to-blue-500/0 animate-pulse"></div>
                             </div>
-                            <span className="mt-4 text-[9px] font-bold text-slate-500 tracking-[0.4em] uppercase">Controller Plane</span>
+                        )}
+
+                        <div className="relative z-10 flex flex-col items-center">
+                            <div className={`p-5 bg-slate-800 rounded-3xl border border-slate-700 transition-all duration-500 ${activeLayer === 'engine' ? 'scale-110 border-blue-500 shadow-[0_0_30px_rgba(37,99,235,0.4)]' : ''}`}>
+                                <Cpu size={48} className={`${activeLayer === 'engine' && bootStep === 4 ? 'text-emerald-400' : 'text-blue-500'} transition-colors duration-500`} strokeWidth={1} />
+                                
+                                {activeLayer === 'engine' && bootStep >= 3 && bootStep < 4 && (
+                                    <ShieldCheck size={20} className="absolute -top-2 -right-2 text-emerald-400 animate-bounce" />
+                                )}
+                            </div>
+                            <span className="mt-4 text-[9px] font-bold text-slate-500 tracking-[0.4em] uppercase">
+                                {bootStep === 4 ? 'System Nominal' : 'Controller Plane'}
+                            </span>
                         </div>
                     </div>
 
@@ -200,7 +278,7 @@ const HSMBlueprint: React.FC = () => {
             {/* Assembly Legend */}
             <div className="text-center mt-12 z-10 animate-fadeIn pointer-events-none">
                 <h3 className="font-serif text-3xl text-slate-900 font-bold tracking-tight mb-3">
-                    {activeLayer === 'quantum' ? 'True Quantum Randomness Source' : activeLayer === 'engine' ? 'Secure Cryptographic Controller' : activeLayer === 'physical' ? 'FIPS 140-3 Hardware Boundary' : 'System Architecture Exploration'}
+                    {activeLayer === 'quantum' ? 'True Quantum Randomness Source' : activeLayer === 'engine' ? (bootStep === 4 ? 'Verified Secure Environment' : 'Secure Cryptographic Controller') : activeLayer === 'physical' ? 'FIPS 140-3 Hardware Boundary' : 'System Architecture Exploration'}
                 </h3>
                 <div className="flex items-center justify-center gap-6">
                     <span className="text-[11px] font-bold text-slate-400 uppercase tracking-widest flex items-center gap-2">
@@ -214,14 +292,11 @@ const HSMBlueprint: React.FC = () => {
             </div>
 
             <style>{`
-                @keyframes secure-boot {
-                    from { transform: translateY(160px); opacity: 0; }
-                    20% { opacity: 1; }
-                    80% { opacity: 1; }
-                    to { transform: translateY(-20px); opacity: 0; }
+                @keyframes loading {
+                    0% { width: 0%; left: 0; }
+                    50% { width: 50%; left: 25%; }
+                    100% { width: 0%; left: 100%; }
                 }
-                .animate-secure-boot { animation: secure-boot 3s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
-
                 @keyframes harvest-particle {
                     0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
                     10% { opacity: 0.8; }
