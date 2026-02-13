@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ShieldCheck, ArrowRight, Lock, Zap, Activity, ChevronDown, Cpu, Target, Scale } from 'lucide-react';
+import { ShieldCheck, ArrowRight, Lock, Zap, Activity, ChevronDown, Cpu, Target, Scale, Cloud } from 'lucide-react';
 import HSMBlueprint from '../components/HSMBlueprint';
 
 const Home: React.FC = () => {
@@ -20,15 +20,15 @@ const Home: React.FC = () => {
           </h1>
           <div className="mb-10">
             <p className="text-xl md:text-2xl text-slate-500 font-serif italic leading-relaxed m-0">
-              RivicQ — <span className="text-slate-900 font-bold not-italic">Robust Integrated Verified Infrastructure Computing & Quantum</span> — addresses cryptographic debt by migrating mission-critical systems to lattice-based security.
+              RivicQ — <span className="text-slate-900 font-bold not-italic">Robust Integrated Verified Infrastructure Computing & Quantum</span> — addresses cryptographic debt by migrating mission-critical systems to lattice-based security across physical and cloud estates.
             </p>
           </div>
           <div className="flex flex-wrap gap-4 not-prose mb-12">
             <Link to="/rqsp" className="px-8 py-4 bg-slate-900 text-white rounded-full font-bold text-sm hover:bg-blue-600 transition-all shadow-xl shadow-slate-400/10">
               Explore Protocol
             </Link>
-            <Link to="/pricing" className="px-8 py-4 bg-white border border-slate-200 text-slate-600 rounded-full font-bold text-sm hover:border-slate-900 transition-all shadow-sm">
-              Enterprise Inquiry
+            <Link to="/cloud-hsm" className="px-8 py-4 bg-white border border-slate-200 text-slate-600 rounded-full font-bold text-sm hover:border-slate-900 transition-all shadow-sm">
+              Cloud HSM Solutions
             </Link>
           </div>
         </div>
@@ -38,7 +38,7 @@ const Home: React.FC = () => {
       <section className="not-prose -mx-8 md:-mx-16 mb-24">
         <div className="px-8 md:px-16 mb-8">
             <h2 className="text-3xl font-serif font-bold text-slate-900 m-0">FIPS 140-3 Hardware Boundary</h2>
-            <p className="text-xs text-blue-600 font-bold uppercase tracking-[0.3em] mt-2">Physical Root of Trust (RoT)</p>
+            <p className="text-xs text-blue-600 font-bold uppercase tracking-[0.3em] mt-2">Physical & Cloud-Native Root of Trust (RoT)</p>
         </div>
         <HSMBlueprint />
       </section>
@@ -48,7 +48,7 @@ const Home: React.FC = () => {
         <div className="text-center mb-20">
           <h2 className="text-4xl md:text-5xl font-serif font-bold text-slate-900 mb-6 tracking-tight">Core Cryptographic Foundations</h2>
           <p className="text-lg text-slate-500 font-serif italic max-w-2xl mx-auto">
-            Security anchored in high-entropy physics and lattice mathematics.
+            Security anchored in high-entropy physics and lattice mathematics, delivered with cloud-scale agility.
           </p>
         </div>
 
@@ -59,25 +59,25 @@ const Home: React.FC = () => {
             </div>
             <h3 className="text-xl font-bold text-slate-900 mb-4">PQC Migration</h3>
             <p className="text-sm text-slate-600 leading-relaxed m-0">
-              Standardized implementation of ML-KEM (Kyber) and ML-DSA (Dilithium) to neutralize "Harvest Now, Decrypt Later" threats.
+              Standardized implementation of ML-KEM and ML-DSA to neutralize "Harvest Now, Decrypt Later" threats across all environments.
             </p>
           </div>
           <div className="p-8 rounded-[2.5rem] bg-white border border-slate-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] hover:-translate-y-1 transition-all duration-500">
             <div className="p-4 bg-emerald-50 text-emerald-600 rounded-2xl border border-emerald-100/50 inline-block mb-6">
-              <Lock size={24}/>
+              <Cloud size={24}/>
             </div>
-            <h3 className="text-xl font-bold text-slate-900 mb-4">HSM Orchestration</h3>
+            <h3 className="text-xl font-bold text-slate-900 mb-4">Cloud HSM Bridge</h3>
             <p className="text-sm text-slate-600 leading-relaxed m-0">
-              FIPS 140-3 validated key generation where private entropy never leaves the physical boundary of the secure element.
+              High-performance virtualized HSMs providing dedicated, FIPS-validated hardware security with cloud-native scalability and PQC readiness.
             </p>
           </div>
-          <div className="p-8 rounded-[2.5rem] bg-white border border-slate-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] hover:-translate-y-1 transition-all duration-500">
+          <div className="p-8 rounded-[2.5rem] bg-white border border-slate-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_30_rgba(0,0,0,0.06)] hover:-translate-y-1 transition-all duration-500">
             <div className="p-4 bg-purple-50 text-purple-600 rounded-2xl border border-purple-100/50 inline-block mb-6">
               <Scale size={24}/>
             </div>
             <h3 className="text-xl font-bold text-slate-900 mb-4">CryptoBOM Analysis</h3>
             <p className="text-sm text-slate-600 leading-relaxed m-0">
-              Automated auditing of the software supply chain to identify and inventory vulnerable classical cryptographic primitives.
+              Automated auditing of the software supply chain to identify and inventory vulnerable classical cryptographic primitives in your cloud stack.
             </p>
           </div>
         </div>
@@ -89,13 +89,13 @@ const Home: React.FC = () => {
           <div>
             <h2 className="text-4xl font-serif font-bold mb-6 text-slate-900 leading-tight">Addressing <br/> Cryptographic Debt.</h2>
             <p className="text-lg text-slate-600 leading-relaxed mb-8">
-              Legacy RSA and ECC primitives are systemic risks. RivicQ provides the technical bridge to a quantum-safe future by isolating risk at the hardware layer.
+              Legacy RSA and ECC primitives are systemic risks. RivicQ provides the technical bridge to a quantum-safe future by isolating risk at the physical and Cloud HSM layer.
             </p>
             <div className="space-y-4 not-prose">
               {[
                 { title: "NIST FIPS 203/204", desc: "Implementation of global PQC standards." },
-                { title: "Hardware Root of Trust", desc: "Magnesium-alloy tamper-resistant boundaries." },
-                { title: "Continuous Monitoring", desc: "Real-time CBOM risk telemetry." }
+                { title: "Hybrid Cloud HSM", desc: "Magnesium-alloy physical units and virtualized cloud instances." },
+                { title: "Continuous Monitoring", desc: "Real-time CBOM risk telemetry for cloud workloads." }
               ].map((item, i) => (
                 <div key={i} className="flex items-center gap-4 p-4 rounded-2xl border border-slate-100 bg-white/50 backdrop-blur-sm hover:bg-white hover:border-slate-300 transition-all shadow-sm">
                   <div className="p-2 bg-slate-100 text-slate-900 rounded-lg">
@@ -112,18 +112,18 @@ const Home: React.FC = () => {
 
           <div className="bg-slate-900 text-white p-12 rounded-[2.5rem] relative overflow-hidden group shadow-[0_20px_50px_rgba(0,0,0,0.2)]">
             <div className="absolute top-0 right-0 p-8 opacity-10">
-              <Cpu size={120}/>
+              <Cloud size={120}/>
             </div>
             <div className="absolute inset-0 bg-technical opacity-5"></div>
             <div className="relative z-10">
-              <h3 className="text-white text-3xl font-serif mb-6 m-0">Berlin Hub</h3>
+              <h3 className="text-white text-3xl font-serif mb-6 m-0">Berlin Deep-Tech Hub</h3>
               <p className="text-slate-400 text-sm leading-relaxed mb-8">
-                Based in Adlershof WISTA, we anchor our research in the city's elite quantum ecosystem, focusing on the intersection of hardware and PQC math.
+                Based in Adlershof WISTA, we anchor our research in the city's elite quantum ecosystem, focusing on the intersection of hardware, Cloud HSM virtualization, and PQC math.
               </p>
               <div className="flex flex-wrap items-center gap-8">
                  <div className="text-center">
-                    <span className="block text-2xl font-bold text-blue-400 tracking-tighter">ML-KEM</span>
-                    <span className="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Encapsulation</span>
+                    <span className="block text-2xl font-bold text-blue-400 tracking-tighter">Cloud HSM</span>
+                    <span className="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Virtualized</span>
                  </div>
                  <div className="w-px h-10 bg-slate-800 hidden sm:block"></div>
                  <div className="text-center">

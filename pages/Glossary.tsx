@@ -35,6 +35,11 @@ const Glossary: React.FC = () => {
       definition: "Module-Lattice Digital Signature Algorithm (FIPS 204). Used for authenticating messages and verifying identity in PQC-native environments." 
     },
     { 
+      term: "Cloud HSM (vHSM)", 
+      category: "Infrastructure", 
+      definition: "A Hardware Security Module provided as a cloud service. It offers the same FIPS 140-3 level protection as physical hardware but with the scalability and remote management capabilities required for cloud-native applications." 
+    },
+    { 
       term: "Lattice-based Cryptography", 
       category: "Mathematics", 
       definition: "A class of cryptographic primitives based on geometric lattice problems. They are the leading candidates for PQC due to their efficiency and resistance to Shor's algorithm." 
@@ -61,7 +66,7 @@ const Glossary: React.FC = () => {
       <header className="mb-16">
         <h1 className="text-5xl font-bold mb-4">Glossary of Terms</h1>
         <p className="text-xl text-slate-500 font-serif italic">
-          The technical lexicon of Post-Quantum Cryptography.
+          The technical lexicon of Post-Quantum Cryptography and Modern Security Infrastructure.
         </p>
       </header>
 

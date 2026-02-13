@@ -1,33 +1,33 @@
 
 import React from 'react';
-import { ShieldCheck, Server, Cpu, Database, Landmark, ShieldAlert } from 'lucide-react';
+import { ShieldCheck, Server, Cpu, Database, Landmark, ShieldAlert, Cloud, Lock } from 'lucide-react';
 
 const Solutions: React.FC = () => {
   return (
     <article className="prose prose-lg prose-slate max-w-none">
       <h1>Industry Solutions</h1>
       <p className="lead font-serif italic text-slate-600">
-        Enterprise-grade PQC migration for high-security environments.
+        Enterprise-grade PQC migration for high-security environments, delivered via physical and Cloud HSM infrastructure.
       </p>
       
       <h3>Payment Processors & Banking</h3>
       <p>
-        Prepare for <strong>PCI DSS v4.0</strong> quantum-readiness. We provide HSM-backed tokenization using ML-DSA signatures, ensuring transaction integrity against future quantum decryption.
+        Prepare for <strong>PCI DSS v4.0</strong> quantum-readiness. We provide HSM-backed tokenization using ML-DSA signatures, ensuring transaction integrity against future quantum decryption. RivicQ supports both on-premise hardware and <strong>Cloud HSM</strong> instances for hybrid processing.
       </p>
 
-      <h3>Fintech Infrastructure</h3>
+      <h3>Fintech & Cloud-Native Infrastructure</h3>
       <p>
-        Ensure digital sovereignty and <strong>EU DORA</strong> compliance. Our SDKs establish quantum-safe TLS tunnels (Hybrid ML-KEM) for secure API-to-API communication between critical financial nodes.
+        Ensure digital sovereignty and <strong>EU DORA</strong> compliance in the cloud. Our <strong>Cloud HSM (vHSM)</strong> clusters establish quantum-safe TLS tunnels (Hybrid ML-KEM) for secure API-to-API communication with the elasticity of the public cloud.
       </p>
 
       <h3>Government & Defense</h3>
       <p>
-        Protect classified assets from "Harvest Now, Decrypt Later" threats. We offer air-gapped deployments of the RivicQ mesh, utilizing physical Quantum Random Number Generators (QRNG) for high-entropy key material.
+        Protect classified assets from "Harvest Now, Decrypt Later" threats. We offer air-gapped physical deployments and <strong>Privately Managed Cloud HSM</strong> zones, utilizing high-entropy quantum random number generation (QRNG).
       </p>
 
       <h3>Critical Infrastructure & OT</h3>
       <p>
-        Secure the industrial supply chain. We generate <strong>CryptoBOMs</strong> for SCADA systems and vehicle ECUs, ensuring long-lived infrastructure remains unforgeable for decades.
+        Secure the industrial supply chain. We generate <strong>CryptoBOMs</strong> for SCADA systems and vehicle ECUs, using a unified root of trust that spans from local gateway HSMs to centralized <strong>Cloud HSM</strong> management consoles.
       </p>
       
       <hr className="my-10 border-slate-100" />
@@ -36,8 +36,8 @@ const Solutions: React.FC = () => {
       <div className="not-prose grid gap-4">
         {[
           { icon: <ShieldCheck size={18} className="text-blue-600"/>, title: "FIPS 203 (ML-KEM)", desc: "Primary key encapsulation standard." },
-          { icon: <ShieldCheck size={18} className="text-blue-600"/>, title: "FIPS 204 (ML-DSA)", desc: "Module-lattice digital signature standard." },
-          { icon: <ShieldCheck size={18} className="text-blue-600"/>, title: "FIPS 140-3 L3", desc: "Hardware security boundary requirements." }
+          { icon: <Cloud size={18} className="text-blue-600"/>, title: "Cloud HSM V2", desc: "Virtualized FIPS 140-3 compliant hardware." },
+          { icon: <Lock size={18} className="text-blue-600"/>, title: "FIPS 140-3 L3", desc: "Hardware security boundary requirements." }
         ].map((std, i) => (
           <div key={i} className="flex items-center gap-4 p-4 bg-slate-50 border border-slate-100 rounded-xl">
             {std.icon}

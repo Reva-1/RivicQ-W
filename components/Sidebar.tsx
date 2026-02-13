@@ -1,6 +1,7 @@
+
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Github, Mail, Linkedin, Globe, Shield, Lock, Cpu, Globe2, Sparkles, Layout, Building, Users, Scale, ShieldCheck, Microscope, BookOpen, Handshake, Briefcase } from 'lucide-react';
+import { Github, Mail, Linkedin, Globe, Shield, Lock, Cpu, Globe2, Sparkles, Layout, Building, Users, Scale, ShieldCheck, Microscope, BookOpen, Handshake, Briefcase, Cloud } from 'lucide-react';
 
 const Sidebar: React.FC = () => {
   const groups = [
@@ -17,6 +18,7 @@ const Sidebar: React.FC = () => {
       links: [
         { name: 'RQSP Protocol', path: '/rqsp', icon: <Lock size={12}/> },
         { name: 'Architecture', path: '/platform', icon: <Cpu size={12}/> },
+        { name: 'Cloud HSM', path: '/cloud-hsm', icon: <Cloud size={12}/> },
         { name: 'Methodology', path: '/methodology', icon: <Microscope size={12}/> },
         { name: 'Developer SDK', path: '/sdk', icon: <Layout size={12}/> },
       ]

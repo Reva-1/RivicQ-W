@@ -1,3 +1,4 @@
+
 import React, { Suspense } from 'react';
 import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Layout from './components/Layout';
@@ -6,6 +7,7 @@ import { Loader2 } from 'lucide-react';
 // Lazy Load Pages
 const Home = React.lazy(() => import('./pages/Home'));
 const Platform = React.lazy(() => import('./pages/Platform'));
+const CloudHSM = React.lazy(() => import('./pages/CloudHSM'));
 const RQSP = React.lazy(() => import('./pages/RQSP'));
 const SDK = React.lazy(() => import('./pages/SDK'));
 const Solutions = React.lazy(() => import('./pages/Solutions'));
@@ -34,6 +36,7 @@ const RouteHandler = () => {
       '/': 'RivicQ | Quantum-Safe Infrastructure',
       '/rqsp': 'RQSP Protocol | RivicQ',
       '/platform': 'Platform Architecture | RivicQ',
+      '/cloud-hsm': 'Cloud HSM vHSM | RivicQ',
       '/methodology': 'Scientific Methodology | RivicQ',
       '/sdk': 'Developer SDK | RivicQ',
       '/solutions': 'Industry Solutions | RivicQ',
@@ -74,6 +77,7 @@ const App: React.FC = () => {
             <Route path="/" element={<Home />} />
             <Route path="/rqsp" element={<RQSP />} />
             <Route path="/platform" element={<Platform />} />
+            <Route path="/cloud-hsm" element={<CloudHSM />} />
             <Route path="/methodology" element={<Methodology />} />
             <Route path="/sdk" element={<SDK />} />
             <Route path="/solutions" element={<Solutions />} />
