@@ -1,346 +1,129 @@
 
 import React, { useState, useEffect } from 'react';
-import { Cpu, Activity, ShieldCheck, ScrollText, CheckCircle, ExternalLink, FileText, Zap, ShieldAlert, Workflow, Database, Lock, ArrowRight, Settings2, Github, LayoutGrid, Terminal, Info, Atom, Share2, Layers, Repeat } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Database, ArrowRight, Github, Terminal, Atom, Layers, Repeat, Search } from 'lucide-react';
 import SystemArchitecture3D from '../components/SystemArchitecture3D';
 
 const Platform: React.FC = () => {
   const [complexity, setComplexity] = useState(65);
-  const [shots, setShots] = useState(1024);
+  const [shots] = useState(1024);
   const [riskScore, setRiskScore] = useState(0);
 
   useEffect(() => {
     const baseRisk = complexity * 0.8;
-    const shotFactor = Math.log10(shots) * 5;
-    const finalScore = Math.min(100, Math.round(baseRisk + shotFactor));
+    const finalScore = Math.min(100, Math.round(baseRisk + 12));
     setRiskScore(finalScore);
-  }, [complexity, shots]);
-
-  const workflowSteps = [
-    {
-      icon: <Github size={20} />,
-      title: "Code Commit",
-      desc: "Source Analysis",
-      detail: "RivicQ hooks into Git pushes to scan source code for legacy RSA/ECC primitives before they hit the build.",
-      role: "Repository Watcher",
-      tooltip: "Monitors VCS for cryptographic drift"
-    },
-    {
-      icon: <Terminal size={20} />,
-      title: "CI/CD Scan",
-      desc: "Static Testing",
-      detail: "Our runner analyzes binary dependencies and linked libraries for quantum-vulnerability within the pipeline.",
-      role: "Pipeline Runner",
-      tooltip: "Automated vulnerability scanning in CI"
-    },
-    {
-      icon: <FileText size={20} />,
-      title: "CBOM Generation",
-      desc: "Asset Inventory",
-      detail: "A dynamic Cryptographic Bill of Materials is produced, cataloging all algorithms, keys, and expiry dates.",
-      role: "Inventory Engine",
-      tooltip: "Generates verifiable crypto-inventory"
-    },
-    {
-      icon: <ShieldAlert size={20} />,
-      title: "Policy Check",
-      desc: "Compliance Gate",
-      detail: "The Policy Engine evaluates the CBOM against mandates like DORA or CNSA 2.0 to ensure strict compliance.",
-      role: "Gatekeeper",
-      tooltip: "Enforces NIST & EU DORA standards"
-    },
-    {
-      icon: <ShieldCheck size={20} />,
-      title: "Enforcement",
-      desc: "Secure Release",
-      detail: "Non-compliant builds are automatically blocked, and remediation PRs are issued to upgrade to PQC.",
-      role: "Infrastructure Guard",
-      tooltip: "Blocks insecure deployments"
-    }
-  ];
+  }, [complexity]);
 
   return (
     <article className="prose prose-slate max-w-none">
       <header className="mb-16">
-        <h1 className="text-5xl font-bold mb-4 tracking-tight text-slate-900">Architecture & Logic</h1>
-        <p className="text-slate-400 text-[10px] font-mono uppercase tracking-[0.3em] font-bold">Protocol Specification v1.4</p>
+        <h1 className="text-5xl font-bold mb-4 tracking-tight text-slate-900">Products & Architecture</h1>
+        <p className="text-slate-500 font-serif italic text-xl">The technical foundation of a quantum-safe infrastructure stack.</p>
+        <p className="text-slate-400 text-[10px] font-mono uppercase tracking-[0.3em] font-bold mt-6">Protocol Specification v1.4 • NIST Compliant</p>
       </header>
 
-      {/* 3D Visual Section */}
       <section className="not-prose -mx-8 md:-mx-16 mb-24">
          <SystemArchitecture3D />
       </section>
 
-      {/* High-Level Architecture Deep Dive */}
       <section className="mb-24">
         <div className="flex items-center gap-4 mb-10">
           <div className="p-3 bg-blue-600 text-white rounded-2xl shadow-lg">
             <Layers size={24} />
           </div>
           <div>
-            <h2 className="text-3xl font-serif font-bold text-slate-900 m-0">High-Level Architecture</h2>
-            <p className="text-xs text-slate-500 font-bold uppercase tracking-widest mt-1">The Three Pillars of Quantum Trust</p>
+            <h2 className="text-3xl font-serif font-bold text-slate-900 m-0">Our Core Products</h2>
+            <p className="text-xs text-slate-500 font-bold uppercase tracking-widest mt-1">Industrial Readiness Stack</p>
           </div>
         </div>
 
         <div className="not-prose grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Pillar 1: Discovery */}
-          <div className="p-8 bg-white border border-slate-100 rounded-[2.5rem] shadow-sm hover:border-blue-500 hover:scale-[1.02] hover:shadow-xl hover:shadow-blue-500/5 transition-all duration-500 group cursor-default">
+          <div className="p-8 bg-white border border-slate-100 rounded-[2.5rem] shadow-sm hover:border-blue-500 hover:scale-[1.02] transition-all duration-500 group">
             <div className="mb-6 flex items-center justify-between">
               <div className="p-3 bg-blue-50 text-blue-600 rounded-xl group-hover:bg-blue-600 group-hover:text-white transition-all">
                 <Search size={24} />
               </div>
-              <span className="text-[10px] font-bold text-blue-600 uppercase tracking-widest">Phase 01</span>
+              <span className="text-[10px] font-bold text-blue-600 uppercase tracking-widest">Discovery</span>
             </div>
-            <h3 className="text-xl font-serif font-bold text-slate-900 mb-4 group-hover:text-blue-600 transition-colors">Discovery</h3>
-            <p className="text-sm text-slate-500 leading-relaxed mb-6">
-              Automated identification of cryptographic assets across the entire stack.
+            <h3 className="text-xl font-serif font-bold text-slate-900 mb-4">Audit (SAST/DAST)</h3>
+            <p className="text-sm text-slate-500 leading-relaxed">
+              AI-driven scanning to identify cryptographic drift and legacy primitives across microservices and Git repositories.
             </p>
-            <ul className="space-y-3 m-0 p-0">
-              <li className="flex gap-3 text-xs text-slate-600">
-                <div className="w-1.5 h-1.5 rounded-full bg-blue-600 mt-1.5 shrink-0" />
-                <span><strong>Static Scan:</strong> Analysis of source code and binaries.</span>
-              </li>
-              <li className="flex gap-3 text-xs text-slate-600">
-                <div className="w-1.5 h-1.5 rounded-full bg-blue-600 mt-1.5 shrink-0" />
-                <span><strong>Dynamic Scan:</strong> Real-time TLS handshake monitoring.</span>
-              </li>
-            </ul>
           </div>
 
-          {/* Pillar 2: Inventory */}
-          <div className="p-8 bg-white border border-slate-100 rounded-[2.5rem] shadow-sm hover:border-emerald-500 hover:scale-[1.02] hover:shadow-xl hover:shadow-emerald-500/5 transition-all duration-500 group cursor-default">
+          <div className="p-8 bg-white border border-slate-100 rounded-[2.5rem] shadow-sm hover:border-emerald-500 hover:scale-[1.02] transition-all duration-500 group">
             <div className="mb-6 flex items-center justify-between">
               <div className="p-3 bg-emerald-50 text-emerald-600 rounded-xl group-hover:bg-emerald-600 group-hover:text-white transition-all">
                 <Database size={24} />
               </div>
-              <span className="text-[10px] font-bold text-emerald-600 uppercase tracking-widest">Phase 02</span>
+              <span className="text-[10px] font-bold text-emerald-600 uppercase tracking-widest">Inventory</span>
             </div>
-            <h3 className="text-xl font-serif font-bold text-slate-900 mb-4 group-hover:text-emerald-600 transition-colors">Inventory (CBOM)</h3>
-            <p className="text-sm text-slate-500 leading-relaxed mb-6">
-              Creation of a Cryptographic Bill of Materials (CycloneDX) for full auditability.
+            <h3 className="text-xl font-serif font-bold text-slate-900 mb-4">CryptoBOM SaaS</h3>
+            <p className="text-sm text-slate-500 leading-relaxed">
+              Centralized visibility into your Cryptographic Bill of Materials, tracking key age, rotation, and risk scores.
             </p>
-            <ul className="space-y-3 m-0 p-0">
-              <li className="flex gap-3 text-xs text-slate-600">
-                <div className="w-1.5 h-1.5 rounded-full bg-emerald-600 mt-1.5 shrink-0" />
-                <span><strong>Cataloging:</strong> Mapping algorithms to specific microservices.</span>
-              </li>
-              <li className="flex gap-3 text-xs text-slate-600">
-                <div className="w-1.5 h-1.5 rounded-full bg-emerald-600 mt-1.5 shrink-0" />
-                <span><strong>Risk Scoring:</strong> Estimated "Harvest Now, Decrypt Later" impact.</span>
-              </li>
-            </ul>
           </div>
 
-          {/* Pillar 3: Migration */}
-          <div className="p-8 bg-white border border-slate-100 rounded-[2.5rem] shadow-sm hover:border-indigo-500 hover:scale-[1.02] hover:shadow-xl hover:shadow-indigo-500/5 transition-all duration-500 group cursor-default">
+          <div className="p-8 bg-white border border-slate-100 rounded-[2.5rem] shadow-sm hover:border-indigo-500 hover:scale-[1.02] transition-all duration-500 group">
             <div className="mb-6 flex items-center justify-between">
               <div className="p-3 bg-indigo-50 text-indigo-600 rounded-xl group-hover:bg-indigo-600 group-hover:text-white transition-all">
                 <Repeat size={24} />
               </div>
-              <span className="text-[10px] font-bold text-indigo-600 uppercase tracking-widest">Phase 03</span>
+              <span className="text-[10px] font-bold text-indigo-600 uppercase tracking-widest">Remediation</span>
             </div>
-            <h3 className="text-xl font-serif font-bold text-slate-900 mb-4 group-hover:text-indigo-600 transition-colors">Migration</h3>
-            <p className="text-sm text-slate-500 leading-relaxed mb-6">
-              The "Crypto-Agility" phase where legacy keys are migrated to PQC.
+            <h3 className="text-xl font-serif font-bold text-slate-900 mb-4">RQSP Mesh</h3>
+            <p className="text-sm text-slate-500 leading-relaxed">
+              Hardware-native orchestration for automatic algorithm rotation and hybrid KEM encapsulation.
             </p>
-            <ul className="space-y-3 m-0 p-0">
-              <li className="flex gap-3 text-xs text-slate-600">
-                <div className="w-1.5 h-1.5 rounded-full bg-indigo-600 mt-1.5 shrink-0" />
-                <span><strong>Hybrid Envelopment:</strong> Wrapping legacy RSA in PQC tunnels.</span>
-              </li>
-              <li className="flex gap-3 text-xs text-slate-600">
-                <div className="w-1.5 h-1.5 rounded-full bg-indigo-600 mt-1.5 shrink-0" />
-                <span><strong>HSM Anchor:</strong> Hardware-level key rotation to ML-KEM.</span>
-              </li>
-            </ul>
           </div>
         </div>
       </section>
 
-      {/* Audit Workflow Section */}
-      <section className="my-24 not-prose">
-        <div className="flex items-center gap-4 mb-16">
-          <div className="p-4 bg-slate-900 text-white rounded-2xl">
-            <Workflow size={24} />
-          </div>
-          <div>
-            <h2 className="text-3xl font-serif font-bold text-slate-900 m-0">End-to-End Operational Lifecycle</h2>
-            <p className="text-xs text-slate-500 font-bold uppercase tracking-widest mt-1">DevSecOps Pipeline Integration</p>
-          </div>
-        </div>
-
-        <div className="relative">
-          <div className="hidden lg:block absolute top-[2.75rem] left-12 right-12 h-0.5 bg-slate-100 -z-0"></div>
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-            {workflowSteps.map((step, i) => (
-              <div key={i} className="flex flex-col items-center text-center p-6 rounded-3xl border border-slate-100 bg-white/80 backdrop-blur-sm hover:bg-white hover:border-blue-200 hover:shadow-xl transition-all group relative z-10">
-                <div className="relative mb-6">
-                  <div className="w-14 h-14 bg-white border border-slate-100 rounded-2xl flex items-center justify-center text-slate-400 group-hover:border-blue-500 group-hover:text-blue-600 transition-all shadow-sm">
-                    {step.icon}
-                  </div>
-                  <div className="absolute -top-12 left-1/2 -translate-x-1/2 bg-slate-900 text-white text-[9px] font-bold px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-all pointer-events-none whitespace-nowrap shadow-xl">
-                    <span className="text-blue-400 uppercase tracking-widest">{step.role}</span>
-                    <div className="absolute top-full left-1/2 -translate-x-1/2 border-8 border-transparent border-t-slate-900"></div>
-                  </div>
-                  <div className="absolute -bottom-2 -right-2 w-6 h-6 bg-slate-100 rounded-full border border-white text-slate-400 text-[10px] font-bold flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors">
-                    0{i+1}
-                  </div>
-                </div>
-                <div className="space-y-3">
-                  <div className="flex flex-col">
-                    <h4 className="text-[10px] font-bold text-blue-600 mb-1 uppercase tracking-[0.2em]">{step.desc}</h4>
-                    <h5 className="text-sm font-bold text-slate-900 m-0">{step.title}</h5>
-                  </div>
-                  <p className="text-[10px] text-slate-500 leading-relaxed m-0 font-medium">{step.detail}</p>
-                  <div className="pt-3 mt-3 border-t border-slate-50 flex items-center justify-center gap-1.5 opacity-60 group-hover:opacity-100 transition-opacity">
-                    <Info size={10} className="text-slate-400" />
-                    <span className="text-[9px] font-bold text-slate-500 uppercase tracking-tighter">{step.tooltip}</span>
-                  </div>
-                </div>
-                {i < workflowSteps.length - 1 && (
-                  <div className="hidden lg:block absolute -right-6 top-[2.75rem] -translate-y-1/2 text-slate-200 z-0">
-                    <ArrowRight size={16}/>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Simulator Section */}
       <section className="my-24 not-prose">
         <div className="flex items-center gap-4 mb-12">
           <div className="p-3 bg-slate-900 text-white rounded-2xl">
             <Atom size={24} className="animate-spin-slow" />
           </div>
           <div>
-            <h2 className="text-3xl font-serif font-bold text-slate-900 m-0">Qiskit Simulation Engine</h2>
-            <p className="text-xs text-slate-500 font-bold uppercase tracking-widest mt-1">Quantum-Vulnerability Benchmarking</p>
+            <h2 className="text-3xl font-serif font-bold text-slate-900 m-0">Vulnerability Simulator</h2>
+            <p className="text-xs text-slate-500 font-bold uppercase tracking-widest mt-1">Simulating TTV (Time-To-Vulnerability)</p>
           </div>
         </div>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
           <div className="bg-slate-950 rounded-[2.5rem] p-8 font-mono text-[11px] text-indigo-200 shadow-2xl relative overflow-hidden">
-            <div className="absolute top-0 right-0 p-8 opacity-5 pointer-events-none">
-              <Terminal size={120} />
-            </div>
-            <div className="flex justify-between items-center mb-6 text-slate-500 border-b border-white/10 pb-4 relative z-10">
-              <span className="flex items-center gap-2 text-emerald-400"><Cpu size={12}/> qiskit_runtime_v3.py</span>
-              <span className="text-[9px] opacity-50 uppercase tracking-widest">Active Backend: QASM Simulator</span>
-            </div>
             <pre className="overflow-x-auto leading-relaxed text-indigo-300 relative z-10">
-{`from qiskit import QuantumCircuit, transpile
-from qiskit.providers.basicaer import QasmSimulatorPy
+{`from qiskit import QuantumCircuit
 from rivicq_core import QuantumRiskAnalyzer
 
-# Define legacy target (RSA-2048)
-qc = QuantumCircuit(qubits=512, bits=512)
 analyzer = QuantumRiskAnalyzer(target="legacy_pki")
-
-# Configure Simulation parameters
 analyzer.update_complexity(${complexity})
-results = analyzer.simulate(backend="qasm", shots=${shots})
-
-# Telemetry: Feed scores back to Policy Engine
-risk_data = results.calculate_risk_index()
-rivicq_client.policy.update_risk_telemetry(risk_data)`}
+results = analyzer.simulate(backend="qasm", shots=1024)`}
             </pre>
-            <div className="mt-10 space-y-8 relative z-10">
-              <div className="space-y-3">
-                <div className="flex justify-between items-center">
-                  <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Circuit Depth (Complexity)</label>
-                  <span className="text-blue-400 font-bold">{complexity}</span>
-                </div>
-                <input 
-                  type="range" min="10" max="100" value={complexity} 
-                  onChange={(e) => setComplexity(parseInt(e.target.value))}
-                  className="w-full h-1 bg-slate-800 rounded-full appearance-none cursor-pointer accent-blue-500"
-                />
+            <div className="mt-10 space-y-3 relative z-10">
+              <div className="flex justify-between items-center">
+                <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Circuit Depth</label>
+                <span className="text-blue-400 font-bold">{complexity}</span>
               </div>
-              <div className="space-y-3">
-                <div className="flex justify-between items-center">
-                  <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Statistical Confidence (Shots)</label>
-                  <span className="text-blue-400 font-bold">{shots}</span>
-                </div>
-                <select 
-                  value={shots} 
-                  onChange={(e) => setShots(parseInt(e.target.value))}
-                  className="w-full bg-slate-900 border border-slate-800 rounded-lg py-2 px-3 text-blue-300 outline-none focus:border-blue-500 transition-colors"
-                >
-                  <option value="512">512 Shots</option>
-                  <option value="1024">1024 Shots</option>
-                  <option value="4096">4096 Shots</option>
-                </select>
-              </div>
+              <input 
+                type="range" min="10" max="100" value={complexity} 
+                onChange={(e) => setComplexity(parseInt(e.target.value))}
+                className="w-full h-1 bg-slate-800 rounded-full appearance-none cursor-pointer accent-blue-500"
+              />
             </div>
           </div>
 
           <div className="bg-white border border-slate-100 rounded-[2.5rem] p-10 shadow-sm flex flex-col justify-between">
-            <div>
-              <div className="text-center mb-10">
-                 <div className={`text-7xl font-bold font-mono transition-colors duration-700 ${riskScore > 75 ? 'text-red-500' : 'text-slate-900'}`}>
-                    {riskScore}<span className="text-2xl text-slate-200">/100</span>
-                 </div>
-                 <div className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.3em] mt-2">Aggregated Risk Telemetry</div>
-              </div>
-              
-              <div className="bg-blue-50/50 rounded-2xl p-6 border border-blue-100/50 mb-8 flex items-center gap-4">
-                <div className="p-3 bg-blue-600 text-white rounded-xl shadow-lg">
-                  <Share2 size={20} className="animate-pulse" />
-                </div>
-                <div>
-                  <h4 className="text-sm font-bold text-blue-900 m-0">Policy Feedback Loop</h4>
-                  <p className="text-[10px] text-blue-700 leading-relaxed m-0 mt-1 font-medium">
-                    This risk score is automatically fed back to the **RQSP Policy Orchestrator**, triggering mandatory key rotation if the score exceeds the enterprise threshold (75).
-                  </p>
-                </div>
-              </div>
-
-              <div className="space-y-8">
-                <div>
-                  <div className="flex justify-between text-xs font-bold mb-2">
-                    <span className="text-slate-500 uppercase tracking-wider">Exposure Density</span>
-                    <span className="text-slate-900">{Math.round(riskScore * 0.9)}%</span>
-                  </div>
-                  <div className="h-1.5 w-full bg-slate-50 rounded-full overflow-hidden">
-                    <div className={`h-full transition-all duration-700 ${riskScore > 75 ? 'bg-red-500' : 'bg-slate-900'}`} style={{ width: `${riskScore * 0.9}%` }}></div>
-                  </div>
-                </div>
-                <div>
-                  <div className="flex justify-between text-xs font-bold mb-2">
-                    <span className="text-slate-500 uppercase tracking-wider">Estimated TTV</span>
-                    <span className="text-slate-900">{(20 - (riskScore / 5)).toFixed(1)} Years</span>
-                  </div>
-                  <div className="h-1.5 w-full bg-slate-50 rounded-full overflow-hidden">
-                    <div className="h-full bg-blue-600 transition-all duration-700" style={{ width: `${100 - riskScore}%` }}></div>
-                  </div>
-                </div>
-              </div>
+            <div className="text-center">
+               <div className={`text-7xl font-bold font-mono ${riskScore > 75 ? 'text-red-500' : 'text-slate-900'}`}>
+                  {riskScore}<span className="text-2xl text-slate-200">/100</span>
+               </div>
+               <div className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.3em] mt-2">Quantum Risk Index</div>
             </div>
-            <div className="mt-12 p-5 bg-slate-50 rounded-2xl border border-slate-100 text-[11px] text-slate-600 leading-relaxed italic">
-              <strong>Policy Verdict:</strong> {riskScore > 75 ? 'High exposure identified. Immediate RQSP migration mandatory for legacy nodes.' : 'Infrastructure stable. Proceed with scheduled CryptoBOM rotation.'}
-            </div>
+            <p className="mt-8 text-[11px] text-slate-600 leading-relaxed">
+              <strong>Assessment:</strong> {riskScore > 75 ? 'Critical exposure detected. Immediate migration required.' : 'Stable cryptographic footprint. Monitoring scheduled.'}
+            </p>
           </div>
-        </div>
-      </section>
-
-      <section>
-        <h2 className="text-3xl font-serif font-bold mb-10 tracking-tight text-slate-900">Certification & Trust</h2>
-        <div className="not-prose grid md:grid-cols-2 gap-6">
-          {[
-            { icon: <ShieldCheck className="text-blue-600" size={20}/>, title: "TRL 4 Readiness", desc: "Technology validated in lab (Quantum Sandbox)." },
-            { icon: <ShieldCheck className="text-indigo-600" size={20}/>, title: "FIPS 140-3 L3", desc: "Hardware boundary validation." },
-            { icon: <ScrollText className="text-slate-900" size={20}/>, title: "ISO 27001", desc: "Security management standards." },
-            { icon: <CheckCircle className="text-emerald-600" size={20}/>, title: "eIDAS 2.0", desc: "EU identity compliance ready." }
-          ].map((cert, i) => (
-            <div key={i} className="p-6 border border-slate-100 rounded-2xl bg-white/50 backdrop-blur-sm hover:bg-white hover:border-slate-300 hover:shadow-lg transition-all shadow-sm">
-              <div className="mb-4">{cert.icon}</div>
-              <h4 className="text-lg font-serif font-bold mb-2 m-0 text-slate-900">{cert.title}</h4>
-              <p className="text-sm text-slate-500 m-0 leading-relaxed">{cert.desc}</p>
-            </div>
-          ))}
         </div>
       </section>
     </article>
@@ -348,10 +131,3 @@ rivicq_client.policy.update_risk_telemetry(risk_data)`}
 };
 
 export default Platform;
-
-const Search: React.FC<{ size?: number, className?: string }> = ({ size = 20, className = "" }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-    <circle cx="11" cy="11" r="8"></circle>
-    <path d="m21 21-4.3-4.3"></path>
-  </svg>
-);

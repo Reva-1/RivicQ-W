@@ -1,5 +1,6 @@
+
 import React from 'react';
-import { Shield, Eye, Lock, Globe } from 'lucide-react';
+import { Eye, Lock, ShieldAlert, Award, Mail } from 'lucide-react';
 
 const Privacy: React.FC = () => {
   return (
@@ -11,7 +12,7 @@ const Privacy: React.FC = () => {
 
       <section className="mb-12">
         <p className="text-lg text-slate-600 leading-relaxed">
-          At RivicQ, privacy is not just a policy; it is built into our code. We operate under the principle of <strong>Data Minimization</strong> and are fully compliant with the <strong>General Data Protection Regulation (GDPR)</strong>.
+          At RivicQ, privacy is built into our code. We operate under <strong>Data Minimization</strong> principles and are fully <strong>GDPR</strong> compliant.
         </p>
       </section>
 
@@ -19,35 +20,43 @@ const Privacy: React.FC = () => {
         <div className="p-8 bg-white border border-slate-100 rounded-3xl shadow-sm">
           <div className="mb-4 text-blue-600"><Lock size={24}/></div>
           <h3 className="font-serif font-bold text-xl mb-3">Encryption at Rest</h3>
-          <p className="text-sm text-slate-500 leading-relaxed">All metadata processed by our CryptoBOM scanner is encrypted using quantum-safe AES-256 with rotation managed by our internal HSM mesh.</p>
+          <p className="text-sm text-slate-500 leading-relaxed">All metadata is encrypted using quantum-safe AES-256 with HSM-managed rotation.</p>
         </div>
         <div className="p-8 bg-white border border-slate-100 rounded-3xl shadow-sm">
           <div className="mb-4 text-emerald-600"><Eye size={24}/></div>
           <h3 className="font-serif font-bold text-xl mb-3">Zero Telemetry</h3>
-          <p className="text-sm text-slate-500 leading-relaxed">Our on-premise agents do not phone home with your source code. Only high-level cryptographic metadata is analyzed to provide risk assessments.</p>
+          <p className="text-sm text-slate-500 leading-relaxed">Agents do not exfiltrate source code. Only cryptographic metadata is analyzed.</p>
         </div>
       </div>
 
-      <section className="mb-16">
-        <h2 className="text-2xl font-serif font-bold mb-6">Your Rights</h2>
-        <div className="space-y-4 text-sm text-slate-600">
-          <p>Under GDPR, you have the following rights regarding your data:</p>
-          <ul className="list-disc pl-5 space-y-2">
-            <li><strong>Right to Access:</strong> Request a copy of the metadata we hold.</li>
-            <li><strong>Right to Erasure:</strong> Request the deletion of your account and associated audit trails.</li>
-            <li><strong>Right to Portability:</strong> Export your CryptoBOM inventory in CycloneDX format.</li>
-          </ul>
+      <section className="mb-20">
+        <div className="bg-slate-50 p-8 rounded-3xl border border-slate-100">
+           <div className="flex items-center gap-3 mb-4 text-slate-900">
+             <ShieldAlert size={20} className="text-red-600" />
+             <h2 className="m-0 text-xl font-serif font-bold">Proprietary Notice & Confidentiality</h2>
+           </div>
+           <p className="text-sm text-slate-600 leading-relaxed mb-6">
+             All technical details, methodologies, and architectural patterns shared via our platform are protected by <strong>Non-Disclosure Agreements (NDA)</strong>.
+           </p>
+           <div className="flex items-center gap-2 p-3 bg-white border border-slate-200 rounded-xl">
+              <Award size={16} className="text-blue-600" />
+              <p className="text-[10px] font-bold text-slate-900 uppercase tracking-widest m-0">
+                Patents, Design, and Trademark belong exclusively to RivicQ Technologies GmbH.
+              </p>
+           </div>
         </div>
       </section>
 
       <section className="mb-20">
-        <h2 className="text-2xl font-serif font-bold mb-6">Contact Privacy Officer</h2>
-        <p className="text-sm text-slate-600">
-          For any data-related inquiries, please contact our Berlin office at: <br/>
-          <a href="mailto:privacy@rivic.xyz" className="text-blue-600 font-bold hover:underline">privacy@rivic.xyz</a>
-        </p>
+        <h2 className="text-2xl font-serif font-bold mb-6">Privacy Inquiries</h2>
+        <div className="text-sm text-slate-600 flex items-center gap-4">
+          <span className="font-bold">Contact Privacy Officer:</span>
+          <a href="mailto:rivic.revan.ande@gmail.com" className="text-blue-600 font-bold hover:text-slate-900 transition-colors inline-flex items-center gap-2" aria-label="Contact Privacy Officer">
+            <Mail size={18} />
+            <span className="text-xs uppercase tracking-widest">Send Secure Message</span>
+          </a>
+        </div>
       </section>
-
     </article>
   );
 };

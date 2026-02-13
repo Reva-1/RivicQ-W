@@ -1,3 +1,4 @@
+
 import React, { Suspense } from 'react';
 import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Layout from './components/Layout';
@@ -11,7 +12,7 @@ const SDK = React.lazy(() => import('./pages/SDK'));
 const Solutions = React.lazy(() => import('./pages/Solutions'));
 const Roadmap = React.lazy(() => import('./pages/Roadmap'));
 const Team = React.lazy(() => import('./pages/Team'));
-const Investors = React.lazy(() => import('./pages/Investors'));
+const PitchDeck = React.lazy(() => import('./pages/PitchDeck'));
 const Careers = React.lazy(() => import('./pages/Careers'));
 const Resources = React.lazy(() => import('./pages/Resources'));
 const UseCases = React.lazy(() => import('./pages/UseCases'));
@@ -42,7 +43,7 @@ const RouteHandler = () => {
       '/use-cases': 'Use Cases | RivicQ',
       '/roadmap': 'Roadmap 2026-2030 | RivicQ',
       '/team': 'Our Team | RivicQ',
-      '/investors': 'Investor Relations | RivicQ',
+      '/pitch-deck': 'Investor Pitch Deck | RivicQ',
       '/careers': 'Careers | RivicQ',
       '/resources': 'Resources & Tools | RivicQ',
       '/blog': 'Blog & Insights | RivicQ',
@@ -83,7 +84,7 @@ const App: React.FC = () => {
             <Route path="/use-cases" element={<UseCases />} />
             <Route path="/roadmap" element={<Roadmap />} />
             <Route path="/team" element={<Team />} />
-            <Route path="/investors" element={<Investors />} />
+            <Route path="/pitch-deck" element={<PitchDeck />} />
             <Route path="/careers" element={<Careers />} />
             <Route path="/resources" element={<Resources />} />
             <Route path="/blog" element={<Blog />} />

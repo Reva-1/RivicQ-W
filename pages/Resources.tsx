@@ -1,46 +1,17 @@
 
 import React, { useState } from 'react';
-/* Added Info to the import list from lucide-react to fix "Cannot find name 'Info'" error */
-import { Copy, Check, ExternalLink, ShieldCheck, FileText, Github, BarChart3, Cloud, Landmark, Lock, Globe, ChevronDown, ChevronUp, Send, MessageSquare, Briefcase, Zap, Activity, Monitor, Workflow, ShieldAlert, ArrowRight, Layers, Search, Database, Repeat, Cpu, Terminal, Info } from 'lucide-react';
+import { Copy, Check, ExternalLink, ShieldCheck, FileText, Github, Landmark, Lock, ChevronDown, ChevronUp, Zap, Activity, Workflow, ShieldAlert, ArrowRight, Layers, Search, Database, Repeat, Cpu, Terminal, Info, Target, LayoutGrid, Beaker, Gavel, Bookmark } from 'lucide-react';
+import CryptoBOMScannerDemo from '../components/CryptoBOMScannerDemo';
 
-const CodeBlock: React.FC<{ code: string, label?: string }> = ({ code, label }) => {
-  const [copied, setCopied] = useState(false);
-
-  const handleCopy = () => {
-    navigator.clipboard.writeText(code);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
-  return (
-    <div className="not-prose bg-gray-900 text-gray-100 rounded-lg p-6 my-6 border border-gray-800">
-      <div className="flex justify-between items-center mb-4">
-        <span className="text-xs font-mono text-gray-500 uppercase tracking-widest">{label || 'Terminal Snippet'}</span>
-        <button 
-          onClick={handleCopy} 
-          className="text-gray-500 hover:text-white flex items-center gap-2 text-xs transition-colors"
-        >
-          {copied ? (
-            <><Check size={14}/> Copied!</>
-          ) : (
-            <><Copy size={14} /> Copy</>
-          )}
-        </button>
-      </div>
-      <div className="bg-black rounded p-4 font-mono text-sm text-green-400 border border-gray-700 overflow-x-auto">
-        <pre className="m-0">{code}</pre>
-      </div>
-    </div>
-  );
-};
-
-const FAQItem: React.FC<{ question: string, answer: React.ReactNode }> = ({ question, answer }) => {
+const FAQItem: React.FC<{ question: string, answer: React.ReactNode, id: string }> = ({ question, answer, id }) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <div className="border-b border-gray-100 py-6 last:border-0">
+    <div className="border-b border-slate-100 py-6 last:border-0">
       <button 
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex justify-between items-center text-left group"
+        className="w-full flex justify-between items-center text-left group focus:outline-none focus:text-blue-600"
+        aria-expanded={isOpen}
+        aria-controls={`faq-answer-${id}`}
       >
         <h4 className="font-serif text-xl font-bold text-slate-900 group-hover:text-blue-600 transition-colors m-0">
           {question}
@@ -48,7 +19,7 @@ const FAQItem: React.FC<{ question: string, answer: React.ReactNode }> = ({ ques
         {isOpen ? <ChevronUp size={20} className="text-slate-400" /> : <ChevronDown size={20} className="text-slate-400" />}
       </button>
       {isOpen && (
-        <div className="mt-4 animate-fadeIn">
+        <div id={`faq-answer-${id}`} className="mt-4 animate-fadeIn" role="region">
           <p className="text-slate-600 leading-relaxed text-sm m-0">
             {answer}
           </p>
@@ -59,277 +30,273 @@ const FAQItem: React.FC<{ question: string, answer: React.ReactNode }> = ({ ques
 };
 
 const Resources: React.FC = () => {
-  const helmCode = `helm repo add rivicq https://charts.rivic.xyz
-helm install cryptobom-agent rivicq/cbom-agent \\
-  --set scanner.mode=passive \\
-  --set exporters.prometheus.enabled=true`;
-
-  const apiCode = `curl -X POST https://api.rivic.xyz/v1/sign \\
-  -H "Authorization: Bearer $RIVICQ_TOKEN" \\
-  -H "Content-Type: application/json" \\
-  -d '{
-    "mechanism": "ML-DSA-65",
-    "payload_base64": "SGVsbG8gUXVhbnR1bQ=="
-  }'`;
-
   return (
     <article className="prose prose-lg prose-slate max-w-none">
-      <h1>Resources & Tools</h1>
-      <p>
-        Access our open-source tools, compliance guides, and latest research on the post-quantum transition.
-      </p>
+      <header className="mb-12">
+        <h1 className="text-5xl font-bold mb-4 tracking-tight">Resources & Technical POC</h1>
+        <p className="lead font-serif italic text-slate-600">
+          Open-source tools, compliance checklists, and laboratory validation reports for the post-quantum transition.
+        </p>
+      </header>
 
-      {/* CryptoBOM Section */}
-      <section className="mt-8">
+      {/* Interactive POC Section */}
+      <section className="mb-24">
         <div className="flex items-center gap-3 mb-6">
-          <div className="p-3 bg-blue-600 text-white rounded-2xl shadow-lg shadow-blue-100">
-             <ShieldAlert size={28}/>
+          <div className="p-3 bg-blue-600 text-white rounded-2xl shadow-lg">
+             <Beaker size={28}/>
           </div>
-          <h2 className="m-0 text-3xl font-serif font-bold">RivicQ CryptoBOM</h2>
+          <div>
+            <h2 className="m-0 text-3xl font-serif font-bold text-slate-900">Technical POC: Lab Validation</h2>
+            <span className="text-[10px] font-bold text-blue-600 uppercase tracking-widest">Coming Soon (Q3 2026)</span>
+          </div>
         </div>
-        
-        <p>
-            The Cryptographic Bill of Materials (CBOM) is the first step towards quantum safety. You cannot secure what you cannot see. 
-            Our tool creates a dynamic inventory of all cryptographic assets in your software supply chain.
+        <p className="text-slate-600 mb-8">
+            Our technical proof-of-concept is currently undergoing rigorous validation in the <strong>Leap Berlin Quantum Lab</strong>. We are testing the physical entropy harvesting core against high-performance computing clusters to baseline PQC orchestration benchmarks.
         </p>
-
-        {/* --- NEW ARCHITECTURE SECTION --- */}
-        <div className="not-prose my-16 p-8 md:p-12 bg-white border border-slate-100 rounded-[3rem] shadow-sm relative overflow-hidden">
-          <div className="absolute top-0 right-0 p-8 opacity-5 text-slate-900 pointer-events-none">
-            <Layers size={120} />
+        <div className="not-prose bg-blue-50 border border-blue-100 p-6 rounded-2xl mb-12 flex items-center gap-4 italic text-sm text-blue-800">
+          <div className="shrink-0 text-blue-600">
+            <Info size={20} aria-hidden="true" />
           </div>
-          
-          <div className="text-center mb-12">
-            <h3 className="text-2xl font-serif font-bold text-slate-900 m-0">CryptoBOM Lifecycle Architecture</h3>
-            <p className="text-[10px] font-bold text-blue-600 uppercase tracking-[0.3em] mt-2">The Transition Logic: Discovery to PQC</p>
+          <span>While lab validation is in progress, you can preview the intended scanning logic and risk-mapping interface below.</span>
+        </div>
+        <CryptoBOMScannerDemo />
+      </section>
+
+      {/* Security & Compliance Section */}
+      <section className="mb-24 not-prose">
+        <div className="flex items-center gap-3 mb-8">
+          <div className="p-3 bg-emerald-600 text-white rounded-2xl shadow-lg shadow-emerald-100">
+             <Gavel size={28}/>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-1 relative">
-            {/* Phase 1: Discovery */}
-            <div className="flex flex-col items-center text-center p-6 border border-slate-50 bg-slate-50/30 rounded-3xl relative group">
-              <div className="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-blue-600 mb-6 group-hover:bg-blue-600 group-hover:text-white transition-all">
-                <Search size={20} />
-              </div>
-              <h4 className="text-sm font-bold text-slate-900 mb-2 uppercase tracking-wide">01. Discovery</h4>
-              <p className="text-[10px] text-slate-500 leading-relaxed mb-4">Scanning code & runtime traffic for legacy primitives.</p>
-              <div className="w-full space-y-2">
-                <div className="p-2 bg-white rounded-lg border border-slate-100 text-[9px] font-bold text-slate-600 flex items-center gap-2">
-                  <Terminal size={10} className="text-slate-400"/> OSS: Static CLI Scans
-                </div>
-                <div className="p-2 bg-indigo-50 rounded-lg border border-indigo-100 text-[9px] font-bold text-indigo-700 flex items-center gap-2">
-                  <Activity size={10}/> Ent: K8s Dynamic Agent
-                </div>
-              </div>
-            </div>
-
-            {/* Connecting Arrow */}
-            <div className="hidden md:flex items-center justify-center opacity-20 text-slate-400">
-              <ArrowRight size={24} />
-            </div>
-
-            {/* Phase 2: Inventory */}
-            <div className="flex flex-col items-center text-center p-6 border border-slate-50 bg-slate-50/30 rounded-3xl relative group">
-              <div className="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-indigo-600 mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-all">
-                <Database size={20} />
-              </div>
-              <h4 className="text-sm font-bold text-slate-900 mb-2 uppercase tracking-wide">02. Inventory</h4>
-              <p className="text-[10px] text-slate-500 leading-relaxed mb-4">Cataloging assets into a verifiable CBOM database.</p>
-              <div className="w-full space-y-2">
-                <div className="p-2 bg-white rounded-lg border border-slate-100 text-[9px] font-bold text-slate-600 flex items-center gap-2">
-                  <FileText size={10} className="text-slate-400"/> OSS: CycloneDX Exports
-                </div>
-                <div className="p-2 bg-blue-50 rounded-lg border border-blue-100 text-[9px] font-bold text-blue-700 flex items-center gap-2">
-                  <Monitor size={10}/> Ent: Managed Risk DB
-                </div>
-              </div>
-            </div>
-
-            {/* Connecting Arrow */}
-            <div className="hidden md:flex items-center justify-center opacity-20 text-slate-400">
-              <ArrowRight size={24} />
-            </div>
-
-            {/* Phase 3: Migration */}
-            <div className="flex flex-col items-center text-center p-6 border border-slate-50 bg-slate-50/30 rounded-3xl relative group">
-              <div className="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-emerald-600 mb-6 group-hover:bg-emerald-600 group-hover:text-white transition-all">
-                <Repeat size={20} />
-              </div>
-              <h4 className="text-sm font-bold text-slate-900 mb-2 uppercase tracking-wide">03. Migration</h4>
-              <p className="text-[10px] text-slate-500 leading-relaxed mb-4">Orchestrating rotation to PQC algorithms (ML-KEM).</p>
-              <div className="w-full space-y-2">
-                <div className="p-2 bg-white rounded-lg border border-slate-100 text-[9px] font-bold text-slate-600 flex items-center gap-2">
-                  <ShieldCheck size={10} className="text-slate-400"/> OSS: Advisory Fixes
-                </div>
-                <div className="p-2 bg-emerald-50 rounded-lg border border-emerald-100 text-[9px] font-bold text-emerald-700 flex items-center gap-2">
-                  <Lock size={10}/> Ent: HSM Key Mesh
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-12 pt-8 border-t border-slate-100 flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="flex items-center gap-3">
-              <div className="p-2 bg-blue-50 text-blue-600 rounded-lg">
-                <Info size={16}/>
-              </div>
-              <p className="text-[10px] text-slate-500 font-medium m-0 max-w-sm leading-relaxed">
-                The OSS layer provides the baseline "visibility", while the Enterprise Architecture automates the "remediation" and "enforcement" of PQC standards.
-              </p>
-            </div>
-            <a href="/#/pricing#contact" className="inline-flex items-center gap-2 bg-slate-900 text-white px-6 py-3 rounded-xl font-bold text-[10px] uppercase tracking-widest hover:bg-blue-600 transition-all shadow-xl shadow-slate-100">
-              Request Full Enterprise Architecture <ArrowRight size={14}/>
-            </a>
+          <div>
+            <h2 className="m-0 text-3xl font-serif font-bold text-slate-900">Security & Compliance</h2>
+            <p className="text-xs text-emerald-600 font-bold uppercase tracking-widest mt-1">
+              Global Standards & Regulatory Frameworks
+            </p>
           </div>
         </div>
-        {/* --- END ARCHITECTURE SECTION --- */}
-        
-        <CodeBlock code={helmCode} label="Helm Installation (Agent)" />
 
-        <div className="not-prose flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
-          <p className="text-sm text-slate-500 m-0">Interested in integrating our HSM-backed signing API?</p>
-          <a href="https://github.com/rivic-q" target="_blank" rel="noopener noreferrer" className="bg-white border-2 border-slate-900 text-slate-900 px-4 py-2 rounded font-bold text-sm hover:bg-slate-900 hover:text-white transition-all flex items-center gap-2">
-            <Github size={16}/> GitHub Docs
-          </a>
-        </div>
-        
-        <CodeBlock code={apiCode} label="PQC Signing API Example" />
-
-        <h3>Open Source (CNCF) vs Enterprise Edition</h3>
-        <p>
-            We believe in open standards. The core scanner is open source and compatible with standard CNCF tooling. 
-            The Enterprise edition adds advanced integration for regulated industries and mission-critical workflows.
-        </p>
-
-        <div className="not-prose overflow-x-auto mt-6">
-            <table className="w-full text-sm text-left border-collapse bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
-                <thead>
-                    <tr className="bg-slate-50 border-b border-slate-200">
-                        <th className="p-4 font-bold text-slate-900">Feature</th>
-                        <th className="p-4 font-bold text-slate-900 w-1/3">Open Source (Community)</th>
-                        <th className="p-4 font-bold text-slate-900 w-1/3 text-blue-600">
-                          Enterprise (SaaS)
-                          <div className="text-[9px] font-bold text-blue-500 uppercase tracking-widest mt-1 italic">Available Q2 2026</div>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-100">
-                    <tr>
-                        <td className="p-4 font-medium">Inventory Format</td>
-                        <td className="p-4 text-slate-600">Standard CycloneDX (JSON)</td>
-                        <td className="p-4 text-slate-600">CycloneDX + Real-time Inventory DB</td>
-                    </tr>
-                    <tr>
-                        <td className="p-4 font-medium flex items-center gap-2">
-                             <Cloud size={16} className="text-blue-500" /> CNCF Tooling
-                        </td>
-                        <td className="p-4 text-slate-600">
-                            Prometheus Metrics, Grafana Dashboards
-                        </td>
-                        <td className="p-4 text-slate-600">
-                            Managed Control Plane, Multi-Cluster Aggregation
-                        </td>
-                    </tr>
-                    <tr>
-                        <td className="p-4 font-medium flex items-center gap-2">
-                            <BarChart3 size={16} className="text-purple-500" /> IBMQ Integration
-                        </td>
-                        <td className="p-4 text-slate-500 italic">Not Included</td>
-                        <td className="p-4 text-slate-600">
-                            <strong>IBM Quantum Safe Advisor</strong> deep integration
-                        </td>
-                    </tr>
-                    <tr className="bg-blue-50/50">
-                        <td className="p-4 font-bold text-blue-900 flex items-center gap-2">
-                            <ShieldCheck size={16} /> Enterprise Features
-                        </td>
-                        <td className="p-4 text-slate-400 italic">Basic Community Support</td>
-                        <td className="p-4 text-blue-900">
-                            <ul className="list-none p-0 m-0 space-y-2">
-                                <li className="flex items-start gap-2">
-                                  <Monitor size={14} className="mt-1 shrink-0"/> 
-                                  <span><strong>Real-time Monitoring:</strong> Continuous live tracking of cryptographic state.</span>
-                                </li>
-                                <li className="flex items-start gap-2">
-                                  <Workflow size={14} className="mt-1 shrink-0"/> 
-                                  <span><strong>Automated Remediation:</strong> Automatic PR creation for vulnerability fixes.</span>
-                                </li>
-                                <li className="flex items-start gap-2">
-                                  <Activity size={14} className="mt-1 shrink-0"/> 
-                                  <span><strong>SIEM/SOAR Integration:</strong> Native Splunk & Sentinel connectors.</span>
-                                </li>
-                                <li className="flex items-start gap-2 text-emerald-700">
-                                  <ShieldCheck size={14} className="mt-1 shrink-0"/> 
-                                  <span><strong>Dedicated Support:</strong> 24/7 technical cryptography support.</span>
-                                </li>
-                            </ul>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div className="not-prose mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a href="/#/pricing#contact" className="px-10 py-4 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-all shadow-lg shadow-blue-200/50 flex items-center gap-2">
-                Request an Enterprise Demo <ArrowRight size={18}/>
-            </a>
-            <a href="/#/pricing" className="px-10 py-4 border-2 border-slate-900 text-slate-900 font-bold rounded-xl hover:bg-slate-900 hover:text-white transition-all">
-                View Enterprise Plans
-            </a>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6" role="list">
+          {[
+            { 
+              title: "NIST PQC Standards Overview", 
+              icon: <FileText size={20} className="text-blue-600" />,
+              link: "https://csrc.nist.gov/projects/post-quantum-cryptography",
+              desc: "Official finalized standards for ML-KEM and ML-DSA.",
+              external: true
+            },
+            { 
+              title: "FIPS 140-3 Validation Details", 
+              icon: <ShieldCheck size={20} className="text-indigo-600" />,
+              link: "#",
+              desc: "Requirements for HSM physical security boundaries.",
+              external: false
+            },
+            { 
+              title: "DORA Compliance Checklist", 
+              icon: <Landmark size={20} className="text-emerald-600" />,
+              link: "#",
+              desc: "Operational resilience for financial entities.",
+              external: false
+            },
+            { 
+              title: "BSI Germany Guidelines", 
+              icon: <Lock size={20} className="text-slate-900" />,
+              link: "https://www.bsi.bund.de/",
+              desc: "Technical guidelines TR-02102 for crypto-agility.",
+              external: true
+            },
+            { 
+              title: "RivicQ Technical Paper", 
+              icon: <Bookmark size={20} className="text-amber-600" />,
+              link: "#",
+              desc: "Official mapping to NIST, EU DORA, and BSI standards.",
+              status: "COMING SOON",
+              external: false
+            }
+          ].map((item, i) => (
+            <div key={i} role="listitem">
+              <div className="p-6 border border-slate-100 bg-white rounded-2xl shadow-sm hover:border-emerald-500 transition-all group flex flex-col h-full">
+                <div className="mb-4 flex justify-between items-start">
+                  <div className="p-2 bg-slate-50 rounded-lg group-hover:bg-emerald-50 transition-colors">
+                    {item.icon}
+                  </div>
+                  {item.status && (
+                    <span className="text-[8px] font-bold px-2 py-0.5 bg-amber-50 text-amber-600 rounded-full tracking-tighter">
+                      {item.status}
+                    </span>
+                  )}
+                </div>
+                <h4 className="text-sm font-bold text-slate-900 mb-2 m-0 group-hover:text-emerald-600 transition-colors">
+                  {item.title}
+                </h4>
+                <p className="text-[11px] text-slate-500 leading-relaxed mb-6 flex-grow">
+                  {item.desc}
+                </p>
+                <a 
+                  href={item.link} 
+                  target={item.external ? "_blank" : undefined}
+                  rel={item.external ? "noopener noreferrer" : undefined}
+                  className={`flex items-center gap-1 text-[9px] font-bold uppercase tracking-widest transition-colors ${item.link === '#' ? 'text-slate-300 cursor-default' : 'text-blue-600 hover:text-slate-900'}`}
+                  aria-label={`${item.title} (${item.external ? 'External' : 'Internal'} link)`}
+                >
+                  {item.link === '#' ? "Unavailable" : (item.external ? "External Resource" : "Access Guide")} <ExternalLink size={10} aria-hidden="true" />
+                </a>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
-      <hr className="my-16 border-gray-100"/>
-
-      {/* Regulatory & Compliance Hub */}
-      <section>
-        <h2>Regulatory & Compliance Hub</h2>
-        <p>
-          Official checklists and regulatory texts for compliance with upcoming quantum-safe standards.
-        </p>
-        <div className="not-prose grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
-            <a href="https://www.iso.org/standard/27001" target="_blank" rel="noopener noreferrer" className="block p-5 border border-gray-200 rounded-lg hover:border-blue-600 hover:shadow-md transition-all group bg-white">
-                <div className="flex items-center gap-3 mb-2">
-                    <div className="p-2 bg-blue-50 rounded group-hover:bg-blue-600 transition-colors">
-                      <ShieldCheck size={20} className="text-blue-600 group-hover:text-white"/>
-                    </div>
-                    <span className="font-bold text-gray-900 text-lg">ISO/IEC 27001:2022</span>
+      {/* OWASP Section */}
+      <section className="mb-24 not-prose">
+        <div className="flex items-center gap-3 mb-8">
+          <div className="p-3 bg-slate-900 text-white rounded-2xl shadow-lg">
+             <ShieldCheck size={28}/>
+          </div>
+          <div>
+            <h2 className="m-0 text-3xl font-serif font-bold text-slate-900">OWASP Cryptographic Checklist</h2>
+            <p className="text-xs text-blue-600 font-bold uppercase tracking-widest mt-1">
+              Aligned with <a href="https://owasp.org/Top10/A02_2021-Cryptographic_Failures/" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-400 transition-colors">OWASP A02:2021 Standards</a>
+            </p>
+          </div>
+        </div>
+        
+        <div className="grid md:grid-cols-2 gap-4" role="list">
+          {[
+            { 
+                id: "A02:01", 
+                title: "Sensitive Data Exposure", 
+                desc: "Discovery of cleartext transmission (HTTP/FTP) and verification of PQC tunnel encapsulation.",
+                link: "https://owasp.org/Top10/A02_2021-Cryptographic_Failures/" 
+            },
+            { 
+                id: "A02:02", 
+                title: "Legacy Algorithm Usage", 
+                desc: "Identifying SHA-1, MD5, and RSA < 2048 usage that is vulnerable to classical and quantum factoring.",
+                link: "https://owasp.org/Top10/A02_2021-Cryptographic_Failures/#legacy-algorithms"
+            },
+            { 
+                id: "A02:03", 
+                title: "Insufficient Entropy", 
+                desc: "Auditing Pseudo-Random Number Generators (PRNG) against NIST SP 800-90B quantum-safety.",
+                link: "https://owasp.org/Top10/A02_2021-Cryptographic_Failures/#insufficient-entropy"
+            },
+            { 
+                id: "A02:04", 
+                title: "Improper Key Management", 
+                desc: "Detecting keys in source code, env vars, or local storage. Integration with HSM RoT boundaries.",
+                link: "https://owasp.org/Top10/A02_2021-Cryptographic_Failures/#key-management"
+            },
+            { 
+                id: "A02:05", 
+                title: "Not Using Authenticated Encryption", 
+                desc: "Scanning for ECB/CBC modes vs GCM/AEAD modes required for modern data integrity.",
+                link: "https://owasp.org/Top10/A02_2021-Cryptographic_Failures/#authenticated-encryption"
+            },
+            { 
+                id: "A02:06", 
+                title: "Protocol Agility Failures", 
+                desc: "Assessing the ability to rotate algorithms dynamically via the RQSP orchestration layer.",
+                link: "https://owasp.org/Top10/A02_2021-Cryptographic_Failures/#crypto-agility"
+            }
+          ].map((item, i) => (
+            <div key={i} role="listitem">
+              <a 
+                href={item.link} 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-6 border border-slate-100 bg-white rounded-2xl shadow-sm hover:border-blue-500 transition-all group block decoration-none h-full focus:ring-2 focus:ring-blue-500/10 focus:outline-none"
+              >
+                <div className="flex justify-between items-center mb-3">
+                  <span className="text-[10px] font-mono font-bold text-slate-400 group-hover:text-blue-600 transition-colors uppercase tracking-widest">{item.id}</span>
+                  <ExternalLink size={12} className="text-slate-300 group-hover:text-blue-500" aria-hidden="true" />
                 </div>
-                <p className="text-sm text-gray-600 mb-2">Information Security Management Systems (ISMS) Requirements.</p>
-                <div className="text-xs font-bold text-blue-600 flex items-center">
-                   OFFICIAL STANDARD <ExternalLink size={10} className="ml-1"/>
-                </div>
-            </a>
-            <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32022R2554" target="_blank" rel="noopener noreferrer" className="block p-5 border border-gray-200 rounded-lg hover:border-indigo-600 hover:shadow-md transition-all group bg-white">
-                <div className="flex items-center gap-3 mb-2">
-                    <div className="p-2 bg-indigo-50 rounded group-hover:bg-indigo-600 transition-colors">
-                      <Landmark size={20} className="text-indigo-600 group-hover:text-white"/>
-                    </div>
-                    <span className="font-bold text-gray-900 text-lg">EU DORA Regulation</span>
-                </div>
-                <p className="text-sm text-gray-600 mb-2">Digital Operational Resilience Act - Official Journal L 333.</p>
-                <div className="text-xs font-bold text-indigo-600 flex items-center">
-                   OFFICIAL LEGAL TEXT <ExternalLink size={10} className="ml-1"/>
-                </div>
-            </a>
+                <h4 className="text-sm font-bold text-slate-900 mb-2 m-0">{item.title}</h4>
+                <p className="text-[11px] text-slate-500 leading-relaxed m-0">{item.desc}</p>
+              </a>
+            </div>
+          ))}
         </div>
       </section>
 
-      <section id="faq">
-        <h2>Frequently Asked Questions</h2>
-        <div className="not-prose mt-8">
+      {/* Discovery & Risk Mapping Workflow */}
+      <section className="mb-24">
+        <h2 className="text-3xl font-serif font-bold mb-8">Discovery, Scanning & Risk Mapping</h2>
+        <div className="not-prose grid md:grid-cols-3 gap-8">
+          <div className="p-8 bg-slate-50 border border-slate-100 rounded-[2.5rem] relative group overflow-hidden">
+            <div className="absolute -top-4 -right-4 opacity-5 text-slate-900 group-hover:scale-110 transition-transform" aria-hidden="true">
+              <Search size={120} />
+            </div>
+            <div className="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-blue-600 mb-6 border border-slate-100">
+              <Search size={24} aria-hidden="true" />
+            </div>
+            <h4 className="text-lg font-bold text-slate-900 mb-3 m-0">01. Discovery</h4>
+            <p className="text-xs text-slate-500 leading-relaxed m-0">
+              Recursive indexing of VCS repositories and container registries to baseline the organization's cryptographic footprint.
+            </p>
+          </div>
+
+          <div className="p-8 bg-slate-50 border border-slate-100 rounded-[2.5rem] relative group overflow-hidden">
+            <div className="absolute -top-4 -right-4 opacity-5 text-slate-900 group-hover:scale-110 transition-transform" aria-hidden="true">
+              <Database size={120} />
+            </div>
+            <div className="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-indigo-600 mb-6 border border-slate-100">
+              <Database size={24} aria-hidden="true" />
+            </div>
+            <h4 className="text-lg font-bold text-slate-900 mb-3 m-0">02. Scanning</h4>
+            <p className="text-xs text-slate-500 leading-relaxed m-0">
+              Technical audit using RivicQ proprietary heuristics to calculate the Quantum Risk Score for every identified primitive.
+            </p>
+          </div>
+
+          <div className="p-8 bg-slate-50 border border-slate-100 rounded-[2.5rem] relative group overflow-hidden">
+            <div className="absolute -top-4 -right-4 opacity-5 text-slate-900 group-hover:scale-110 transition-transform" aria-hidden="true">
+              <LayoutGrid size={120} />
+            </div>
+            <div className="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-emerald-600 mb-6 border border-slate-100">
+              <LayoutGrid size={24} aria-hidden="true" />
+            </div>
+            <h4 className="text-lg font-bold text-slate-900 mb-3 m-0">03. Mapping</h4>
+            <p className="text-xs text-slate-500 leading-relaxed m-0">
+              Final generation of the CryptoBOM (CycloneDX) with explicit mapping to NIST FIPS remediation paths.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section id="faq" className="mb-24">
+        <h2 className="text-3xl font-serif font-bold mb-10">Frequently Asked Questions</h2>
+        <div className="not-prose space-y-2">
           <FAQItem 
-            question="What is Post-Quantum Cryptography (PQC)?"
-            answer="PQC refers to cryptographic algorithms (usually based on lattices, codes, or hashes) that are thought to be secure against an attack by a quantum computer. Current standards like RSA and ECC are vulnerable to Shor's algorithm, which a sufficiently powerful quantum computer could execute."
+            id="sbom"
+            question="What is the difference between SBOM and CryptoBOM?"
+            answer="A Software Bill of Materials (SBOM) lists components and libraries. A Cryptographic Bill of Materials (CryptoBOM) explicitly catalogs the cryptographic primitives, key sizes, and expiry dates within those components, which is critical for mitigating quantum threats."
           />
           <FAQItem 
-            question="Why do I need an HSM if I use PQC?"
-            answer="An HSM (Hardware Security Module) provides a physical root of trust. While PQC algorithms protect against mathematical attacks from quantum computers, an HSM protects against physical theft, unauthorized software access, and tampering. It ensures that your private keys never exist in plaintext in a computer's volatile memory."
+            id="owasp"
+            question="How does RivicQ address OWASP A02:2021?"
+            answer="RivicQ provides automated scanning that specifically targets cryptographic failures. We go beyond basic CVE checks to analyze the mathematical strength and implementation of encryption across your entire infrastructure."
           />
           <FAQItem 
-            question="What is a CryptoBOM?"
-            answer="A Cryptographic Bill of Materials (CryptoBOM) is an extension of an SBOM. It specifically inventories every cryptographic asset, algorithm, key size, and library used by an application. This visibility is essential for 'crypto-agility'—the ability to quickly switch algorithms when a vulnerability is discovered."
+            id="poc"
+            question="Can the POC scan my private repository?"
+            answer="The web-based POC is for preview. Full laboratory validation is in progress at Leap Berlin. For private repository scanning, we provide a secure CLI tool and a managed SaaS instance that connects via SSH/HTTPS."
           />
         </div>
       </section>
+
+      <div className="not-prose bg-slate-900 rounded-[3rem] p-12 text-center text-white relative overflow-hidden">
+          <h3 className="text-2xl font-serif font-bold mb-4 m-0 text-white">Download the Full PQC Compliance Guide</h3>
+          <p className="text-slate-400 text-sm mb-8 max-w-xl mx-auto italic">
+            RivicQ Technical Paper: Official Mapping to NIST, EU DORA, and BSI Germany standards. (Coming Soon Q4 2026)
+          </p>
+          <button disabled className="px-10 py-4 bg-slate-800 text-slate-400 font-bold rounded-xl cursor-not-allowed flex items-center gap-2 mx-auto shadow-xl">
+             Notify Me on Release <ArrowRight size={18} aria-hidden="true"/>
+          </button>
+      </div>
+
     </article>
   );
 };

@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Github, Mail, Linkedin, Globe, Shield, Lock, Cpu, Globe2, Sparkles, Layout, Building, Lightbulb, Users, Scale, ShieldCheck, Microscope, BookOpen, Handshake, Briefcase } from 'lucide-react';
+import { Github, Mail, Linkedin, Globe, Shield, Lock, Cpu, Globe2, Sparkles, Layout, Building, Users, Scale, ShieldCheck, Microscope, BookOpen, Handshake, Briefcase, Presentation } from 'lucide-react';
 
 const Sidebar: React.FC = () => {
   const groups = [
@@ -48,16 +48,16 @@ const Sidebar: React.FC = () => {
         { name: 'Privacy', path: '/privacy', icon: <Shield size={12}/> },
         { name: 'Team', path: '/team', icon: <Users size={12}/> },
         { name: 'Careers', path: '/careers', icon: <Briefcase size={12}/> },
-        { name: 'Investors', path: '/investors', icon: <Building size={12}/> },
+        { name: 'Pitch Deck', path: '/pitch-deck', icon: <Presentation size={12}/> },
       ]
     }
   ];
 
   return (
-    <aside className="w-full md:w-64 flex-shrink-0 md:fixed md:h-screen border-r border-slate-200 bg-white/70 backdrop-blur-xl flex flex-col z-50">
+    <aside className="w-full md:w-64 flex-shrink-0 md:fixed md:h-screen border-r border-slate-200 bg-white/70 backdrop-blur-xl flex flex-col z-50" role="complementary" aria-label="Main Sidebar Navigation">
       
       <div className="p-8 pb-6">
-        <NavLink to="/" className="group block">
+        <NavLink to="/" className="group block" aria-label="RivicQ Home">
           <h1 className="font-serif text-2xl font-bold tracking-tight text-slate-900 mb-1 group-hover:text-blue-600 transition-colors">
             RivicQ
           </h1>
@@ -73,10 +73,10 @@ const Sidebar: React.FC = () => {
         </NavLink>
       </div>
 
-      <nav className="flex-grow overflow-y-auto px-8 py-4 space-y-8 scrollbar-hide">
+      <nav className="flex-grow overflow-y-auto px-8 py-4 space-y-8 scrollbar-hide" aria-label="Sidebar Sections">
         {groups.map((group, idx) => (
-          <div key={idx}>
-            <h3 className="text-[10px] font-bold text-slate-300 uppercase tracking-widest mb-3 border-b border-slate-100/50 pb-1">
+          <div key={idx} role="group" aria-labelledby={`nav-group-${idx}`}>
+            <h3 id={`nav-group-${idx}`} className="text-[10px] font-bold text-slate-300 uppercase tracking-widest mb-3 border-b border-slate-100/50 pb-1">
               {group.label}
             </h3>
             <div className="space-y-1">
@@ -85,16 +85,17 @@ const Sidebar: React.FC = () => {
                   key={link.path}
                   to={link.path}
                   className={({ isActive }) =>
-                    `group flex items-center gap-3 py-1.5 text-sm transition-all ${
+                    `group flex items-center gap-3 py-1.5 text-sm transition-all focus:outline-none focus:ring-1 focus:ring-blue-100 rounded-lg ${
                       isActive 
                         ? 'text-slate-900 font-bold' 
                         : 'text-slate-500 hover:text-slate-900'
                     }`
                   }
+                  aria-current={({ isActive }) => (isActive ? 'page' : undefined)}
                 >
                   {({ isActive }) => (
                     <>
-                      <div className={`w-1 h-1 rounded-full transition-all ${isActive ? 'bg-blue-600 scale-150' : 'bg-transparent group-hover:bg-slate-300'}`}></div>
+                      <div className={`w-1 h-1 rounded-full transition-all ${isActive ? 'bg-blue-600 scale-150' : 'bg-transparent group-hover:bg-slate-300'}`} aria-hidden="true"></div>
                       {link.name}
                     </>
                   )}
@@ -107,12 +108,12 @@ const Sidebar: React.FC = () => {
 
       <div className="p-8 pt-4 border-t border-slate-100">
         <div className="flex gap-4 mb-6">
-          <a href="https://github.com/rivic-q" target="_blank" className="text-slate-400 hover:text-slate-900 transition-colors" title="GitHub"><Github size={16} /></a>
-          <a href="https://www.linkedin.com/company/rivic-q" target="_blank" className="text-slate-400 hover:text-blue-600 transition-colors" title="LinkedIn"><Linkedin size={16} /></a>
-          <a href="mailto:hello@rivic.xyz" className="text-slate-400 hover:text-slate-900 transition-colors" title="Email"><Mail size={16} /></a>
+          <a href="https://github.com/rivic-q" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-slate-900 transition-colors focus:text-slate-900" title="GitHub" aria-label="RivicQ GitHub Repository"><Github size={16} /></a>
+          <a href="https://www.linkedin.com/company/rivic-q" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-blue-600 transition-colors focus:text-blue-600" title="LinkedIn" aria-label="RivicQ LinkedIn Page"><Linkedin size={16} /></a>
+          <a href="mailto:rivic.revan.ande@gmail.com" className="text-slate-400 hover:text-slate-900 transition-colors focus:text-slate-900" title="Email Contact" aria-label="Email RivicQ"><Mail size={16} /></a>
         </div>
         <div className="flex items-center gap-2 text-[9px] font-bold text-slate-400 uppercase tracking-tight">
-          <Globe size={10} className="text-blue-500"/>
+          <Globe size={10} className="text-blue-500" aria-hidden="true"/>
           <span>Berlin • Leap Quantum</span>
         </div>
       </div>

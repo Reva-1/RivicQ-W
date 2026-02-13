@@ -1,68 +1,72 @@
 
-const express = require('express');
-const path = require('path');
-const cors = require('cors');
-const { GoogleGenAI } = require("@google/genai");
+import express from 'express';
+import path from 'path';
+import cors from 'cors';
+import { fileURLToPath } from 'url';
+import { GoogleGenAI } from "@google/genai";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Initialize Gemini API
-// The API_KEY is provided by the environment
+// Initialize Gemini API using named parameter
 const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 app.use(cors());
 app.use(express.json());
-
-// Serve static files from the root directory
 app.use(express.static(__dirname));
 
 /**
  * Helper: Parse JSON from LLM response
- * Handles cases where the LLM wraps JSON in markdown blocks.
  */
 function parseLLMResponse(text) {
+  if (!text) return [];
   try {
-    // Look for JSON within markdown code blocks if present
+    // Attempt to find JSON in markdown blocks or just clean up the raw string
     const jsonMatch = text.match(/```json\n([\s\S]*?)\n```/) || text.match(/```([\s\S]*?)```/);
     const cleanText = jsonMatch ? jsonMatch[1].trim() : text.trim();
     return JSON.parse(cleanText);
   } catch (e) {
     console.error("Failed to parse LLM response:", text);
-    throw new Error("Invalid response format from AI Auditor.");
+    return [];
   }
 }
 
 /**
  * API: Security Scan
- * Uses Gemini 3 Pro to analyze code for cryptographic vulnerabilities.
  */
 app.post('/api/scan-security', async (req, res) => {
   try {
     const { code } = req.body;
-    
-    if (!code) {
-      return res.status(400).json({ error: "No code provided for scanning." });
-    }
+    if (!code) return res.status(400).json({ error: "No code provided." });
 
     const response = await ai.models.generateContent({
       model: 'gemini-3-pro-preview',
-      contents: `Perform a technical security audit on the following code snippet. 
-      Specifically identify:
-      1. Legacy cryptographic algorithms (RSA < 3072, ECC, SHA-1, MD5).
-      2. Quantum vulnerabilities (Harvest Now, Decrypt Later risks).
-      3. Recommendations for Post-Quantum Cryptography (PQC) migration (e.g., ML-KEM, ML-DSA).
+      contents: `Perform a detailed technical security audit on the provided code snippet. 
+      Focus on cryptographic vulnerabilities and quantum readiness.
       
-      CRITICAL: You MUST return strictly a JSON array of objects. Do not add any conversational text.
-      Format:
-      [
-        {"file": "filename/block", "algo": "algorithm", "status": "CRITICAL/VULNERABLE/QUANTUM-WEAK/SAFE", "recommendation": "detailed fix"}
-      ]
+      Auditing Requirements:
+      1. Identify legacy/weak algorithms (e.g., RSA < 3072, ECC with small curves, SHA-1, MD5).
+      2. Detect quantum vulnerabilities like "Harvest Now, Decrypt Later" exposure.
+      3. Recommend specific Post-Quantum Cryptography (PQC) migration paths using NIST standards (ML-KEM, ML-DSA).
       
-      Code to analyze:
+      OUTPUT FORMAT:
+      Return ONLY a JSON array of objects. Do not include preamble or explanation outside the JSON.
+      Each object must follow this structure:
+      {
+        "file": "source_component",
+        "algo": "the algorithm name found",
+        "status": "CRITICAL" | "VULNERABLE" | "QUANTUM-WEAK" | "SAFE",
+        "recommendation": "Technical fix or migration steps"
+      }
+      
+      Code to Audit:
       ${code}`,
       config: {
-        responseMimeType: "application/json"
+        responseMimeType: "application/json",
+        systemInstruction: "You are a world-class cryptographic security auditor specializing in NIST PQC standards. Your output must be valid JSON."
       }
     });
 
@@ -70,24 +74,20 @@ app.post('/api/scan-security', async (req, res) => {
     res.json({ success: true, report });
   } catch (error) {
     console.error("AI Scan Error:", error);
-    res.status(500).json({ error: error.message || "Failed to perform AI security scan." });
+    res.status(500).json({ error: "Audit service failed." });
   }
 });
 
-/**
- * API: Contact/Investor Form Handler
- */
 app.post('/api/contact', (req, res) => {
-  const { name, email, company, message, type } = req.body;
-  console.log(`[New Inquiry] Type: ${type}, From: ${name} (${company}), Email: ${email}`);
-  res.json({ success: true, message: "Inquiry received and queued for review." });
+  const { name, email, type } = req.body;
+  console.log(`[Lead] Type: ${type}, From: ${name} <${email}>`);
+  res.json({ success: true });
 });
 
-// Fallback to index.html for SPA routing
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 app.listen(port, () => {
-  console.log(`RivicQ Backend running at http://localhost:${port}`);
+  console.log(`RivicQ Server Live: http://localhost:${port}`);
 });
