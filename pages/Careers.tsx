@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Mail, Send, Clock, Sparkles, UserPlus, TrendingUp, BarChart3, ShieldCheck } from 'lucide-react';
+import { Mail, Send, Clock, Sparkles, TrendingUp, BarChart3 } from 'lucide-react';
 
 const CareerCard: React.FC<{ 
   title: string, 
@@ -16,7 +16,7 @@ const CareerCard: React.FC<{
     <div className="mb-6">
       <h3 className="font-serif text-3xl font-bold text-slate-900 m-0 mb-2 group-hover:text-blue-600 transition-colors">{title}</h3>
       <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-[10px] font-bold text-blue-600 uppercase tracking-widest">
-        <Clock size={12} /> Executive Search • Q1 2026
+        <Clock size={12} /> Priority Hiring • Q1 2026
       </span>
     </div>
     <div className="space-y-6">
@@ -64,7 +64,7 @@ const Careers: React.FC = () => {
 
       <div className="not-prose grid md:grid-cols-2 gap-8 mb-24">
         <CareerCard 
-          title="Business Strategy & Funding"
+          title="Co-Founder (Business & Strategy)"
           icon={<TrendingUp size={28} />}
           color="bg-blue-50 text-blue-600"
           focus="Lead fundraising efforts, manage investor relations, and define the Go-To-Market (GTM) execution strategy."
@@ -75,21 +75,9 @@ const Careers: React.FC = () => {
           icon={<BarChart3 size={28} />}
           color="bg-emerald-50 text-emerald-600"
           focus="Establish the sales pipeline, oversee high-impact marketing campaigns, and drive adoption of CSaaS and DevSecOps tools."
-          experience="Experience defining successful GTM motions for cybersecurity products and navigating the enterprise procurement cycle."
+          experience="Experience defining successful GTM motions for cybersecurity products and navigating the enterprise procurement cycle. Opening soon."
         />
       </div>
-
-      <section className="mb-24">
-        <div className="p-8 md:p-12 bg-white border border-slate-100 rounded-[3rem] shadow-sm group">
-          <h3 className="text-2xl font-serif font-bold text-slate-900 mb-4 m-0">Product & Compliance Focus</h3>
-          <p className="text-slate-500 text-sm mb-10 leading-relaxed">
-            We are also seeking leadership for the <strong>Product Roadmap</strong>, ensuring adherence to rigorous PQC standards (NIST, ISO 27001) and defining the product vision for long-term scalability.
-          </p>
-          <div className="flex items-center gap-4 text-xs font-bold text-slate-400 uppercase tracking-widest">
-            <ShieldCheck size={16} className="text-blue-500" /> Deep understanding of DevSecOps/VM required
-          </div>
-        </div>
-      </section>
 
       <section className="not-prose bg-slate-900 rounded-[3rem] p-12 md:p-16 text-center text-white relative overflow-hidden shadow-2xl">
         <h2 className="text-3xl md:text-4xl font-serif font-bold mb-6 text-white m-0">Join the Quantum-Safe Future</h2>

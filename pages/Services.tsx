@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { ShieldAlert, Terminal, Activity, ArrowRight, CheckCircle2, ShieldCheck, Microscope, Search, GitBranch, Shield, Zap } from 'lucide-react';
+import { ShieldAlert, Terminal, Activity, ArrowRight, CheckCircle2, Microscope, Search, GitBranch, Shield, Zap, Lock, ShieldCheck } from 'lucide-react';
 
 const ServiceDetail: React.FC<{ 
   title: string, 
@@ -88,17 +88,6 @@ const Services: React.FC = () => {
             "NIST FIPS 203/204 readiness",
             "EU DORA gap analysis",
             "Hybrid migration roadmaps"
-          ]}
-        />
-        <ServiceDetail 
-          icon={<Activity size={24}/>}
-          title="Security Engineering"
-          badge="Platform Support"
-          desc="Custom integration support for RivicQ SDKs into legacy C/C++, Embedded, and high-performance environments."
-          points={[
-            "HSM native integration",
-            "Entropy source hardening",
-            "Zero-Knowledge architecture"
           ]}
         />
       </div>
