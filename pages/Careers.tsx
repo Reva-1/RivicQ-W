@@ -1,120 +1,115 @@
 
 import React from 'react';
-import { Mail, Send, Calendar, Clock, Sparkles } from 'lucide-react';
+import { Mail, Send, Clock, Sparkles, UserPlus, TrendingUp, BarChart3, ShieldCheck } from 'lucide-react';
+
+const CareerCard: React.FC<{ 
+  title: string, 
+  focus: string, 
+  experience: string, 
+  icon: React.ReactNode, 
+  color: string 
+}> = ({ title, focus, experience, icon, color }) => (
+  <div className="border border-slate-100 rounded-[2.5rem] p-8 md:p-10 hover:border-blue-500 hover:shadow-2xl transition-all bg-white group">
+    <div className={`p-4 rounded-2xl mb-8 inline-block ${color}`}>
+      {icon}
+    </div>
+    <div className="mb-6">
+      <h3 className="font-serif text-3xl font-bold text-slate-900 m-0 mb-2 group-hover:text-blue-600 transition-colors">{title}</h3>
+      <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-[10px] font-bold text-blue-600 uppercase tracking-widest">
+        <Clock size={12} /> Executive Search • Q1 2026
+      </span>
+    </div>
+    <div className="space-y-6">
+      <div>
+        <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">Focus Areas</h4>
+        <p className="text-sm text-slate-700 leading-relaxed m-0">{focus}</p>
+      </div>
+      <div>
+        <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">Desired Experience</h4>
+        <p className="text-sm text-slate-500 italic m-0">{experience}</p>
+      </div>
+      <a href={`mailto:rivic.revan.ande@gmail.com?subject=Strategic Inquiry: ${title}`} className="inline-flex items-center gap-2 px-6 py-3 bg-slate-900 text-white text-xs font-bold uppercase tracking-widest rounded-xl hover:bg-blue-600 transition-all w-full justify-center">
+        Initialize Contact
+      </a>
+    </div>
+  </div>
+);
 
 const Careers: React.FC = () => {
-  const openPositions = [
-    {
-      title: "HSM Engineer",
-      status: "Opening Soon",
-      description: "Manage physical root-of-trust boundaries. You will be responsible for configuring Hardware Security Modules (HSMs) focusing on NIST FIPS 140-3 L3 compliance for post-quantum key material."
-    },
-    {
-      title: "PQC Cryptographer",
-      status: "Opening Soon",
-      description: "Implement and optimize lattice-based primitives (ML-KEM/ML-DSA). PhD in Mathematics or CS preferred, focusing on performance-critical cryptographic implementations."
-    },
-    {
-      title: "AI Security Specialist",
-      status: "Opening Soon",
-      description: "Architect security frameworks to protect AI training data and inference pipelines against adversarial quantum-enhanced attacks."
-    },
-    {
-      title: "DevSecOps Engineer",
-      status: "Opening Soon",
-      description: "Integrate automated CryptoBOM generation and HSM-backed artifact signing into global CI/CD pipelines (GitHub Actions, GitLab)."
-    },
-    {
-      title: "Compliance Strategist",
-      status: "Opening Soon",
-      description: "Bridge the gap between technical PQC implementation and regulatory mandates like EU DORA and NIS2 for financial enterprise nodes."
-    },
-    {
-      title: "Cloud Infrastructure Lead",
-      status: "Opening Soon",
-      description: "Manage our cloud-native confidential computing environments across AWS and GCP, ensuring high availability for our HSM-as-a-Service mesh."
-    },
-    {
-      title: "Offensive Security (Red Team)",
-      status: "Opening Soon",
-      description: "Conduct rigorous adversary simulations against hybrid cryptographic infrastructures to identify logic flaws and side-channel vulnerabilities."
-    },
-    {
-      title: "Penetration Tester",
-      status: "Opening Soon",
-      description: "Deep technical auditing of APIs and web applications, focusing on the discovery of legacy cryptographic debt and implementation risks."
-    },
-    {
-      title: "Quantum Ecosystem Ambassador",
-      status: "Opening Soon",
-      description: "Represent RivicQ at global summits, building strategic relationships within the Berlin Deep-Tech and global Quantum Computing sectors."
-    },
-    {
-      title: "Research Intern (PQC)",
-      status: "Opening Soon",
-      description: "Assist our core team in benchmarking PQC algorithms on various hardware architectures (ARM/RISC-V). Opportunity for co-authorship on research papers."
-    }
-  ];
-
   return (
     <article className="prose prose-lg prose-slate max-w-none">
-      <header className="mb-12">
-        <h1 className="text-4xl md:text-5xl font-bold mb-4">Careers at RivicQ</h1>
-        <p className="lead font-serif italic text-slate-600">
-          Building the foundation for the next fifty years of cryptographic trust. Join the 2026 Founder Cohort.
+      <header className="mb-16">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-blue-600 text-[10px] font-bold uppercase tracking-widest mb-6">
+          Founder Search Phase
+        </div>
+        <h1 className="text-5xl font-bold mb-4 tracking-tight">Co-Founder Search: <br/>Pioneering <span className="text-blue-600">Quantum-Safe Security.</span></h1>
+        <p className="text-xl text-slate-500 font-serif italic max-w-2xl leading-relaxed">
+          Seeking highly motivated partners to complement the deep technical expertise of our founder and scale RivicQ into the global leader of cryptographic resilience.
         </p>
       </header>
 
-      <div className="not-prose bg-blue-50 border border-blue-100 p-6 rounded-2xl mb-12 flex items-center gap-4">
-        <div className="p-3 bg-blue-600 text-white rounded-xl shadow-lg">
-          <Sparkles size={20} />
-        </div>
-        <div>
-          <h4 className="text-blue-900 font-bold m-0">2026 Founder Cohort Recruitment</h4>
-          <p className="text-xs text-blue-700 m-0 mt-1">We are currently accepting pre-applications for all roles listed below. Formal hiring cycles commence Q3 2026.</p>
-        </div>
-      </div>
-
-      <div className="not-prose space-y-6 mt-8">
-          {openPositions.map((role, i) => (
-              <div key={i} className="group border border-slate-100 rounded-2xl p-8 hover:border-blue-500 hover:shadow-xl transition-all bg-white relative overflow-hidden">
-                  <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
-                    <div>
-                      <div className="flex items-center gap-2 mb-1">
-                        <h4 className="font-serif text-2xl font-bold text-slate-900 m-0">{role.title}</h4>
-                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-slate-100 text-[10px] font-bold text-slate-500 uppercase tracking-widest">
-                          <Clock size={10}/> {role.status}
-                        </span>
-                      </div>
-                      <span className="text-[10px] font-bold text-blue-600 uppercase tracking-widest">Berlin / Remote</span>
-                    </div>
-                    <a href={`mailto:rivic.revan.ande@gmail.com?subject=Pre-Application: ${role.title}`} className="px-6 py-3 bg-slate-900 text-white text-xs font-bold uppercase tracking-widest rounded-xl hover:bg-blue-600 transition-all shadow-lg shadow-slate-200">
-                        Pre-Apply
-                    </a>
-                  </div>
-                  <p className="text-slate-500 text-sm leading-relaxed m-0 max-w-2xl">
-                    {role.description}
-                  </p>
-              </div>
-          ))}
-      </div>
-
-      <div className="mt-20 not-prose">
-        <div className="bg-slate-900 rounded-[3rem] p-10 md:p-16 text-center text-white relative overflow-hidden shadow-2xl">
-          <div className="relative z-10">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold mb-6 text-white">Submit an Open Application</h2>
-            <p className="text-slate-400 text-lg mb-10 max-w-2xl mx-auto">
-              We are always identifying visionary talent in the Post-Quantum specialization. Send us your research or CV, and we will contact you during our next recruitment phase.
+      <section className="mb-20">
+        <div className="bg-slate-50 p-8 md:p-12 rounded-[3rem] border border-slate-100 flex flex-col md:flex-row gap-10 items-center">
+          <div className="w-20 h-20 bg-blue-600 text-white rounded-3xl flex items-center justify-center shrink-0 shadow-xl shadow-blue-200">
+            <Sparkles size={32} />
+          </div>
+          <div>
+            <h3 className="text-2xl font-serif font-bold text-slate-900 mb-2 m-0">The Co-Founder Role</h3>
+            <p className="text-slate-600 text-sm leading-relaxed m-0">
+              You will be a strategic partner instrumental in securing initial funding, establishing enterprise partnerships, and rapidly scaling RivicQ's market presence alongside <strong>Revan Sai Ande</strong>.
             </p>
-            <a 
-              href="mailto:rivic.revan.ande@gmail.com?subject=Open Application: Future Cryptography Leader" 
-              className="inline-flex items-center gap-3 px-10 py-5 bg-blue-600 text-white rounded-full font-bold hover:bg-blue-700 transition-all shadow-xl shadow-blue-500/20"
-            >
-              Send Open Application <Send size={18}/>
-            </a>
           </div>
         </div>
+      </section>
+
+      <div className="not-prose grid md:grid-cols-2 gap-8 mb-24">
+        <CareerCard 
+          title="Business Strategy & Funding"
+          icon={<TrendingUp size={28} />}
+          color="bg-blue-50 text-blue-600"
+          focus="Lead fundraising efforts, manage investor relations, and define the Go-To-Market (GTM) execution strategy."
+          experience="Proven track record in B2B tech sales, VC networking, or financial modeling for deep-tech startups."
+        />
+        <CareerCard 
+          title="Head of Sales & Marketing"
+          icon={<BarChart3 size={28} />}
+          color="bg-emerald-50 text-emerald-600"
+          focus="Establish the sales pipeline, oversee high-impact marketing campaigns, and drive adoption of CSaaS and DevSecOps tools."
+          experience="Experience defining successful GTM motions for cybersecurity products and navigating the enterprise procurement cycle."
+        />
       </div>
+
+      <section className="mb-24">
+        <div className="p-8 md:p-12 bg-white border border-slate-100 rounded-[3rem] shadow-sm group">
+          <h3 className="text-2xl font-serif font-bold text-slate-900 mb-4 m-0">Product & Compliance Focus</h3>
+          <p className="text-slate-500 text-sm mb-10 leading-relaxed">
+            We are also seeking leadership for the <strong>Product Roadmap</strong>, ensuring adherence to rigorous PQC standards (NIST, ISO 27001) and defining the product vision for long-term scalability.
+          </p>
+          <div className="flex items-center gap-4 text-xs font-bold text-slate-400 uppercase tracking-widest">
+            <ShieldCheck size={16} className="text-blue-500" /> Deep understanding of DevSecOps/VM required
+          </div>
+        </div>
+      </section>
+
+      <section className="not-prose bg-slate-900 rounded-[3rem] p-12 md:p-16 text-center text-white relative overflow-hidden shadow-2xl">
+        <h2 className="text-3xl md:text-4xl font-serif font-bold mb-6 text-white m-0">Join the Quantum-Safe Future</h2>
+        <p className="text-slate-400 text-lg mb-10 max-w-xl mx-auto italic">
+          "If you are a passionate leader ready to tackle the challenges of cryptographic debt and scale a deeptech startup, let's talk."
+        </p>
+        <a 
+          href="mailto:rivic.revan.ande@gmail.com?subject=Strategic Partnership: Co-Founder Application" 
+          className="inline-flex items-center gap-3 px-10 py-5 bg-blue-600 text-white rounded-xl font-bold hover:bg-blue-700 transition-all shadow-xl shadow-blue-500/20 uppercase text-xs tracking-widest"
+        >
+          Submit Statement of Interest <Send size={18}/>
+        </a>
+        <p className="mt-8 text-[10px] text-slate-500 uppercase tracking-widest font-bold">
+          Please CC: revan.ande@rivicq.xyz
+        </p>
+      </section>
+
+      <footer className="mt-12 text-center text-[10px] text-slate-400 uppercase tracking-widest font-bold">
+        RivicQ Technologies • Berlin Headquarters
+      </footer>
     </article>
   );
 };

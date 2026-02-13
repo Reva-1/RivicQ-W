@@ -1,12 +1,11 @@
+
 import React from 'react';
 import { Zap, Workflow, ShieldAlert, Database, Lock, ShieldCheck, ArrowRight, Atom, Share2 } from 'lucide-react';
 
 const QuantumEntropyAnimation: React.FC = () => (
   <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-20 group-hover:opacity-40 transition-opacity duration-700">
     <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-      {/* Central Root of Trust */}
       <div className="w-4 h-4 bg-blue-600 rounded-full blur-[2px] shadow-[0_0_20px_rgba(37,99,235,1)] z-10"></div>
-      {/* Radiating Particles */}
       {[...Array(12)].map((_, i) => (
         <div
           key={i}
@@ -24,42 +23,7 @@ const QuantumEntropyAnimation: React.FC = () => (
         20% { opacity: 0.8; }
         100% { transform: rotate(var(--rot)) translateY(140px) scale(0.1); opacity: 0; }
       }
-      .animate-radiate {
-        animation: radiate 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-      }
-    `}</style>
-  </div>
-);
-
-const HybridKEMAnimation: React.FC = () => (
-  <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-10 group-hover:opacity-30 transition-opacity duration-700">
-    <div className="absolute inset-0 flex items-center justify-center">
-      <div className="relative w-full h-full flex items-center justify-center">
-        {/* Classical Element */}
-        <div className="absolute animate-merge-left p-3 bg-slate-100 rounded-xl border border-slate-200">
-          <Lock size={20} className="text-slate-900" />
-        </div>
-        {/* PQC Element */}
-        <div className="absolute animate-merge-right p-3 bg-blue-600 rounded-xl shadow-lg shadow-blue-200">
-          <Zap size={20} className="text-white" />
-        </div>
-        {/* Pulse at Junction */}
-        <div className="w-16 h-16 bg-blue-500/20 rounded-full animate-ping blur-2xl"></div>
-      </div>
-    </div>
-    <style>{`
-      @keyframes merge-left {
-        0% { transform: translateX(-140px); opacity: 0; }
-        40%, 60% { transform: translateX(-15px); opacity: 1; }
-        100% { transform: translateX(-140px); opacity: 0; }
-      }
-      @keyframes merge-right {
-        0% { transform: translateX(140px); opacity: 0; }
-        40%, 60% { transform: translateX(15px); opacity: 1; }
-        100% { transform: translateX(140px); opacity: 0; }
-      }
-      .animate-merge-left { animation: merge-left 5s ease-in-out infinite; }
-      .animate-merge-right { animation: merge-right 5s ease-in-out infinite; }
+      .animate-radiate { animation: radiate 4s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
     `}</style>
   </div>
 );
@@ -86,9 +50,7 @@ const ProtocolStep: React.FC<{
         <span className={`text-[10px] font-bold uppercase tracking-[0.3em] ${color.replace('bg-', 'text-')}`}>Phase {step}</span>
         <h3 className="text-3xl font-serif font-bold text-slate-900 mt-1">{title}</h3>
       </div>
-      <p className="text-slate-600 leading-relaxed mb-8 text-lg">
-        {desc}
-      </p>
+      <p className="text-slate-600 leading-relaxed mb-8 text-lg">{desc}</p>
       <ul className="space-y-3 p-0 m-0">
         {details.map((detail, i) => (
           <li key={i} className="flex items-start gap-3 text-sm text-slate-500 list-none">
@@ -122,67 +84,35 @@ const RQSP: React.FC = () => {
           icon={<Zap size={32} />}
           color="bg-blue-600"
           title="Quantum Entropy Harvesting"
-          desc="The protocol begins with the physical layer. We harvest randomness from the non-deterministic nature of quantum states."
+          desc="The protocol begins with the physical layer, harvesting true randomness from non-deterministic quantum processes."
           animation={<QuantumEntropyAnimation />}
-          details={[
-            "Eliminates algorithmic predictability found in PRNGs",
-            "True randomness verified by statistical NIST SP 800-22 suites",
-            "Hardware-bound seed generation for the root of trust"
-          ]}
+          details={["Eliminates algorithmic predictability", "Hardware-bound seed generation", "Verified by NIST SP 800-22"]}
         />
         <ProtocolStep 
           step="02"
           icon={<Workflow size={32} />}
           color="bg-purple-600"
           title="Hybrid Key Encapsulation"
-          desc="We don't just rely on new math. We wrap the future in the safety of the present using Hybrid KEM."
-          animation={<HybridKEMAnimation />}
-          details={[
-            "ML-KEM-768 (Kyber) combined with classical X25519",
-            "Dual-defense: Security holds if either algorithm remains unbroken",
-            "FIPS 203 compliant implementation architecture"
-          ]}
-        />
-        <ProtocolStep 
-          step="03"
-          icon={<ShieldAlert size={32} />}
-          color="bg-emerald-600"
-          title="Stateful Signature Anchoring"
-          desc="Identity must be immutable across the transition. We use a hierarchy of signing algorithms for different lifecycles."
-          details={[
-            "ML-DSA (Dilithium) for high-frequency application signing",
-            "LMS/XMSS for firmware and root certificate longevity",
-            "Tamper-evident audit trails bound to HSM hardware"
-          ]}
-        />
-        <ProtocolStep 
-          step="04"
-          icon={<Database size={32} />}
-          color="bg-amber-600"
-          title="Zero-Trust Orchestration"
-          desc="Static security is dead security. RQSP continuously analyzes and rotates based on the threat landscape."
-          details={[
-            "Real-time CryptoBOM inventory monitoring",
-            "Dynamic TTV (Time-to-Vulnerability) scoring",
-            "Automated policy-driven key rotation and remediation"
-          ]}
+          desc="We wrap the future in the safety of the present using Hybrid KEM techniques."
+          details={["ML-KEM-768 combined with classical X25519", "Dual-defense cryptographic layering", "FIPS 203 compliant architecture"]}
         />
       </div>
 
-      <section className="bg-slate-50 border border-slate-100 p-12 md:p-16 rounded-[3rem] relative overflow-hidden">
-        <div className="absolute top-0 right-0 p-12 opacity-5 pointer-events-none text-slate-900">
-          <ShieldCheck size={300} />
+      {/* CTA SECTION - UPDATED TO MATCH IMAGE 2 */}
+      <section className="not-prose bg-white border border-slate-100 rounded-[3rem] p-10 md:p-16 relative overflow-hidden shadow-sm group">
+        <div className="absolute right-0 top-0 opacity-5 -mr-16 -mt-16 pointer-events-none group-hover:scale-105 transition-transform duration-1000">
+          <ShieldCheck size={400} />
         </div>
         <div className="relative z-10 max-w-2xl">
-          <h2 className="text-slate-900 text-4xl font-serif mb-6 m-0">Implement RQSP today.</h2>
+          <h2 className="text-slate-900 text-4xl font-serif font-bold mb-6 m-0">Implement RQSP today.</h2>
           <p className="text-slate-600 text-lg leading-relaxed mb-10">
             Our SDKs provide native bindings to the RQSP orchestration engine, allowing your developers to deploy quantum-safe tunnels and signatures with a single line of code.
           </p>
-          <div className="flex flex-wrap gap-4">
-            <a href="/#/sdk" className="px-8 py-4 bg-blue-600 text-white rounded-full font-bold text-sm hover:bg-blue-700 transition-all flex items-center gap-2 shadow-lg shadow-blue-100">
-              View SDK Docs <ArrowRight size={16}/>
+          <div className="flex flex-col sm:flex-row gap-4">
+            <a href="/#/sdk" className="px-10 py-4 bg-blue-600 text-white rounded-full font-bold text-sm hover:bg-blue-700 transition-all flex items-center justify-center gap-2 shadow-xl shadow-blue-500/20">
+              View SDK Docs <ArrowRight size={18}/>
             </a>
-            <a href="/#/platform" className="px-8 py-4 border border-slate-300 text-slate-600 rounded-full font-bold text-sm hover:bg-slate-100 transition-all">
+            <a href="/#/platform" className="px-10 py-4 border border-slate-200 text-slate-600 rounded-full font-bold text-sm hover:bg-slate-50 transition-all flex items-center justify-center">
               Technical Architecture
             </a>
           </div>

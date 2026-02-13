@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { ShieldAlert, Terminal, Activity, ArrowRight, CheckCircle2, ShieldCheck, Microscope } from 'lucide-react';
+import { ShieldAlert, Terminal, Activity, ArrowRight, CheckCircle2, ShieldCheck, Microscope, Search, GitBranch, Shield, Zap } from 'lucide-react';
 
 const ServiceDetail: React.FC<{ 
   title: string, 
@@ -69,6 +69,17 @@ const Services: React.FC = () => {
           ]}
         />
         <ServiceDetail 
+          icon={<Search size={24}/>}
+          title="Vulnerability Management"
+          badge="Proactive Defense"
+          desc="Continuous scanning and prioritization of security flaws across your infrastructure, ensuring a proactive defense posture."
+          points={[
+            "Asset inventory & tracking",
+            "Automated patch validation",
+            "Risk-based prioritization"
+          ]}
+        />
+        <ServiceDetail 
           icon={<Microscope size={24}/>}
           title="PQC Advisory"
           badge="Strategic Migration"
@@ -92,7 +103,82 @@ const Services: React.FC = () => {
         />
       </div>
 
-      <section className="text-center">
+      {/* DevSecOps Enterprise Architecture Section */}
+      <section className="mb-24 py-16 border-t border-slate-100">
+        <div className="flex items-center gap-4 mb-10">
+          <div className="p-3 bg-indigo-600 text-white rounded-2xl shadow-lg">
+            <GitBranch size={24} />
+          </div>
+          <div>
+            <h2 className="text-4xl font-serif font-bold text-slate-900 m-0">DevSecOps Enterprise Architecture</h2>
+            <p className="text-xs text-indigo-600 font-bold uppercase tracking-widest mt-1">Industrial-Scale Security Integration</p>
+          </div>
+        </div>
+
+        <div className="bg-slate-50 rounded-[3rem] p-10 md:p-16 border border-slate-100 relative overflow-hidden group">
+          <div className="absolute top-0 right-0 p-12 opacity-[0.03] pointer-events-none text-slate-900 group-hover:scale-110 transition-transform duration-700">
+            <Shield size={200} />
+          </div>
+          
+          <div className="relative z-10 max-w-3xl">
+            <p className="text-lg text-slate-700 leading-relaxed mb-12">
+              We design and implement comprehensive security architectures that embed protection directly into the development lifecycle. Our approach ensures that security is not a bottleneck but a seamless component of your industrial-scale delivery pipeline.
+            </p>
+
+            <div className="grid md:grid-cols-2 gap-10 not-prose">
+              <div className="space-y-4">
+                <div className="flex gap-4">
+                  <div className="p-2 bg-white rounded-lg shadow-sm border border-slate-100 text-indigo-600 h-fit">
+                    <Zap size={18}/>
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-slate-900 text-sm m-0">CI/CD Security Orchestration</h4>
+                    <p className="text-xs text-slate-500 mt-1 leading-relaxed">Automated injection of PQC-wrappers and CryptoBOM scanning into build agents.</p>
+                  </div>
+                </div>
+                <div className="flex gap-4">
+                  <div className="p-2 bg-white rounded-lg shadow-sm border border-slate-100 text-indigo-600 h-fit">
+                    <ShieldCheck size={18}/>
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-slate-900 text-sm m-0">Infrastructure as Code (IaC)</h4>
+                    <p className="text-xs text-slate-500 mt-1 leading-relaxed">Securing Terraform and Kubernetes configurations with hardware-rooted identity and drift detection.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                <div className="flex gap-4">
+                  <div className="p-2 bg-white rounded-lg shadow-sm border border-slate-100 text-indigo-600 h-fit">
+                    <Activity size={18}/>
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-slate-900 text-sm m-0">Policy as Code (PaC)</h4>
+                    <p className="text-xs text-slate-500 mt-1 leading-relaxed">Programmatic enforcement of cryptographic standards across global clusters using OPA and Rego.</p>
+                  </div>
+                </div>
+                <div className="flex gap-4">
+                  <div className="p-2 bg-white rounded-lg shadow-sm border border-slate-100 text-indigo-600 h-fit">
+                    <Lock size={18}/>
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-slate-900 text-sm m-0">Zero-Trust Networking</h4>
+                    <p className="text-xs text-slate-500 mt-1 leading-relaxed">Implementing micro-segmentation anchored in physical HSM root-of-trust for all service meshes.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-12">
+               <a href="mailto:rivic.revan.ande@gmail.com?subject=Architecture Inquiry: DevSecOps" className="inline-flex items-center gap-2 px-8 py-4 bg-slate-900 text-white font-bold rounded-xl hover:bg-indigo-600 transition-all text-xs uppercase tracking-widest shadow-xl shadow-slate-200">
+                Consult on Architecture <ArrowRight size={16}/>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="text-center mt-24">
          <h2 className="text-3xl font-serif font-bold mb-6">Start a conversation.</h2>
          <p className="text-slate-500 mb-10 max-w-xl mx-auto">Our lead engineers are available to discuss your specific infrastructure security challenges.</p>
          <a href="mailto:rivic.revan.ande@gmail.com" className="inline-flex items-center gap-2 bg-blue-600 text-white px-10 py-5 rounded-full font-bold hover:bg-blue-700 transition-all shadow-xl shadow-blue-500/20">

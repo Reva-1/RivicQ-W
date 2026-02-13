@@ -136,6 +136,9 @@ const Story: React.FC = () => {
         </div>
       </section>
 
+      <footer className="mt-12 text-center text-[10px] text-slate-400 uppercase tracking-widest font-bold">
+        RivicQ Technologies • Berlin
+      </footer>
     </article>
   );
 };

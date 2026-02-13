@@ -70,7 +70,7 @@ const Footer: React.FC = () => {
         </div>
 
         <div className="border-t border-slate-100 pt-8 flex flex-col md:flex-row justify-between items-center text-[10px] font-bold uppercase tracking-widest">
-          <div>&copy; 2026 All rights @RivicQ Technologies GmbH.</div>
+          <div>&copy; 2026 All rights @RivicQ Technologies.</div>
           <div className="flex items-center space-x-6 mt-4 md:mt-0">
              <Link to="/legal" className="hover:text-blue-600">Terms</Link>
              <Link to="/privacy" className="hover:text-blue-600">Privacy</Link>

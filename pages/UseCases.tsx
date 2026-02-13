@@ -143,7 +143,7 @@ const UseCases: React.FC = () => {
                   <Scale size={16} className="text-blue-600" /> Intellectual Property
                 </h4>
                 <p className="text-xs text-slate-500 leading-relaxed">
-                  All <strong>Patents</strong>, <strong>Designs</strong>, <strong>Protocols</strong>, and <strong>Trademarks</strong> associated with RivicQ Technologies GmbH are the exclusive intellectual property of the company. Everything presented belongs strictly to RivicQ.
+                  All <strong>Patents</strong>, <strong>Designs</strong>, <strong>Protocols</strong>, and <strong>Trademarks</strong> associated with RivicQ Technologies are the exclusive intellectual property of the company. Everything presented belongs strictly to RivicQ.
                 </p>
               </div>
               <div>
@@ -158,7 +158,7 @@ const UseCases: React.FC = () => {
                 <div className="flex items-center gap-3 p-4 bg-blue-50/50 border border-blue-100 rounded-2xl">
                   <Info size={16} className="text-blue-600 shrink-0" />
                   <p className="text-[10px] text-blue-700 font-bold uppercase tracking-widest m-0 leading-normal">
-                    Proprietary Algorithm "RQSP" & CBOM Heuristics are Registered Trademarks of RivicQ Technologies GmbH.
+                    Proprietary Algorithm "RQSP" & CBOM Heuristics are Registered Trademarks of RivicQ Technologies.
                   </p>
                 </div>
               </div>
@@ -167,10 +167,8 @@ const UseCases: React.FC = () => {
         </div>
       </section>
 
-      <footer className="mt-12 text-center">
-        <p className="text-[10px] text-slate-400 font-bold uppercase tracking-[0.4em] m-0">
-          Confidential • RivicQ Technologies GmbH • Berlin
-        </p>
+      <footer className="mt-12 text-center text-[10px] text-slate-400 uppercase tracking-widest font-bold">
+        RivicQ Technologies • Berlin
       </footer>
     </article>
   );
