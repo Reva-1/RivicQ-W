@@ -1,8 +1,8 @@
 
 import React, { useState, useEffect } from 'react';
-import { ShieldCheck, Cpu, Box, Lock, Zap, X, Atom, CheckCircle2, Sparkles, Activity, Loader2, Key } from 'lucide-react';
+import { ShieldCheck, Cpu, Box, Lock, Zap, X, Atom, CheckCircle2, Sparkles, Activity, Loader2, Key, Cloud, Network, Server } from 'lucide-react';
 
-type Layer = 'physical' | 'engine' | 'quantum' | null;
+type Layer = 'physical' | 'engine' | 'quantum' | 'cloud' | null;
 
 const HSMBlueprint: React.FC = () => {
     const [activeLayer, setActiveLayer] = useState<Layer>(null);
@@ -57,6 +57,11 @@ const HSMBlueprint: React.FC = () => {
             title: "Quantum Entropy Engine",
             desc: "A dedicated silicon-based quantum device harvesting true randomness from quantum tunneling effects. It provides the non-deterministic entropy required for PQC key generation.",
             stats: ["QRNG Stochastic Core", "Tunneling Junctions", "NIST SP 800-90B Compliant"]
+        },
+        cloud: {
+            title: "Cloud vHSM Interface",
+            desc: "The virtualization boundary that projects the hardware root-of-trust into cloud VPCs. It manages multi-tenant isolation, API termination, and active CryptoBOM discovery.",
+            stats: ["Virtual Air-Gap", "Active Discovery Agent", "REST/gRPC Interface"]
         }
     };
 
@@ -167,8 +172,8 @@ const HSMBlueprint: React.FC = () => {
                     <div 
                         onClick={() => setActiveLayer('engine')}
                         className={`absolute inset-0 bg-slate-900 border border-slate-800 rounded-[4rem] shadow-2xl overflow-hidden
-                                  [transform:translateZ(100px)] transition-all duration-700 cursor-pointer
-                                  ${activeLayer === 'engine' ? '[transform:translateZ(20px)] border-blue-500 border-2 shadow-[0_0_50px_rgba(37,99,235,0.3)]' : activeLayer ? 'opacity-10' : 'group-hover:[transform:translateZ(80px)]'} flex items-center justify-center`}
+                                  [transform:translateZ(90px)] transition-all duration-700 cursor-pointer
+                                  ${activeLayer === 'engine' ? '[transform:translateZ(20px)] border-blue-500 border-2 shadow-[0_0_50px_rgba(37,99,235,0.3)]' : activeLayer ? 'opacity-10' : 'group-hover:[transform:translateZ(70px)]'} flex items-center justify-center`}
                     >
                         <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
                         
@@ -197,8 +202,8 @@ const HSMBlueprint: React.FC = () => {
                     <div 
                         onClick={() => setActiveLayer('quantum')}
                         className={`absolute inset-0 w-80 h-80 md:w-[420px] md:h-[420px] m-auto bg-black border border-blue-500/20 shadow-[0_0_120px_rgba(37,99,235,0.2)] rounded-[4rem] cursor-pointer
-                                  [transform:translateZ(200px)] transition-all duration-1000 overflow-visible
-                                  ${activeLayer === 'quantum' ? '[transform:translateZ(300px)_scale(1.1)] border-blue-400' : activeLayer ? 'opacity-5' : 'group-hover:[transform:translateZ(190px)]'} flex items-center justify-center z-50`}
+                                  [transform:translateZ(180px)] transition-all duration-1000 overflow-visible
+                                  ${activeLayer === 'quantum' ? '[transform:translateZ(300px)_scale(1.1)] border-blue-400' : activeLayer ? 'opacity-5' : 'group-hover:[transform:translateZ(180px)]'} flex items-center justify-center z-50`}
                     >
                          {/* Quantum Visual Background */}
                          <div className={`absolute inset-0 transition-opacity duration-1000 rounded-[4rem] overflow-hidden ${activeLayer === 'quantum' ? 'opacity-100' : 'opacity-40'}`}>
@@ -272,13 +277,31 @@ const HSMBlueprint: React.FC = () => {
                              </div>
                          </div>
                     </div>
+
+                    {/* Layer 4: Cloud vHSM */}
+                    <div 
+                        onClick={() => setActiveLayer('cloud')}
+                        className={`absolute inset-0 bg-blue-50/10 border border-blue-400/30 rounded-[4rem] shadow-[0_0_80px_rgba(59,130,246,0.1)] backdrop-blur-sm
+                                  [transform:translateZ(270px)] transition-all duration-700 cursor-pointer hover:bg-blue-50/20
+                                  ${activeLayer === 'cloud' ? '[transform:translateZ(400px)] border-blue-400 border-2' : activeLayer ? 'opacity-5' : 'group-hover:[transform:translateZ(300px)]'} flex items-center justify-center z-[60]`}
+                    >
+                         {/* Cloud visual content */}
+                         <div className="flex flex-col items-center justify-center text-blue-300">
+                            <Cloud size={64} strokeWidth={1} className={activeLayer === 'cloud' ? 'text-white drop-shadow-[0_0_15px_rgba(59,130,246,0.8)]' : ''} />
+                            <div className="mt-4 flex gap-3 items-center">
+                                <Network size={20} />
+                                <span className="text-[10px] font-bold uppercase tracking-widest">Virtual Interface</span>
+                            </div>
+                         </div>
+                    </div>
+
                 </div>
             </div>
             
             {/* Assembly Legend */}
             <div className="text-center mt-12 z-10 animate-fadeIn pointer-events-none">
                 <h3 className="font-serif text-3xl text-slate-900 font-bold tracking-tight mb-3">
-                    {activeLayer === 'quantum' ? 'True Quantum Randomness Source' : activeLayer === 'engine' ? (bootStep === 4 ? 'Verified Secure Environment' : 'Secure Cryptographic Controller') : activeLayer === 'physical' ? 'FIPS 140-3 Hardware Boundary' : 'System Architecture Exploration'}
+                    {activeLayer === 'cloud' ? 'Virtualized Cloud HSM Layer' : activeLayer === 'quantum' ? 'True Quantum Randomness Source' : activeLayer === 'engine' ? (bootStep === 4 ? 'Verified Secure Environment' : 'Secure Cryptographic Controller') : activeLayer === 'physical' ? 'FIPS 140-3 Hardware Boundary' : 'System Architecture Exploration'}
                 </h3>
                 <div className="flex items-center justify-center gap-6">
                     <span className="text-[11px] font-bold text-slate-400 uppercase tracking-widest flex items-center gap-2">
@@ -286,7 +309,7 @@ const HSMBlueprint: React.FC = () => {
                     </span>
                     <div className="w-1.5 h-1.5 bg-slate-200 rounded-full"></div>
                     <span className="text-[11px] font-bold text-slate-400 uppercase tracking-widest flex items-center gap-2">
-                        <ShieldCheck size={12} className="text-emerald-600"/> Verified PQC Implementation
+                        <Cloud size={12} className="text-blue-600"/> Cloud Virtualization
                     </span>
                 </div>
             </div>
