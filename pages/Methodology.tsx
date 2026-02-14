@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Microscope, Shield, Zap, RefreshCw, Cpu, Lock } from 'lucide-react';
 
@@ -18,43 +19,43 @@ const Methodology: React.FC = () => {
     <article className="prose prose-slate max-w-none">
       <header className="mb-16">
         <h1 className="text-5xl font-bold mb-4">Our Methodology</h1>
-        <p className="text-xl text-slate-500 font-serif italic">The principles of high-assurance infrastructure.</p>
+        <p className="text-xl text-slate-500 font-serif italic">How we build high-trust security.</p>
       </header>
 
       <section className="mb-20">
         <p className="text-lg text-slate-700 leading-relaxed">
-          RivicQ does not just "add" encryption. We rethink the lifecycle of cryptographic trust. Our methodology is built on four core pillars that bridge the gap between classical reliability and quantum safety.
+          RivicQ doesn't just add encryption. We rethink how trust works. Our method is built on four simple pillars that make sure your data is safe today and tomorrow.
         </p>
       </section>
 
       <div className="not-prose grid md:grid-cols-2 gap-8 mb-24">
         <MethodBlock 
           icon={<RefreshCw size={24}/>}
-          title="Hybrid-First Implementation"
-          desc="We never abandon proven security. Our protocol wraps NIST-standardized PQC algorithms in classical FIPS-validated shells, ensuring that even if a new mathematical vulnerability is found in one, the other holds the line."
+          title="Hybrid Protection"
+          desc="We use a 'belt and suspenders' approach. We wrap new quantum-safe algorithms inside proven classical encryption. If one fails, the other still protects you."
         />
         <MethodBlock 
           icon={<Cpu size={24}/>}
-          title="Hardware Rooted Entropy"
-          desc="Predictability is the enemy of security. We harvest randomness from non-deterministic physical quantum processes rather than algorithmic PRNGs, generating truly unique keys."
+          title="True Randomness"
+          desc="If a hacker can guess your key, they can steal your data. We use physical quantum effects to create keys that are truly random and impossible to guess."
         />
         <MethodBlock 
           icon={<Lock size={24}/>}
-          title="Zero-Knowledge KMS"
-          desc="We architect for maximum isolation. RivicQ infrastructure is designed so that raw keys are generated, stored, and rotated inside a physical hardware boundary that we cannot access."
+          title="Zero-Knowledge"
+          desc="We design our systems so that we can never see your keys. They are generated and stored inside secure hardware that even we cannot access."
         />
         <MethodBlock 
           icon={<Microscope size={24}/>}
-          title="Continuous Auditability"
-          desc="Static trust is a myth. Every cryptographic operation in the RivicQ mesh is logged in a tamper-evident audit trail, bound to the hardware's unique identity."
+          title="Always Watching"
+          desc="Security isn't a one-time thing. We keep a permanent record of every security operation, so you always know who accessed what and when."
         />
       </div>
 
       <section className="bg-slate-900 text-white p-12 md:p-16 rounded-[3rem] relative overflow-hidden">
         <div className="relative z-10 max-w-2xl">
-          <h2 className="text-white text-3xl font-serif mb-6 m-0">The Leap Berlin Connection</h2>
+          <h2 className="text-white text-3xl font-serif mb-6 m-0">Tested in Berlin</h2>
           <p className="text-slate-400 text-lg leading-relaxed mb-8">
-            Our methodology is refined through residency at Leap Berlin, collaborating with resident physicists and cryptographers at the WISTA Innovations-zentrum to test our protocol against real-world quantum hardware simulations.
+            Our methods are tested and proven at Leap Berlin. We work with physicists and cryptographers to make sure our security holds up against real-world simulations.
           </p>
           <div className="flex items-center gap-6">
             <div className="text-center">

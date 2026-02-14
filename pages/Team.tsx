@@ -8,20 +8,20 @@ const Team: React.FC = () => {
       <header className="mb-12">
         <h1 className="text-4xl md:text-5xl font-bold mb-4">Our Team</h1>
         <p className="text-xl text-slate-500 font-serif italic leading-relaxed">
-          A multidisciplinary collective of cryptographers, engineers, and researchers building the foundations of quantum-safe computing in Berlin.
+          A team of engineers and researchers building the future of security in Berlin.
         </p>
       </header>
 
       <section className="mb-16">
-        <h3 className="text-2xl font-serif font-bold text-slate-900 border-b border-slate-100 pb-4 mb-8">Founder</h3>
+        <h3 className="text-2xl font-serif font-bold text-slate-900 border-b border-slate-100 pb-4 mb-8">Leadership</h3>
         <div className="not-prose">
           <div className="flex flex-col md:flex-row gap-6 items-start">
              <div className="w-16 h-16 bg-slate-900 text-white rounded-2xl flex items-center justify-center font-serif text-2xl font-bold">R</div>
              <div>
-                <h4 className="text-xl font-bold text-slate-900 m-0">Revan Sai Ande</h4>
-                <p className="text-blue-600 font-bold text-[10px] uppercase tracking-[0.2em] mt-1 mb-3">Founder & Managing Director</p>
+                <h4 className="text-xl font-bold text-slate-900 m-0">Revan Ande</h4>
+                <p className="text-blue-600 font-bold text-[10px] uppercase tracking-[0.2em] mt-1 mb-3">Founder</p>
                 <p className="text-sm text-slate-500 leading-relaxed max-w-xl">
-                  Security Researcher. Leap Berlin Quantum Deep-Tech Accelerator Resident at WISTA Adlershof.
+                  Security Researcher and Resident at Leap Berlin Quantum Deep-Tech Accelerator. Focused on building practical tools to secure data against quantum threats.
                 </p>
              </div>
           </div>
@@ -30,7 +30,7 @@ const Team: React.FC = () => {
 
       <section className="mb-16">
         <h3 className="text-2xl font-serif font-bold text-slate-900 border-b border-slate-100 pb-4 mb-8">Advisors & Mentors</h3>
-        <p className="text-slate-500 text-sm mb-8 italic">Guided by industry leaders across academia, enterprise, and public governance.</p>
+        <p className="text-slate-500 text-sm mb-8 italic">Guided by industry leaders across academia, enterprise, and government.</p>
         
         <div className="not-prose grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
             {[
@@ -53,9 +53,9 @@ const Team: React.FC = () => {
       </section>
 
       <section className="bg-slate-50 p-8 md:p-12 rounded-[2.5rem] border border-slate-100 mt-20">
-        <h3 className="text-2xl font-serif font-bold text-slate-900 mb-4 m-0">Inquiry</h3>
+        <h3 className="text-2xl font-serif font-bold text-slate-900 mb-4 m-0">Contact Us</h3>
         <p className="text-slate-600 text-sm leading-relaxed mb-6">
-          For technical collaboration, research inquiries, or speaking engagements, please reach our Berlin headquarters.
+          For collaboration or inquiries, please reach our Berlin headquarters.
         </p>
         <a href="mailto:rivic.revan.ande@gmail.com" className="inline-flex items-center gap-2 font-bold text-blue-600 hover:text-slate-900 transition-colors text-sm uppercase tracking-widest">
           <Mail size={16} /> rivic.revan.ande@gmail.com

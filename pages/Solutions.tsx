@@ -27,7 +27,7 @@ const SolutionSection: React.FC<{
       <div className="relative z-10">
         <div className="flex items-center gap-2 mb-2">
           <ShieldCheck size={16} className="text-emerald-600" />
-          <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Regulatory Verification</span>
+          <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Verified Standard</span>
         </div>
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
@@ -38,7 +38,7 @@ const SolutionSection: React.FC<{
             <p className="text-xs text-slate-500 m-0 mt-1">Authority: {reference.authority}</p>
           </div>
           <a href={reference.link} target="_blank" rel="noopener noreferrer" className="shrink-0 px-4 py-2 bg-white border border-slate-200 text-blue-600 text-xs font-bold rounded-lg hover:bg-blue-50 hover:border-blue-200 transition-all flex items-center gap-2 uppercase tracking-widest shadow-sm">
-            View Official Doc <ExternalLink size={12} />
+            See Official Rule <ExternalLink size={12} />
           </a>
         </div>
       </div>
@@ -52,38 +52,38 @@ const Solutions: React.FC = () => {
       <header className="mb-16">
         <h1 className="text-5xl font-bold mb-4 tracking-tight">Industry Solutions</h1>
         <p className="lead font-serif italic text-slate-600 text-xl">
-          Enterprise-grade PQC migration for high-security environments, verified against global regulatory standards.
+          Simple, secure upgrades for industries that need to protect data for a long time.
         </p>
       </header>
       
       <div className="not-prose">
         <SolutionSection 
-          title="Payment Processors & Banking"
+          title="Banks & Payments"
           icon={<Landmark size={24}/>}
           reference={{
-            title: "PCI DSS v4.0 Standard",
+            title: "PCI DSS v4.0",
             code: "SEC. 12.3.3",
             authority: "PCI Security Standards Council",
             link: "https://docs-prv.pcisecuritystandards.org/PCI%20DSS/Standard/PCI-DSS-v4_0.pdf"
           }}
         >
           <p>
-            The transition to <strong>PCI DSS v4.0</strong> requires cryptographic agility. RivicQ provides HSM-backed tokenization using <strong>ML-DSA (Dilithium)</strong> signatures, ensuring transaction integrity and non-repudiation against future quantum decryption attempts. We support hybrid-cloud processing to meet the new "Strong Cryptography" definitions.
+            New rules say banks must use stronger encryption. RivicQ helps you upgrade your payment systems to use new, quantum-safe signatures. This ensures that every transaction is secure and cannot be hacked by future computers.
           </p>
         </SolutionSection>
 
         <SolutionSection 
-          title="Fintech & Cloud-Native Infrastructure"
+          title="Fintech & Cloud Apps"
           icon={<Cloud size={24}/>}
           reference={{
-            title: "Digital Operational Resilience Act",
+            title: "EU DORA Act",
             code: "EU 2022/2554",
-            authority: "European Parliament & Council",
+            authority: "European Parliament",
             link: "https://eur-lex.europa.eu/eli/reg/2022/2554/oj"
           }}
         >
           <p>
-            Ensure digital sovereignty and full <strong>DORA</strong> compliance. Our <strong>Cloud HSM (vHSM)</strong> clusters establish quantum-safe TLS tunnels (Hybrid ML-KEM) for secure API-to-API communication, satisfying DORA's Article 9 requirement for "protection of data availability, authenticity, integrity, and confidentiality."
+            European laws (DORA) now require financial apps to be resilient. Our Cloud HSMs secure the connections between your apps (APIs) so that customer data remains private and compliant with EU law.
           </p>
         </SolutionSection>
 
@@ -98,12 +98,12 @@ const Solutions: React.FC = () => {
           }}
         >
           <p>
-            Protect classified assets from "Harvest Now, Decrypt Later" threats. We align directly with the <strong>Commercial National Security Algorithm Suite 2.0</strong>, offering air-gapped physical deployments and Privately Managed Cloud HSM zones that utilize high-entropy quantum random number generation (QRNG) for National Security Systems (NSS).
+            Classified data is being stolen now to be decrypted later. We provide high-security, physical hardware solutions (air-gapped) that use the strongest random number generators to protect national secrets.
           </p>
         </SolutionSection>
 
         <SolutionSection 
-          title="Critical Infrastructure & OT"
+          title="Infrastructure & Factories"
           icon={<Server size={24}/>}
           reference={{
             title: "Guide to OT Security",
@@ -113,19 +113,19 @@ const Solutions: React.FC = () => {
           }}
         >
           <p>
-            Secure the industrial supply chain. We generate <strong>CryptoBOMs</strong> for SCADA systems and vehicle ECUs, using a unified root of trust that spans from local gateway HSMs to centralized Cloud management. This fulfills the NIST requirement for "Cryptographic Key Management" in Operational Technology environments.
+            Factory systems often run for 20 years. We help you create a list of all your digital keys (CryptoBOM) and secure the ones used in your machinery, ensuring your supply chain is safe from cyber attacks.
           </p>
         </SolutionSection>
       </div>
 
       <div className="mt-16 bg-slate-900 rounded-[2.5rem] p-12 text-center text-white relative overflow-hidden shadow-2xl">
         <div className="relative z-10">
-           <h3 className="text-2xl font-serif font-bold mb-4 m-0 text-white">Need a customized architecture review?</h3>
+           <h3 className="text-2xl font-serif font-bold mb-4 m-0 text-white">Need help with regulations?</h3>
            <p className="text-slate-400 text-sm mb-8 max-w-xl mx-auto">
-             Our solutions engineers can map your specific infrastructure to these regulatory requirements.
+             Our team can check your systems and tell you exactly what you need to do to be compliant.
            </p>
            <a href="mailto:rivic.revan.ande@gmail.com" className="inline-flex items-center gap-2 px-8 py-4 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-500 transition-all text-xs uppercase tracking-widest">
-              Contact Solutions Team <FileText size={16}/>
+              Contact Us <FileText size={16}/>
            </a>
         </div>
       </div>

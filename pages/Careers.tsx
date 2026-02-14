@@ -56,7 +56,7 @@ const Careers: React.FC = () => {
           <div>
             <h3 className="text-2xl font-serif font-bold text-slate-900 mb-2 m-0">The Co-Founder Role</h3>
             <p className="text-slate-600 text-sm leading-relaxed m-0">
-              You will be a strategic partner instrumental in securing initial funding, establishing enterprise partnerships, and rapidly scaling RivicQ's market presence alongside <strong>Revan Sai Ande</strong>.
+              You will be a strategic partner instrumental in securing initial funding, establishing enterprise partnerships, and rapidly scaling RivicQ's market presence alongside <strong>Revan Ande</strong>.
             </p>
           </div>
         </div>

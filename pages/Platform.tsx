@@ -19,8 +19,8 @@ const Platform: React.FC = () => {
     <article className="prose prose-slate max-w-none">
       <header className="mb-16">
         <h1 className="text-5xl font-bold mb-4 tracking-tight text-slate-900">Products & Architecture</h1>
-        <p className="text-slate-500 font-serif italic text-xl">The technical foundation of a quantum-safe infrastructure stack across physical and cloud domains.</p>
-        <p className="text-slate-400 text-[10px] font-mono uppercase tracking-[0.3em] font-bold mt-6">Protocol Specification v1.4 • NIST Compliant • Cloud-Enabled</p>
+        <p className="text-slate-500 font-serif italic text-xl">The foundation of your new, quantum-safe security system.</p>
+        <p className="text-slate-400 text-[10px] font-mono uppercase tracking-[0.3em] font-bold mt-6">Protocol v1.4 • NIST Compliant • Cloud Ready</p>
       </header>
 
       <section className="not-prose -mx-8 md:-mx-16 mb-24">
@@ -34,7 +34,7 @@ const Platform: React.FC = () => {
           </div>
           <div>
             <h2 className="text-3xl font-serif font-bold text-slate-900 m-0">Our Core Products</h2>
-            <p className="text-xs text-slate-500 font-bold uppercase tracking-widest mt-1">Industrial & Cloud Readiness Stack</p>
+            <p className="text-xs text-slate-500 font-bold uppercase tracking-widest mt-1">Tools to find, fix, and secure.</p>
           </div>
         </div>
 
@@ -44,11 +44,11 @@ const Platform: React.FC = () => {
               <div className="p-3 bg-blue-50 text-blue-600 rounded-xl group-hover:bg-blue-600 group-hover:text-white transition-all">
                 <Search size={24} />
               </div>
-              <span className="text-[10px] font-bold text-blue-600 uppercase tracking-widest">Discovery</span>
+              <span className="text-[10px] font-bold text-blue-600 uppercase tracking-widest">Find</span>
             </div>
-            <h3 className="text-xl font-serif font-bold text-slate-900 mb-4">Audit (SAST/DAST)</h3>
+            <h3 className="text-xl font-serif font-bold text-slate-900 mb-4">Security Audit (Scanner)</h3>
             <p className="text-sm text-slate-500 leading-relaxed">
-              AI-driven scanning to identify cryptographic drift. Utilizes <strong>Quantum Attention Networks</strong> to detect obfuscated keys within cloud traffic.
+              We use smart AI to scan your systems and find where you are using old, weak security methods that need updating.
             </p>
           </div>
 
@@ -59,9 +59,9 @@ const Platform: React.FC = () => {
               </div>
               <span className="text-[10px] font-bold text-emerald-600 uppercase tracking-widest">Inventory</span>
             </div>
-            <h3 className="text-xl font-serif font-bold text-slate-900 mb-4">CryptoBOM SaaS</h3>
+            <h3 className="text-xl font-serif font-bold text-slate-900 mb-4">CryptoBOM Dashboard</h3>
             <p className="text-sm text-slate-500 leading-relaxed">
-              Centralized visibility into your Cryptographic Bill of Materials. Anchored by <strong>Cloud HSM</strong> attestation to differentiate managed vs. shadow keys.
+              A dashboard that lists every "digital lock" (key) in your company. It tells you which ones are safe (managed) and which ones are risky (hidden).
             </p>
           </div>
         </div>
@@ -72,14 +72,14 @@ const Platform: React.FC = () => {
               <div className="p-3 bg-blue-600 text-white rounded-xl">
                 <Cloud size={24} />
               </div>
-              <span className="text-[10px] font-bold text-blue-400 uppercase tracking-widest">Infrastructure</span>
+              <span className="text-[10px] font-bold text-blue-400 uppercase tracking-widest">Secure Hardware</span>
             </div>
-            <h3 className="text-xl font-serif font-bold text-white mb-4">Cloud HSM (vHSM)</h3>
+            <h3 className="text-xl font-serif font-bold text-white mb-4">Cloud HSM</h3>
             <p className="text-sm text-slate-400 leading-relaxed mb-6">
-              Virtualized FIPS 140-3 Hardware Security Modules providing dedicated PQC-ready root of trust with <strong>IBMQ Integration</strong>.
+              Our secure cloud hardware acts as a "digital vault" for your keys, protected by physical barriers and quantum-safe tech.
             </p>
             <Link to="/cloud-hsm" className="text-xs font-bold text-blue-400 flex items-center gap-2 hover:text-white transition-colors uppercase tracking-widest">
-              View Specifications <ArrowRight size={14} />
+              See Hardware Details <ArrowRight size={14} />
             </Link>
           </div>
 
@@ -88,11 +88,11 @@ const Platform: React.FC = () => {
               <div className="p-3 bg-indigo-50 text-indigo-600 rounded-xl group-hover:bg-indigo-600 group-hover:text-white transition-all">
                 <Repeat size={24} />
               </div>
-              <span className="text-[10px] font-bold text-indigo-600 uppercase tracking-widest">Remediation</span>
+              <span className="text-[10px] font-bold text-indigo-600 uppercase tracking-widest">Upgrade</span>
             </div>
-            <h3 className="text-xl font-serif font-bold text-slate-900 mb-4">RQSP Mesh</h3>
+            <h3 className="text-xl font-serif font-bold text-slate-900 mb-4">RQSP Automation</h3>
             <p className="text-sm text-slate-500 leading-relaxed">
-              Hardware-native orchestration for automatic algorithm rotation and hybrid KEM encapsulation, bridging on-prem and Cloud HSMs.
+              Our automated system helps you switch from old keys to new keys instantly, without stopping your business.
             </p>
           </div>
         </div>
@@ -100,11 +100,11 @@ const Platform: React.FC = () => {
 
       {/* Strategic Integrations */}
       <section className="not-prose mb-24 border-t border-slate-100 pt-16">
-         <h2 className="text-2xl font-serif font-bold text-slate-900 mb-8 text-center">Strategic Integrations</h2>
+         <h2 className="text-2xl font-serif font-bold text-slate-900 mb-8 text-center">We work with</h2>
          <div className="flex flex-wrap justify-center gap-6">
             <div className="flex items-center gap-3 px-6 py-3 bg-slate-50 border border-slate-200 rounded-xl">
                <Cpu size={20} className="text-blue-600"/>
-               <span className="text-xs font-bold text-slate-700 uppercase tracking-widest">IBM Quantum (IBMQ)</span>
+               <span className="text-xs font-bold text-slate-700 uppercase tracking-widest">IBM Quantum</span>
             </div>
             <div className="flex items-center gap-3 px-6 py-3 bg-slate-50 border border-slate-200 rounded-xl">
                <Cloud size={20} className="text-blue-600"/>
@@ -112,7 +112,7 @@ const Platform: React.FC = () => {
             </div>
             <div className="flex items-center gap-3 px-6 py-3 bg-slate-50 border border-slate-200 rounded-xl">
                <Network size={20} className="text-blue-600"/>
-               <span className="text-xs font-bold text-slate-700 uppercase tracking-widest">AWS Nitro Enclaves</span>
+               <span className="text-xs font-bold text-slate-700 uppercase tracking-widest">AWS Nitro</span>
             </div>
          </div>
       </section>
@@ -123,8 +123,8 @@ const Platform: React.FC = () => {
             <Atom size={24} className="animate-spin-slow" />
           </div>
           <div>
-            <h2 className="text-3xl font-serif font-bold text-slate-900 m-0">Vulnerability Simulator</h2>
-            <p className="text-xs text-slate-500 font-bold uppercase tracking-widest mt-1">Simulating TTV (Time-To-Vulnerability)</p>
+            <h2 className="text-3xl font-serif font-bold text-slate-900 m-0">Risk Simulator</h2>
+            <p className="text-xs text-slate-500 font-bold uppercase tracking-widest mt-1">Check your Quantum Risk Score</p>
           </div>
         </div>
         
@@ -134,13 +134,14 @@ const Platform: React.FC = () => {
 {`from qiskit import QuantumCircuit
 from rivicq_core import QuantumRiskAnalyzer
 
+// Simulate attack complexity
 analyzer = QuantumRiskAnalyzer(target="cloud_hsm_cluster")
 analyzer.update_complexity(${complexity})
-results = analyzer.simulate(backend="ibmq_qasm_simulator", shots=1024)`}
+results = analyzer.simulate(backend="ibmq_qasm_simulator")`}
             </pre>
             <div className="mt-10 space-y-3 relative z-10">
               <div className="flex justify-between items-center">
-                <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Circuit Depth</label>
+                <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Attack Power</label>
                 <span className="text-blue-400 font-bold">{complexity}</span>
               </div>
               <input 
@@ -156,10 +157,10 @@ results = analyzer.simulate(backend="ibmq_qasm_simulator", shots=1024)`}
                <div className={`text-7xl font-bold font-mono ${riskScore > 75 ? 'text-red-500' : 'text-slate-900'}`}>
                   {riskScore}<span className="text-2xl text-slate-200">/100</span>
                </div>
-               <div className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.3em] mt-2">Quantum Risk Index</div>
+               <div className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.3em] mt-2">Risk Index</div>
             </div>
             <p className="mt-8 text-[11px] text-slate-600 leading-relaxed">
-              <strong>Assessment:</strong> {riskScore > 75 ? 'Critical exposure detected in cloud endpoints. Immediate Cloud HSM migration required.' : 'Stable cryptographic footprint. Monitoring scheduled.'}
+              <strong>What this means:</strong> {riskScore > 75 ? 'Critical risk detected. Your encryption is weak against future attacks. You need to upgrade immediately.' : 'Your systems are relatively stable, but constant monitoring is recommended.'}
             </p>
           </div>
         </div>
