@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { Database, ArrowRight, Github, Terminal, Atom, Layers, Repeat, Search, Cloud, Shield } from 'lucide-react';
+import { Database, ArrowRight, Github, Terminal, Atom, Layers, Repeat, Search, Cloud, Shield, Cpu, Network } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SystemArchitecture3D from '../components/SystemArchitecture3D';
 
@@ -48,7 +48,7 @@ const Platform: React.FC = () => {
             </div>
             <h3 className="text-xl font-serif font-bold text-slate-900 mb-4">Audit (SAST/DAST)</h3>
             <p className="text-sm text-slate-500 leading-relaxed">
-              AI-driven scanning to identify cryptographic drift and legacy primitives across cloud microservices and Git repositories.
+              AI-driven scanning to identify cryptographic drift. Utilizes <strong>Quantum Attention Networks</strong> to detect obfuscated keys within cloud traffic.
             </p>
           </div>
 
@@ -61,7 +61,7 @@ const Platform: React.FC = () => {
             </div>
             <h3 className="text-xl font-serif font-bold text-slate-900 mb-4">CryptoBOM SaaS</h3>
             <p className="text-sm text-slate-500 leading-relaxed">
-              Centralized visibility into your Cryptographic Bill of Materials, tracking key age, rotation, and risk scores in multi-cloud environments.
+              Centralized visibility into your Cryptographic Bill of Materials. Anchored by <strong>Cloud HSM</strong> attestation to differentiate managed vs. shadow keys.
             </p>
           </div>
         </div>
@@ -76,7 +76,7 @@ const Platform: React.FC = () => {
             </div>
             <h3 className="text-xl font-serif font-bold text-white mb-4">Cloud HSM (vHSM)</h3>
             <p className="text-sm text-slate-400 leading-relaxed mb-6">
-              Virtualized FIPS 140-3 Hardware Security Modules providing dedicated PQC-ready root of trust with cloud-native elasticity.
+              Virtualized FIPS 140-3 Hardware Security Modules providing dedicated PQC-ready root of trust with <strong>IBMQ Integration</strong>.
             </p>
             <Link to="/cloud-hsm" className="text-xs font-bold text-blue-400 flex items-center gap-2 hover:text-white transition-colors uppercase tracking-widest">
               View Specifications <ArrowRight size={14} />
@@ -98,6 +98,25 @@ const Platform: React.FC = () => {
         </div>
       </section>
 
+      {/* Strategic Integrations */}
+      <section className="not-prose mb-24 border-t border-slate-100 pt-16">
+         <h2 className="text-2xl font-serif font-bold text-slate-900 mb-8 text-center">Strategic Integrations</h2>
+         <div className="flex flex-wrap justify-center gap-6">
+            <div className="flex items-center gap-3 px-6 py-3 bg-slate-50 border border-slate-200 rounded-xl">
+               <Cpu size={20} className="text-blue-600"/>
+               <span className="text-xs font-bold text-slate-700 uppercase tracking-widest">IBM Quantum (IBMQ)</span>
+            </div>
+            <div className="flex items-center gap-3 px-6 py-3 bg-slate-50 border border-slate-200 rounded-xl">
+               <Cloud size={20} className="text-blue-600"/>
+               <span className="text-xs font-bold text-slate-700 uppercase tracking-widest">Google Cloud HSM</span>
+            </div>
+            <div className="flex items-center gap-3 px-6 py-3 bg-slate-50 border border-slate-200 rounded-xl">
+               <Network size={20} className="text-blue-600"/>
+               <span className="text-xs font-bold text-slate-700 uppercase tracking-widest">AWS Nitro Enclaves</span>
+            </div>
+         </div>
+      </section>
+
       <section className="my-24 not-prose">
         <div className="flex items-center gap-4 mb-12">
           <div className="p-3 bg-slate-900 text-white rounded-2xl">
@@ -117,7 +136,7 @@ from rivicq_core import QuantumRiskAnalyzer
 
 analyzer = QuantumRiskAnalyzer(target="cloud_hsm_cluster")
 analyzer.update_complexity(${complexity})
-results = analyzer.simulate(backend="qasm", shots=1024)`}
+results = analyzer.simulate(backend="ibmq_qasm_simulator", shots=1024)`}
             </pre>
             <div className="mt-10 space-y-3 relative z-10">
               <div className="flex justify-between items-center">

@@ -59,7 +59,7 @@ const UseCases: React.FC = () => {
             subtitle="DORA & PCI DSS Compliance"
             problem="Transaction signing systems rely on RSA-2048. Data retention mandates make these logs prime targets for 'Harvest Now, Decrypt Later' attacks."
             solution="We integrate Hybrid ML-DSA signatures into existing HSM infrastructure, satisfying current audits while neutralizing future quantum threats."
-            reference={{ name: "NIST PQC Standardization Project", link: "https://csrc.nist.gov/projects/post-quantum-cryptography" }}
+            reference={{ name: "NIST FIPS 204 (ML-DSA) Standard", link: "https://csrc.nist.gov/pubs/fips/204/final" }}
         />
 
         {/* Energy & Utilities */}
@@ -69,7 +69,7 @@ const UseCases: React.FC = () => {
             subtitle="OT Grid Resilience"
             problem="Smart meters and controllers have lifecycles of 20+ years. Hardcoded classical keys are impossible to patch once quantum computers arrive."
             solution="We implement stateful hash-based signatures (LMS) for firmware updates, ensuring that grid controls remain verifiable for decades."
-            reference={{ name: "BSI TR-02102 Cryptographic Mechanisms", link: "https://www.bsi.bund.de/" }}
+            reference={{ name: "BSI TR-02102-1 Guidelines", link: "https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI/Publications/TechGuidelines/TR02102/BSI-TR-02102-1.html" }}
         />
 
         {/* IoT & Embedded Systems */}
@@ -79,7 +79,7 @@ const UseCases: React.FC = () => {
             subtitle="Secure Device Lifecycle"
             problem="Limited processing power and long field lifespans (15+ years) make legacy devices vulnerable to future quantum attacks, with difficult manual patching."
             solution="RivicQ provides low-overhead PQC primitives optimized for embedded ARM/RISC-V cores and HSM-based remote attestation for secure boot."
-            reference={{ name: "NIST SP 800-193 (Platform Firmware Resiliency)", link: "https://csrc.nist.gov/pubs/sp/800/193/final" }}
+            reference={{ name: "NIST SP 800-193 (Resiliency)", link: "https://csrc.nist.gov/pubs/sp/800/193/final" }}
         />
 
         {/* Healthcare */}
@@ -89,7 +89,7 @@ const UseCases: React.FC = () => {
             subtitle="The 50-Year Secret"
             problem="Genomic data and sensitive health records must stay private for a lifetime. Encrypted data intercepted today is vulnerable to future decryption."
             solution="RivicQ provides PQC-wrapped storage layers for EMR systems, ensuring patient confidentiality persists throughout the entire patient lifecycle."
-            reference={{ name: "NIST SP 800-140 Hardware Security", link: "https://csrc.nist.gov/" }}
+            reference={{ name: "NIST SP 800-66r2 (HIPAA Security)", link: "https://csrc.nist.gov/pubs/sp/800/66/r2/final" }}
         />
 
         {/* Telecommunications */}
@@ -99,7 +99,7 @@ const UseCases: React.FC = () => {
             subtitle="5G/6G Backhaul Defense"
             problem="Fiber backhauls handle massive traffic volumes. State-sponsored adversaries can intercept and store these flows for future processing."
             solution="Establishing Hybrid ML-KEM tunnels at the network edge allows telcos to secure core traffic with near-zero latency overhead."
-            reference={{ name: "ETSI Quantum-Safe Whitepaper", link: "https://www.etsi.org/" }}
+            reference={{ name: "ETSI Quantum-Safe Cryptography", link: "https://www.etsi.org/technologies/quantum-safe-cryptography" }}
         />
 
       </div>
@@ -129,7 +129,7 @@ const UseCases: React.FC = () => {
                 <ShieldAlert size={24} className="text-red-600" />
                 <h3 className="text-xl font-bold uppercase tracking-widest m-0">Proprietary Notice</h3>
               </div>
-              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-4">Confidential Information</p>
+              <p className="text-xs font-bold text-slate-400 uppercase tracking-[0.2em] mb-4">Confidential Information</p>
               <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100">
                 <p className="text-xs text-slate-600 leading-relaxed font-mono m-0">
                   ALL RIGHTS RESERVED. This content is protected by a Non-Disclosure Agreement (NDA).

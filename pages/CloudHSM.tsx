@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Cloud, ShieldCheck, Zap, Server, Lock, Cpu, ArrowRight, CheckCircle2, Activity, Database, Layers } from 'lucide-react';
+import { Cloud, ShieldCheck, Zap, Server, Lock, Cpu, ArrowRight, CheckCircle2, Activity, Database, Layers, ExternalLink, ScanSearch, BrainCircuit, Network } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const CloudHSM: React.FC = () => {
@@ -73,7 +73,82 @@ const CloudHSM: React.FC = () => {
         </div>
       </section>
 
-      {/* Technical Specifications */}
+      {/* Discovery & Intelligence Section (NEW) */}
+      <section className="mb-24">
+        <div className="flex items-center gap-4 mb-10">
+          <div className="p-3 bg-indigo-600 text-white rounded-2xl shadow-lg">
+            <ScanSearch size={24} />
+          </div>
+          <div>
+            <h2 className="text-3xl font-serif font-bold text-slate-900 m-0">Active CryptoBOM Intelligence</h2>
+            <p className="text-xs text-indigo-600 font-bold uppercase tracking-widest mt-1">HSM-Anchored Discovery</p>
+          </div>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-12 not-prose items-center">
+          <div>
+             <p className="text-lg text-slate-600 leading-relaxed mb-8">
+               Unlike passive scanners, RivicQ Cloud HSM acts as an <strong>Active Truth Source</strong>. It continuously polls your infrastructure to verify if discovered keys are managed within the secure boundary or exist as "Shadow Cryptography" in code.
+             </p>
+             
+             <div className="space-y-6">
+                <div className="flex gap-4">
+                   <div className="p-2 bg-indigo-50 text-indigo-600 rounded-lg h-fit border border-indigo-100">
+                      <BrainCircuit size={20} />
+                   </div>
+                   <div>
+                      <h4 className="font-bold text-slate-900 text-sm m-0">Quantum Attention Networks</h4>
+                      <p className="text-xs text-slate-500 mt-1 leading-relaxed">
+                        We deploy lightweight AI Transformer models (Attention Mechanisms) directly within the Cloud HSM enclave. These models are trained to recognize obfuscated legacy cryptographic patterns in high-velocity cloud traffic.
+                      </p>
+                   </div>
+                </div>
+
+                <div className="flex gap-4">
+                   <div className="p-2 bg-blue-50 text-blue-600 rounded-lg h-fit border border-blue-100">
+                      <Network size={20} />
+                   </div>
+                   <div>
+                      <h4 className="font-bold text-slate-900 text-sm m-0">IBM Quantum (IBMQ) Integration</h4>
+                      <p className="text-xs text-slate-500 mt-1 leading-relaxed">
+                        RivicQ vHSMs are validated for <strong>IBM Cloud</strong> environments. We provide the cryptographic bridging layer for enterprises experimenting with IBM Quantum processors, ensuring classical data fed into quantum workflows remains encrypted.
+                      </p>
+                   </div>
+                </div>
+             </div>
+          </div>
+
+          <div className="bg-slate-950 rounded-[2.5rem] p-8 border border-slate-800 shadow-2xl relative overflow-hidden">
+             <div className="absolute top-0 right-0 p-8 opacity-20 text-indigo-500 animate-pulse">
+                <BrainCircuit size={120} />
+             </div>
+             <div className="relative z-10 font-mono text-[10px] space-y-3">
+                <div className="text-slate-500 border-b border-slate-800 pb-2 mb-4">
+                   // RIVICQ_ATTENTION_MODEL v2.1
+                </div>
+                <div className="flex justify-between">
+                   <span className="text-indigo-400">SCAN_TARGET:</span>
+                   <span className="text-white">AWS_EKS_CLUSTER_04</span>
+                </div>
+                <div className="flex justify-between">
+                   <span className="text-indigo-400">PATTERN_MATCH:</span>
+                   <span className="text-red-400">RSA_2048_PKCS1 (98% Conf)</span>
+                </div>
+                <div className="flex justify-between">
+                   <span className="text-indigo-400">HSM_STATUS:</span>
+                   <span className="text-red-400">UNMANAGED_KEY</span>
+                </div>
+                <div className="mt-4 p-3 bg-indigo-900/30 border border-indigo-500/30 rounded-lg text-indigo-200">
+                   {`> Alert: Shadow Crypto Detected.`}
+                   <br/>
+                   {`> Action: Flag for CryptoBOM.`}
+                </div>
+             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Technical Architecture */}
       <section className="mb-24">
         <h2 className="text-3xl font-serif font-bold text-slate-900 mb-10">Technical Architecture</h2>
         <div className="not-prose grid md:grid-cols-2 gap-8">
@@ -98,34 +173,6 @@ const CloudHSM: React.FC = () => {
         </div>
       </section>
 
-      {/* Key Use Cases */}
-      <section className="mb-24 py-16 bg-slate-50 rounded-[3rem] border border-slate-100 px-8 md:px-12">
-        <h2 className="text-3xl font-serif font-bold text-slate-900 mb-10 text-center">Cloud Use Cases</h2>
-        <div className="not-prose grid md:grid-cols-3 gap-8">
-          <div className="text-center">
-            <div className="mx-auto w-12 h-12 bg-white rounded-full shadow-md flex items-center justify-center mb-6">
-              <Server size={20} className="text-blue-600" />
-            </div>
-            <h5 className="font-bold text-slate-900 mb-2">TLS Offloading</h5>
-            <p className="text-xs text-slate-500 leading-relaxed">Establish quantum-safe SSL/TLS sessions at the network edge with minimal latency.</p>
-          </div>
-          <div className="text-center">
-            <div className="mx-auto w-12 h-12 bg-white rounded-full shadow-md flex items-center justify-center mb-6">
-              <Database size={20} className="text-blue-600" />
-            </div>
-            <h5 className="font-bold text-slate-900 mb-2">Database Encryption</h5>
-            <p className="text-xs text-slate-500 leading-relaxed">Secure data-at-rest across multi-cloud environments with hardware-backed key management.</p>
-          </div>
-          <div className="text-center">
-            <div className="mx-auto w-12 h-12 bg-white rounded-full shadow-md flex items-center justify-center mb-6">
-              <ShieldCheck size={20} className="text-blue-600" />
-            </div>
-            <h5 className="font-bold text-slate-900 mb-2">Code Signing</h5>
-            <p className="text-xs text-slate-500 leading-relaxed">Sign container images and firmware using PQC signatures (ML-DSA) within the CI/CD pipeline.</p>
-          </div>
-        </div>
-      </section>
-
       {/* Compliance Block */}
       <section className="mb-24">
         <div className="p-10 border border-slate-900 bg-white rounded-[2.5rem] relative overflow-hidden">
@@ -138,10 +185,15 @@ const CloudHSM: React.FC = () => {
               <p className="text-sm text-slate-600 leading-relaxed mb-6">
                 Our Cloud HSMs meet the most stringent physical and logical security requirements. They are certified for use in highly regulated sectors including Finance (DORA), Defense, and Healthcare.
               </p>
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-wrap gap-4 mb-6">
                 {["DORA", "SOC2", "HIPAA", "eIDAS 2.0"].map((cert, i) => (
                   <span key={i} className="px-3 py-1 bg-slate-100 text-slate-500 text-[10px] font-bold rounded-full uppercase tracking-widest">{cert}</span>
                 ))}
+              </div>
+              <div className="flex items-center gap-1">
+                 <a href="https://csrc.nist.gov/pubs/fips/140-3/final" target="_blank" rel="noopener noreferrer" className="text-xs font-bold text-blue-600 hover:text-slate-900 flex items-center gap-1 uppercase tracking-widest transition-colors">
+                   View FIPS Standard <ExternalLink size={12}/>
+                 </a>
               </div>
             </div>
           </div>

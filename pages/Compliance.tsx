@@ -89,6 +89,9 @@ const Compliance: React.FC = () => {
                   <p className="text-sm text-amber-800 mt-2 leading-relaxed">
                       The <strong>Digital Operational Resilience Act (DORA)</strong> becomes enforceable on <strong>January 17, 2025</strong>. Financial nodes must prove cryptographic agility and readiness for PQC migration.
                   </p>
+                  <a href="https://eur-lex.europa.eu/eli/reg/2022/2554/oj" target="_blank" rel="noopener noreferrer" className="text-xs font-bold text-amber-900 hover:underline mt-2 inline-flex items-center gap-1">
+                     View Official Text (EUR-Lex) <ExternalLink size={10}/>
+                  </a>
               </div>
           </div>
         </div>
