@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Calendar, User, ArrowRight, Tag } from 'lucide-react';
@@ -41,18 +42,18 @@ const Blog: React.FC = () => {
         <BlogPost 
           title="Rivic — Born from Berlin, Built for the Future"
           date="Dec 25, 2025"
-          excerpt="Every startup has a beginning—some are born out of market gaps, some from investor decks, and some... from pure obsession."
-          tags={["Founder Story", "Berlin Tech", "Cybersecurity"]}
+          excerpt="Every deep-tech venture has a beginning. Ours started with a critical question about the longevity of digital trust."
+          tags={["Company Vision", "Berlin Tech", "Cybersecurity"]}
           content={
             <div className="space-y-4">
               <p>
-                Rivic wasn't designed on a whiteboard or inside a corporate office. It was born out of late nights, questions without easy answers, and one engineer's passion to explore a future where AI, Blockchain, and Quantum computing aren't just trends—but real challenges demanding stronger security.
+                RivicQ wasn't designed in a vacuum. It was born out of rigorous academic inquiry and a clear market need. In a world where AI and Quantum computing are rapidly advancing, traditional encryption methods are becoming liabilities.
               </p>
               <blockquote className="border-l-4 border-blue-500 pl-4 py-2 bg-slate-50 rounded-r font-serif italic text-xl">
                 "Can we build security that's ready before the threat arrives?"
               </blockquote>
               <p>
-                Rivic's story doesn't start with funding. It starts with people, curiosity, and the rush of hackathons: EthBerlin, Cardano, Radar, Web3 Summit—each one stretched Rivic from an idea into something that had to survive real-world testing.
+                Our foundation in Berlin's innovation ecosystem allowed us to bridge the gap between theoretical physics and practical software engineering. From early protocol definitions to securing federal interest, our mission has always been to build infrastructure that survives the test of time.
               </p>
             </div>
           }
