@@ -6,7 +6,7 @@ import { Loader2 } from 'lucide-react';
 
 // Lazy Load Pages
 const Home = React.lazy(() => import('./pages/Home'));
-const Products = React.lazy(() => import('./pages/Products')); // New Page
+const Products = React.lazy(() => import('./pages/Products')); 
 const Platform = React.lazy(() => import('./pages/Platform'));
 const CloudHSM = React.lazy(() => import('./pages/CloudHSM'));
 const RQSP = React.lazy(() => import('./pages/RQSP'));
@@ -28,6 +28,8 @@ const TrustCenter = React.lazy(() => import('./pages/TrustCenter'));
 const Glossary = React.lazy(() => import('./pages/Glossary'));
 const Methodology = React.lazy(() => import('./pages/Methodology'));
 const Partner = React.lazy(() => import('./pages/Partner'));
+const Investors = React.lazy(() => import('./pages/Investors'));
+const QuantumResearch = React.lazy(() => import('./pages/QuantumResearch'));
 
 const RouteHandler = () => {
   const { pathname } = useLocation();
@@ -52,11 +54,13 @@ const RouteHandler = () => {
       '/story': 'Our Story | RivicQ',
       '/compliance': 'PQC Compliance Deadlines | RivicQ',
       '/pricing': 'Pricing & Enterprise Plans | RivicQ',
-      '/legal': 'Legal & Terms | RivicQ',
+      '/legal': 'Legal & IP Rights | RivicQ',
       '/privacy': 'Privacy Policy | RivicQ',
       '/trust': 'Trust Center | RivicQ',
       '/glossary': 'Glossary of Quantum Terms | RivicQ',
-      '/partner': 'Partner Program | RivicQ'
+      '/partner': 'Partner Program | RivicQ',
+      '/investors': 'Investor Relations | RivicQ',
+      '/research': 'Quantum Research & R&D | RivicQ'
     };
     document.title = titles[pathname] || 'RivicQ | Quantum-Safe Security';
   }, [pathname]);
@@ -99,6 +103,8 @@ const App: React.FC = () => {
             <Route path="/trust" element={<TrustCenter />} />
             <Route path="/glossary" element={<Glossary />} />
             <Route path="/partner" element={<Partner />} />
+            <Route path="/investors" element={<Investors />} />
+            <Route path="/research" element={<QuantumResearch />} />
           </Routes>
         </Suspense>
       </Layout>

@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
-import { Check, Send, ShieldCheck, Mail, Briefcase, Zap, Shield } from 'lucide-react';
+import { Check, Send, ShieldCheck, Mail, Briefcase, Zap, Shield, Loader2, AlertTriangle, FileText, Clock } from 'lucide-react';
+import { aiService } from '../services/aiService';
 
 const PricingCard: React.FC<{ 
   title: string, 
@@ -57,16 +58,25 @@ const PricingCard: React.FC<{
 
 const Pricing: React.FC = () => {
   const [formSubmitted, setFormSubmitted] = useState(false);
-  const [formData, setFormData] = useState({ name: '', email: '', company: '', message: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState({ name: '', email: '', company: '', message: '', timeline: 'Immediate' });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = encodeURIComponent(`Sales: ${formData.name} (${formData.company})`);
-    const body = encodeURIComponent(`Inquiry:\n${formData.message}\n\nFrom: ${formData.email}`);
-    // Submit via mailto as requested
-    window.location.href = `mailto:rivic.revan.ande@gmail.com?subject=${subject}&body=${body}`;
-    setFormSubmitted(true);
-    setTimeout(() => setFormSubmitted(false), 8000);
+    setIsSubmitting(true);
+    
+    try {
+      await aiService.submitInquiry({
+        type: 'SALES_PILOT',
+        ...formData
+      });
+      setFormSubmitted(true);
+      setFormData({ name: '', email: '', company: '', message: '', timeline: 'Immediate' });
+    } catch (error) {
+      alert("Unable to reach the server. Please check your connection or email us directly.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -141,27 +151,58 @@ const Pricing: React.FC = () => {
       <section id="contact-sales" className="not-prose scroll-mt-24 mb-24">
         <div className="bg-slate-50 rounded-[3rem] p-10 md:p-16 border border-slate-100 shadow-sm">
           <div className="grid lg:grid-cols-2 gap-16 items-start">
+            
+            {/* Left: Problems We Solve */}
             <div>
               <div className="p-3 bg-blue-600 text-white rounded-2xl w-fit mb-6">
                 <Mail size={24} />
               </div>
-              <h2 className="text-4xl font-serif font-bold mb-6 text-slate-900 m-0">Contact Sales</h2>
-              <p className="text-slate-600 text-lg mb-10 leading-relaxed max-w-md">
-                Ready to secure your future? Our engineering team is available to scope your Pilot or Enterprise needs.
+              <h2 className="text-4xl font-serif font-bold mb-6 text-slate-900 m-0">Secure Your Infrastructure</h2>
+              <p className="text-slate-600 text-lg mb-8 leading-relaxed">
+                Our engineering team is ready to scope your Pilot or Enterprise needs. Tell us what challenge you are facing.
               </p>
-              <div className="flex items-center gap-4 text-xs font-bold text-slate-400 uppercase tracking-widest">
-                <Check size={16} className="text-emerald-500" /> Response within 24 hours
+
+              <div className="space-y-6">
+                 <div className="flex gap-4">
+                    <div className="mt-1">
+                      <AlertTriangle size={18} className="text-amber-500" />
+                    </div>
+                    <div>
+                       <h4 className="font-bold text-slate-900 text-sm m-0">Regulatory Pressure?</h4>
+                       <p className="text-xs text-slate-500 m-0 mt-1">Need DORA or NIST compliance reports for auditors.</p>
+                    </div>
+                 </div>
+                 <div className="flex gap-4">
+                    <div className="mt-1">
+                      <Clock size={18} className="text-blue-500" />
+                    </div>
+                    <div>
+                       <h4 className="font-bold text-slate-900 text-sm m-0">Legacy Debt?</h4>
+                       <p className="text-xs text-slate-500 m-0 mt-1">Found hardcoded RSA-2048 keys in critical infrastructure.</p>
+                    </div>
+                 </div>
+                 <div className="flex gap-4">
+                    <div className="mt-1">
+                      <FileText size={18} className="text-emerald-500" />
+                    </div>
+                    <div>
+                       <h4 className="font-bold text-slate-900 text-sm m-0">Budgeting PQC?</h4>
+                       <p className="text-xs text-slate-500 m-0 mt-1">Need a Pilot to validate costs before full migration.</p>
+                    </div>
+                 </div>
               </div>
             </div>
 
+            {/* Right: The Form */}
             <div className="bg-white rounded-[2.5rem] p-8 md:p-10 shadow-2xl border border-slate-100">
               {formSubmitted ? (
                 <div className="text-center py-12 animate-fadeIn">
                   <div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mb-6 mx-auto">
                     <Check size={28} />
                   </div>
-                  <h3 className="text-2xl font-bold mb-2">Inquiry Ready</h3>
-                  <p className="text-slate-500 text-sm">Please complete the submission in your default email client.</p>
+                  <h3 className="text-2xl font-bold mb-2">Request Received</h3>
+                  <p className="text-slate-500 text-sm">Our sales engineering team will review your requirements and contact you within 24 hours.</p>
+                  <button onClick={() => setFormSubmitted(false)} className="mt-6 text-blue-600 text-xs font-bold uppercase tracking-widest hover:underline">Send another request</button>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-5">
@@ -171,20 +212,30 @@ const Pricing: React.FC = () => {
                       <input required className="w-full px-5 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-2 focus:ring-blue-500/20 transition-all" placeholder="John Doe" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} />
                     </div>
                     <div className="space-y-1">
-                      <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 ml-1">Email Address</label>
-                      <input required type="email" className="w-full px-5 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-2 focus:ring-blue-500/20 transition-all" placeholder="j.doe@company.com" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} />
+                      <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 ml-1">Work Email</label>
+                      <input required type="email" className="w-full px-5 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-2 focus:ring-blue-500/20 transition-all" placeholder="name@company.com" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} />
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div className="space-y-1">
+                      <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 ml-1">Company</label>
+                      <input required className="w-full px-5 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-2 focus:ring-blue-500/20 transition-all" placeholder="Organization Ltd." value={formData.company} onChange={e => setFormData({...formData, company: e.target.value})} />
+                    </div>
+                    <div className="space-y-1">
+                      <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 ml-1">Timeline</label>
+                      <select className="w-full px-5 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-2 focus:ring-blue-500/20 transition-all appearance-none" value={formData.timeline} onChange={e => setFormData({...formData, timeline: e.target.value})}>
+                        <option value="Immediate">Immediate (Audit/Breach)</option>
+                        <option value="Q3 2026">Q3 2026 (Planning)</option>
+                        <option value="2027+">2027+ (Research)</option>
+                      </select>
                     </div>
                   </div>
                   <div className="space-y-1">
-                    <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 ml-1">Company</label>
-                    <input required className="w-full px-5 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-2 focus:ring-blue-500/20 transition-all" placeholder="Enterprise Infrastructure Ltd." value={formData.company} onChange={e => setFormData({...formData, company: e.target.value})} />
+                    <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 ml-1">Challenge / Inquiry</label>
+                    <textarea required className="w-full px-5 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-2 focus:ring-blue-500/20 transition-all min-h-[140px] resize-none" placeholder="We are looking to migrate our core banking signing keys to PQC..." value={formData.message} onChange={e => setFormData({...formData, message: e.target.value})}></textarea>
                   </div>
-                  <div className="space-y-1">
-                    <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 ml-1">Your Inquiry</label>
-                    <textarea required className="w-full px-5 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-2 focus:ring-blue-500/20 transition-all min-h-[140px] resize-none" placeholder="I am interested in the Pilot Program / CSaaS..." value={formData.message} onChange={e => setFormData({...formData, message: e.target.value})}></textarea>
-                  </div>
-                  <button type="submit" className="w-full py-4 bg-slate-900 text-white font-bold rounded-2xl hover:bg-blue-600 transition-all flex items-center justify-center gap-2 shadow-xl shadow-slate-200 uppercase tracking-widest text-xs mt-4">
-                    Send Inquiry <Send size={16}/>
+                  <button type="submit" disabled={isSubmitting} className="w-full py-4 bg-slate-900 text-white font-bold rounded-2xl hover:bg-blue-600 transition-all flex items-center justify-center gap-2 shadow-xl shadow-slate-200 uppercase tracking-widest text-xs mt-4 disabled:opacity-50 disabled:cursor-not-allowed">
+                    {isSubmitting ? <Loader2 size={16} className="animate-spin"/> : <><Send size={16}/> Submit Request</>}
                   </button>
                 </form>
               )}

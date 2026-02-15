@@ -1,5 +1,7 @@
+
 import React, { useState } from 'react';
-import { Handshake, Percent, Award, Zap, ArrowRight, ShieldCheck, Users, Briefcase, Mail, Send, CheckCircle, Info } from 'lucide-react';
+import { Handshake, Percent, Award, Zap, ArrowRight, ShieldCheck, Users, Briefcase, Mail, Send, CheckCircle, Info, Loader2 } from 'lucide-react';
+import { aiService } from '../services/aiService';
 
 const TierCard: React.FC<{ 
   title: string, 
@@ -30,11 +32,27 @@ const TierCard: React.FC<{
 
 const Partner: React.FC = () => {
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState({ company: '', email: '', message: '' });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setFormSubmitted(true);
-    setTimeout(() => setFormSubmitted(false), 5000);
+    setIsSubmitting(true);
+    try {
+      await aiService.submitInquiry({
+        type: 'PARTNERSHIP',
+        name: 'Partner Applicant',
+        email: formData.email,
+        company: formData.company,
+        message: formData.message
+      });
+      setFormSubmitted(true);
+      setFormData({ company: '', email: '', message: '' });
+    } catch (error) {
+       alert("Server unreachable. Please try again later.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -189,28 +207,32 @@ const Partner: React.FC = () => {
                 <p className="text-sm text-slate-500 m-0">Tell us about your organization's goals.</p>
              </div>
              
-             <form id="partner-form" onSubmit={handleSubmit} className="space-y-6">
-                <div className="space-y-2">
-                  <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 ml-1">Company Name</label>
-                  <input required placeholder="Organization Ltd." className="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-blue-600 outline-none transition-all focus:bg-white" />
-                </div>
-                <div className="space-y-2">
-                  <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 ml-1">Work Email</label>
-                  <input required type="email" placeholder="partners@company.com" className="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-blue-600 outline-none transition-all focus:bg-white" />
-                </div>
-                <div className="space-y-2">
-                  <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 ml-1">Partnership Goals</label>
-                  <textarea required placeholder="Describe your interest in quantum-safe infrastructure..." className="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-xl text-sm min-h-[140px] resize-none focus:ring-2 focus:ring-blue-600 outline-none transition-all focus:bg-white" />
-                </div>
-                <button type="submit" className="w-full py-5 bg-slate-900 text-white font-bold rounded-xl hover:bg-blue-600 transition-all flex items-center justify-center gap-3 uppercase tracking-[0.2em] text-[10px] shadow-xl shadow-slate-100">
-                  {formSubmitted ? 'Application Sent' : 'Submit Application'} <Send size={16}/>
-                </button>
-             </form>
-             
-             {formSubmitted && (
-               <div className="mt-6 p-4 bg-emerald-50 border border-emerald-100 rounded-xl text-center text-xs font-bold text-emerald-700 animate-fadeIn">
-                 Thank you. A Partner Manager will reach out within 48 hours.
+             {formSubmitted ? (
+               <div className="flex flex-col items-center justify-center h-full py-10 animate-fadeIn text-center">
+                 <div className="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mb-4">
+                   <CheckCircle size={24}/>
+                 </div>
+                 <h4 className="text-xl font-bold text-slate-900 mb-2">Application Received</h4>
+                 <p className="text-slate-500 text-sm">A Partner Manager will review your details and reach out within 48 hours.</p>
                </div>
+             ) : (
+               <form id="partner-form" onSubmit={handleSubmit} className="space-y-6">
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 ml-1">Company Name</label>
+                    <input required value={formData.company} onChange={e => setFormData({...formData, company: e.target.value})} placeholder="Organization Ltd." className="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-blue-600 outline-none transition-all focus:bg-white" />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 ml-1">Work Email</label>
+                    <input required type="email" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} placeholder="partners@company.com" className="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-blue-600 outline-none transition-all focus:bg-white" />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 ml-1">Partnership Goals</label>
+                    <textarea required value={formData.message} onChange={e => setFormData({...formData, message: e.target.value})} placeholder="Describe your interest in quantum-safe infrastructure..." className="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-xl text-sm min-h-[140px] resize-none focus:ring-2 focus:ring-blue-600 outline-none transition-all focus:bg-white" />
+                  </div>
+                  <button type="submit" disabled={isSubmitting} className="w-full py-5 bg-slate-900 text-white font-bold rounded-xl hover:bg-blue-600 transition-all flex items-center justify-center gap-3 uppercase tracking-[0.2em] text-[10px] shadow-xl shadow-slate-100 disabled:opacity-50">
+                    {isSubmitting ? <Loader2 size={16} className="animate-spin"/> : <><Send size={16}/> Submit Application</>}
+                  </button>
+               </form>
              )}
           </div>
         </div>

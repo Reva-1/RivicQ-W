@@ -1,8 +1,32 @@
 
-import React from 'react';
-import { Mail } from 'lucide-react';
+import React, { useState } from 'react';
+import { Mail, CheckCircle2, Send, Loader2, MessageSquare } from 'lucide-react';
+import { aiService } from '../services/aiService';
 
 const Team: React.FC = () => {
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    try {
+      await aiService.submitInquiry({
+        type: 'GENERAL_CONTACT',
+        name: formData.name,
+        email: formData.email,
+        message: formData.message
+      });
+      setFormSubmitted(true);
+      setFormData({ name: '', email: '', message: '' });
+    } catch (error) {
+       alert("Server unreachable.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <article className="prose prose-lg prose-slate max-w-none">
       <header className="mb-12">
@@ -44,8 +68,7 @@ const Team: React.FC = () => {
                 <div className="w-1 h-auto bg-slate-100 group-hover:bg-blue-600 transition-colors"></div>
                 <div>
                   <h4 className="text-base font-bold text-slate-900 m-0">{mentor.name}</h4>
-                  <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1 m-0">{mentor.org}</p>
-                  <p className="text-xs text-slate-500 mt-1 m-0">{mentor.role}</p>
+                  <p className="text-xs text-slate-500 mt-1 m-0"><strong>{mentor.org}</strong> • {mentor.role}</p>
                 </div>
               </div>
             ))}
@@ -53,13 +76,40 @@ const Team: React.FC = () => {
       </section>
 
       <section className="bg-slate-50 p-8 md:p-12 rounded-[2.5rem] border border-slate-100 mt-20">
-        <h3 className="text-2xl font-serif font-bold text-slate-900 mb-4 m-0">Contact Us</h3>
-        <p className="text-slate-600 text-sm leading-relaxed mb-6">
-          For collaboration or inquiries, please reach our Berlin headquarters.
-        </p>
-        <a href="mailto:rivic.revan.ande@gmail.com" className="inline-flex items-center gap-2 font-bold text-blue-600 hover:text-slate-900 transition-colors text-sm uppercase tracking-widest">
-          <Mail size={16} /> rivic.revan.ande@gmail.com
-        </a>
+        <div className="flex flex-col md:flex-row gap-12">
+          <div className="md:w-1/2">
+            <div className="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-blue-600 mb-6">
+              <MessageSquare size={24}/>
+            </div>
+            <h3 className="text-2xl font-serif font-bold text-slate-900 mb-4 m-0">General Inquiry</h3>
+            <p className="text-slate-600 text-sm leading-relaxed mb-6">
+              For research collaboration, press, or general questions about our PQC technology.
+            </p>
+            <div className="flex items-center gap-2 font-bold text-blue-600 text-sm uppercase tracking-widest">
+              <Mail size={16} /> rivic.revan.ande@gmail.com
+            </div>
+          </div>
+
+          <div className="md:w-1/2">
+            {formSubmitted ? (
+               <div className="h-full flex flex-col items-center justify-center text-center p-6 bg-white rounded-2xl border border-slate-200 shadow-sm animate-fadeIn">
+                 <CheckCircle2 size={32} className="text-emerald-500 mb-4"/>
+                 <h4 className="font-bold text-slate-900">Message Sent</h4>
+                 <p className="text-xs text-slate-500 mt-2">We will get back to you shortly.</p>
+                 <button onClick={() => setFormSubmitted(false)} className="mt-4 text-[10px] text-blue-600 font-bold uppercase tracking-widest hover:underline">Send New</button>
+               </div>
+            ) : (
+               <form onSubmit={handleSubmit} className="space-y-4 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                  <input required value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} placeholder="Your Name" className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:ring-2 focus:ring-blue-600" />
+                  <input required type="email" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} placeholder="Email Address" className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:ring-2 focus:ring-blue-600" />
+                  <textarea required value={formData.message} onChange={e => setFormData({...formData, message: e.target.value})} placeholder="How can we help?" className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm min-h-[100px] resize-none outline-none focus:ring-2 focus:ring-blue-600" />
+                  <button type="submit" disabled={isSubmitting} className="w-full py-3 bg-slate-900 text-white font-bold rounded-xl hover:bg-blue-600 transition-all text-xs uppercase tracking-widest flex items-center justify-center gap-2 disabled:opacity-50">
+                    {isSubmitting ? <Loader2 size={14} className="animate-spin"/> : <><Send size={14}/> Send Message</>}
+                  </button>
+               </form>
+            )}
+          </div>
+        </div>
       </section>
     </article>
   );

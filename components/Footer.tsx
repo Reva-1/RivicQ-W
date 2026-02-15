@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Lock, MapPin } from 'lucide-react';
+import { Mail, Lock, MapPin, Copyright } from 'lucide-react';
 
 const Footer: React.FC = () => {
   return (
@@ -55,7 +55,8 @@ const Footer: React.FC = () => {
             <ul className="space-y-2 list-none p-0 text-xs">
               <li><Link to="/compliance" className="hover:text-blue-600 transition-colors">Compliance (NIST/DORA)</Link></li>
               <li><Link to="/trust" className="hover:text-blue-600 transition-colors">Trust Center</Link></li>
-              <li><Link to="/legal" className="hover:text-blue-600 transition-colors">Legal & Terms</Link></li>
+              <li><Link to="/legal" className="hover:text-blue-600 transition-colors">Legal & Rights</Link></li>
+              <li><Link to="/research" className="hover:text-blue-600 transition-colors">Quantum Research</Link></li>
             </ul>
           </div>
 
@@ -65,15 +66,19 @@ const Footer: React.FC = () => {
               <li><a href="https://github.com/rivic-q" target="_blank" className="hover:text-blue-600 transition-colors">GitHub</a></li>
               <li><a href="https://linkedin.com/company/rivic-q" target="_blank" className="hover:text-blue-600 transition-colors">LinkedIn</a></li>
               <li><Link to="/careers" className="hover:text-blue-600 transition-colors">Careers</Link></li>
+              <li><Link to="/investors" className="hover:text-blue-600 transition-colors">Investor Relations</Link></li>
             </ul>
           </div>
         </div>
 
-        <div className="border-t border-slate-100 pt-8 flex flex-col md:flex-row justify-between items-center text-[10px] font-bold uppercase tracking-widest">
-          <div>&copy; 2026 All rights @RivicQ Technologies.</div>
-          <div className="flex items-center space-x-6 mt-4 md:mt-0">
-             <Link to="/legal" className="hover:text-blue-600">Terms</Link>
-             <Link to="/privacy" className="hover:text-blue-600">Privacy</Link>
+        <div className="border-t border-slate-100 pt-8 flex flex-col md:flex-row justify-between items-center text-[10px] font-bold uppercase tracking-widest gap-4">
+          <div className="flex items-center gap-2">
+            <Copyright size={12}/>
+            <span>2024-2026 RivicQ Technologies. All Rights Reserved.</span>
+          </div>
+          <div className="flex items-center space-x-6">
+             <Link to="/legal" className="hover:text-blue-600">Impressum</Link>
+             <Link to="/privacy" className="hover:text-blue-600">Privacy Policy</Link>
              <a href="mailto:rivic.revan.ande@gmail.com" className="hover:text-blue-600 inline-flex items-center gap-1.5" aria-label="Contact Email">
                <Mail size={12} /> Contact
              </a>

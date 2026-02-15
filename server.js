@@ -62,10 +62,23 @@ app.post('/api/scan-security', async (req, res) => {
   }
 });
 
+/**
+ * API: Contact & Lead Collection
+ * Logs inquiries to the server console (simulating DB storage)
+ */
 app.post('/api/contact', (req, res) => {
-  const { name, email, type } = req.body;
-  console.log(`[Lead] Type: ${type}, From: ${name} <${email}>`);
-  res.json({ success: true });
+  const { type, name, email, company, role, message, timeline } = req.body;
+  const timestamp = new Date().toISOString();
+
+  console.log(`\n========= NEW INQUIRY RECEIVED [${timestamp}] =========`);
+  console.log(`TYPE:     ${type?.toUpperCase() || 'GENERAL'}`);
+  console.log(`FROM:     ${name} <${email}>`);
+  if (company) console.log(`COMPANY:  ${company} (${role || 'N/A'})`);
+  if (timeline) console.log(`TIMELINE: ${timeline}`);
+  console.log(`MESSAGE:  ${message}`);
+  console.log(`=======================================================\n`);
+
+  res.json({ success: true, message: "Inquiry recorded successfully." });
 });
 
 app.get('*', (req, res) => {
