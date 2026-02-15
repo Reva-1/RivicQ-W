@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Cloud, ShieldCheck, Zap, Server, Lock, Cpu, ArrowRight, CheckCircle2, Activity, Database, Layers, ExternalLink, ScanSearch, BrainCircuit, Network } from 'lucide-react';
+import { Cloud, ShieldCheck, Zap, Server, Lock, Cpu, ArrowRight, CheckCircle2, Activity, Database, Layers, ExternalLink, ScanSearch, BrainCircuit, Network, Workflow, RefreshCw, Key } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const CloudHSM: React.FC = () => {
@@ -73,22 +73,77 @@ const CloudHSM: React.FC = () => {
         </div>
       </section>
 
-      {/* Discovery & Intelligence Section (NEW) */}
+      {/* Integration with CryptoBOM (NEW SECTION) */}
       <section className="mb-24">
         <div className="flex items-center gap-4 mb-10">
-          <div className="p-3 bg-indigo-600 text-white rounded-2xl shadow-lg">
-            <ScanSearch size={24} />
+          <div className="p-3 bg-emerald-600 text-white rounded-2xl shadow-lg">
+            <Workflow size={24} />
           </div>
           <div>
-            <h2 className="text-3xl font-serif font-bold text-slate-900 m-0">Smart Security Scanning</h2>
-            <p className="text-xs text-indigo-600 font-bold uppercase tracking-widest mt-1">Finding the risks you can't see</p>
+            <h2 className="text-3xl font-serif font-bold text-slate-900 m-0">The Remediation Engine</h2>
+            <p className="text-xs text-emerald-600 font-bold uppercase tracking-widest mt-1">How Cloud HSM fixes CryptoBOM findings</p>
           </div>
         </div>
 
+        <p className="text-lg text-slate-600 mb-8 leading-relaxed">
+          CryptoBOM finds the problems; Cloud HSM provides the solution. When our SaaS scanner detects a weak key in your software, the Cloud HSM offers an immediate, secure destination to migrate that risk away from your code.
+        </p>
+
+        <div className="not-prose grid md:grid-cols-3 gap-6">
+           {/* Step 1 */}
+           <div className="p-8 border border-slate-100 rounded-[2rem] bg-slate-50 relative">
+              <div className="absolute top-8 right-8 text-slate-200 font-black text-6xl opacity-20">1</div>
+              <div className="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-red-500 mb-6 border border-slate-100">
+                <ScanSearch size={24}/>
+              </div>
+              <h4 className="text-lg font-bold text-slate-900 mb-3">Identify</h4>
+              <p className="text-xs text-slate-500 leading-relaxed mb-4">
+                <strong>CryptoBOM SaaS</strong> scans your codebase and detects a hardcoded RSA-2048 private key.
+              </p>
+              <div className="text-[10px] font-mono text-red-500 bg-red-50 p-2 rounded border border-red-100">
+                Warning: Weak Key Exposed
+              </div>
+           </div>
+
+           {/* Step 2 */}
+           <div className="p-8 border border-blue-100 rounded-[2rem] bg-blue-50/30 relative">
+              <div className="absolute top-8 right-8 text-blue-200 font-black text-6xl opacity-20">2</div>
+              <div className="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-blue-600 mb-6 border border-blue-100">
+                <RefreshCw size={24}/>
+              </div>
+              <h4 className="text-lg font-bold text-slate-900 mb-3">Migrate</h4>
+              <p className="text-xs text-slate-500 leading-relaxed mb-4">
+                You use the <strong>RivicQ SDK</strong> to import that key material securely into the Cloud HSM.
+              </p>
+              <div className="text-[10px] font-mono text-blue-600 bg-blue-50 p-2 rounded border border-blue-100">
+                Action: Key Import > Wrap
+              </div>
+           </div>
+
+           {/* Step 3 */}
+           <div className="p-8 border border-slate-100 rounded-[2rem] bg-slate-50 relative">
+              <div className="absolute top-8 right-8 text-slate-200 font-black text-6xl opacity-20">3</div>
+              <div className="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-emerald-600 mb-6 border border-slate-100">
+                <ShieldCheck size={24}/>
+              </div>
+              <h4 className="text-lg font-bold text-slate-900 mb-3">Secure</h4>
+              <p className="text-xs text-slate-500 leading-relaxed mb-4">
+                The key is deleted from code. The app now calls the HSM to sign data. The key never leaves the vault.
+              </p>
+              <div className="text-[10px] font-mono text-emerald-600 bg-emerald-50 p-2 rounded border border-emerald-100">
+                Status: FIPS 140-3 Protected
+              </div>
+           </div>
+        </div>
+      </section>
+
+      {/* Discovery & Intelligence Section */}
+      <section className="mb-24">
         <div className="grid md:grid-cols-2 gap-12 not-prose items-center">
           <div>
+             <h2 className="text-3xl font-serif font-bold text-slate-900 mb-6">Smart Intelligence</h2>
              <p className="text-lg text-slate-600 leading-relaxed mb-8">
-               Our Cloud HSM doesn't just store keys; it acts as a watchdog. It constantly checks your systems to see if there are any "hidden" keys in your code that aren't being managed properly (we call this "Shadow Cryptography").
+               Our Cloud HSM doesn't just store keys; it acts as a watchdog. It uses smart AI models inside our secure hardware to spot patterns of old, weak security in your cloud traffic.
              </p>
              
              <div className="space-y-6">
@@ -97,21 +152,21 @@ const CloudHSM: React.FC = () => {
                       <BrainCircuit size={20} />
                    </div>
                    <div>
-                      <h4 className="font-bold text-slate-900 text-sm m-0">AI that finds weak security</h4>
+                      <h4 className="font-bold text-slate-900 text-sm m-0">Quantum Execution Environment</h4>
                       <p className="text-xs text-slate-500 mt-1 leading-relaxed">
-                        We use smart AI models inside our secure hardware to spot patterns of old, weak security in your cloud traffic.
+                        Execute Post-Quantum algorithms (ML-KEM) directly inside the hardware boundary, ensuring the math itself is protected from side-channel attacks.
                       </p>
                    </div>
                 </div>
 
                 <div className="flex gap-4">
                    <div className="p-2 bg-blue-50 text-blue-600 rounded-lg h-fit border border-blue-100">
-                      <Network size={20} />
+                      <Key size={20} />
                    </div>
                    <div>
-                      <h4 className="font-bold text-slate-900 text-sm m-0">IBM Quantum Integration</h4>
+                      <h4 className="font-bold text-slate-900 text-sm m-0">Lifecycle Management</h4>
                       <p className="text-xs text-slate-500 mt-1 leading-relaxed">
-                        We work with IBM Cloud to help companies test quantum computers safely. We make sure any data sent to a quantum computer is encrypted first.
+                        Automatically rotate keys based on the policies defined in your CryptoBOM dashboard.
                       </p>
                    </div>
                 </div>
@@ -124,24 +179,24 @@ const CloudHSM: React.FC = () => {
              </div>
              <div className="relative z-10 font-mono text-[10px] space-y-3">
                 <div className="text-slate-500 border-b border-slate-800 pb-2 mb-4">
-                   // SCANNING_SYSTEM
+                   // HSM_LOG_STREAM
                 </div>
                 <div className="flex justify-between">
-                   <span className="text-indigo-400">TARGET:</span>
-                   <span className="text-white">Cloud_Cluster_04</span>
+                   <span className="text-indigo-400">OPERATION:</span>
+                   <span className="text-white">Sign_Transaction</span>
                 </div>
                 <div className="flex justify-between">
-                   <span className="text-indigo-400">FOUND:</span>
-                   <span className="text-red-400">Weak RSA Key (Old)</span>
+                   <span className="text-indigo-400">ALGORITHM:</span>
+                   <span className="text-emerald-400">ML-DSA-44 (FIPS 204)</span>
                 </div>
                 <div className="flex justify-between">
-                   <span className="text-indigo-400">STATUS:</span>
-                   <span className="text-red-400">Unmanaged / Risky</span>
+                   <span className="text-indigo-400">PROTECTION:</span>
+                   <span className="text-emerald-400">Hardware_Backed</span>
                 </div>
-                <div className="mt-4 p-3 bg-indigo-900/30 border border-indigo-500/30 rounded-lg text-indigo-200">
-                   {`> Alert: Risk Detected.`}
+                <div className="mt-4 p-3 bg-emerald-900/20 border border-emerald-500/30 rounded-lg text-emerald-200">
+                   {`> Success: Signature Generated.`}
                    <br/>
-                   {`> Action: Flag for Upgrade.`}
+                   {`> Audit: Logged to Immutable Ledger.`}
                 </div>
              </div>
           </div>

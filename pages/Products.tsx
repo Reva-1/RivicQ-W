@@ -65,9 +65,9 @@ const Products: React.FC = () => {
       <section className="not-prose mb-24">
         <ProductDemo />
         <div className="mt-6 flex justify-center gap-8 text-[10px] font-bold uppercase tracking-widest text-slate-400">
-          <div className="flex items-center gap-2"><Search size={12}/> 1. Discover</div>
-          <div className="flex items-center gap-2"><Database size={12}/> 2. Inventory</div>
-          <div className="flex items-center gap-2"><Shield size={12}/> 3. Remediate</div>
+          <div className="flex items-center gap-2"><Search size={12}/> 1. Discover (SaaS)</div>
+          <div className="flex items-center gap-2"><Database size={12}/> 2. Inventory (SaaS)</div>
+          <div className="flex items-center gap-2"><Shield size={12}/> 3. Secure (HSM)</div>
         </div>
       </section>
 
@@ -103,7 +103,7 @@ const Products: React.FC = () => {
             features={[
               "Continuous CI/CD Monitoring",
               "Automated NIST Remediation",
-              "Cloud HSM Integration",
+              "Direct Cloud HSM Integration",
               "DORA & FIPS Compliance Reports",
               "24/7 Dedicated Support"
             ]}
@@ -135,8 +135,8 @@ const Products: React.FC = () => {
               <div className="w-10 h-10 bg-white rounded-xl shadow-sm flex items-center justify-center text-purple-600 mb-4">
                  <Server size={20}/>
               </div>
-              <h4 className="font-bold text-slate-900 mb-2">Cloud HSM Ready</h4>
-              <p className="text-sm text-slate-500 leading-relaxed">Seamlessly move identified weak keys into our secure Cloud Hardware Security Modules.</p>
+              <h4 className="font-bold text-slate-900 mb-2">Cloud HSM Integration</h4>
+              <p className="text-sm text-slate-500 leading-relaxed">Seamlessly move identified weak keys into our secure Cloud Hardware Security Modules for instant remediation.</p>
            </div>
         </div>
       </section>
