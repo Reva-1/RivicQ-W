@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Github, Mail, Linkedin, Globe, Shield, Lock, Cpu, Globe2, Sparkles, Layout, Building, Users, Scale, ShieldCheck, Microscope, BookOpen, Handshake, Briefcase, Cloud } from 'lucide-react';
+import { Github, Mail, Linkedin, Globe, Shield, Lock, Cpu, Globe2, Sparkles, Layout, Building, Users, Scale, ShieldCheck, Microscope, BookOpen, Handshake, Briefcase, Cloud, Box } from 'lucide-react';
 
 const Sidebar: React.FC = () => {
   const groups = [
@@ -14,12 +14,12 @@ const Sidebar: React.FC = () => {
       ]
     },
     {
-      label: 'Security Protocol',
+      label: 'Product Suite',
       links: [
-        { name: 'RQSP Protocol', path: '/rqsp', icon: <Lock size={12}/> },
-        { name: 'Architecture', path: '/platform', icon: <Cpu size={12}/> },
+        { name: 'Products & SaaS', path: '/products', icon: <Box size={12}/> },
         { name: 'Cloud HSM', path: '/cloud-hsm', icon: <Cloud size={12}/> },
-        { name: 'Methodology', path: '/methodology', icon: <Microscope size={12}/> },
+        { name: 'Architecture', path: '/platform', icon: <Cpu size={12}/> },
+        { name: 'RQSP Protocol', path: '/rqsp', icon: <Lock size={12}/> },
         { name: 'Developer SDK', path: '/sdk', icon: <Layout size={12}/> },
       ]
     },
@@ -28,8 +28,7 @@ const Sidebar: React.FC = () => {
       links: [
         { name: 'Solutions', path: '/solutions', icon: <Building size={12}/> },
         { name: 'Services', path: '/services', icon: <Shield size={12}/> },
-        { name: 'Use Cases', path: '/use-cases', icon: <Layout size={12}/> },
-        { name: 'Partner Program', path: '/partner', icon: <Handshake size={12}/> },
+        { name: 'Compliance', path: '/compliance', icon: <ShieldCheck size={12}/> },
         { name: 'Pricing', path: '/pricing', icon: <Layout size={12}/> },
       ]
     },
@@ -37,18 +36,16 @@ const Sidebar: React.FC = () => {
       label: 'Intelligence',
       links: [
         { name: 'Trust Center', path: '/trust', icon: <ShieldCheck size={12}/> },
-        { name: 'Compliance', path: '/compliance', icon: <Shield size={12}/> },
+        { name: 'Methodology', path: '/methodology', icon: <Microscope size={12}/> },
         { name: 'Glossary', path: '/glossary', icon: <BookOpen size={12}/> },
-        { name: 'Resources', path: '/resources', icon: <Layout size={12}/> },
       ]
     },
     {
-      label: 'Governance',
+      label: 'Company',
       links: [
-        { name: 'Legal', path: '/legal', icon: <Scale size={12}/> },
-        { name: 'Privacy', path: '/privacy', icon: <Shield size={12}/> },
         { name: 'Team', path: '/team', icon: <Users size={12}/> },
         { name: 'Careers', path: '/careers', icon: <Briefcase size={12}/> },
+        { name: 'Legal', path: '/legal', icon: <Scale size={12}/> },
       ]
     }
   ];

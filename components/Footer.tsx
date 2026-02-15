@@ -41,21 +41,21 @@ const Footer: React.FC = () => {
           </div>
 
           <div>
-            <h3 className="text-[10px] font-bold text-slate-900 uppercase tracking-[0.2em] mb-4">Protocol</h3>
+            <h3 className="text-[10px] font-bold text-slate-900 uppercase tracking-[0.2em] mb-4">Products</h3>
             <ul className="space-y-2 list-none p-0 text-xs">
-              <li><Link to="/rqsp" className="hover:text-blue-600 transition-colors">RQSP Logic</Link></li>
-              <li><Link to="/platform" className="hover:text-blue-600 transition-colors">ML-KEM 768</Link></li>
-              <li><Link to="/platform" className="hover:text-blue-600 transition-colors">CryptoBOM</Link></li>
-              <li><span className="text-slate-400 italic">Technical Whitepaper (Coming Soon)</span></li>
+              <li><Link to="/products" className="hover:text-blue-600 transition-colors">CryptoBOM SaaS</Link></li>
+              <li><Link to="/cloud-hsm" className="hover:text-blue-600 transition-colors">Cloud HSM</Link></li>
+              <li><Link to="/sdk" className="hover:text-blue-600 transition-colors">Developer SDK</Link></li>
+              <li><Link to="/platform" className="hover:text-blue-600 transition-colors">Architecture</Link></li>
             </ul>
           </div>
 
           <div>
             <h3 className="text-[10px] font-bold text-slate-900 uppercase tracking-[0.2em] mb-4">Governance</h3>
             <ul className="space-y-2 list-none p-0 text-xs">
+              <li><Link to="/compliance" className="hover:text-blue-600 transition-colors">Compliance (NIST/DORA)</Link></li>
               <li><Link to="/trust" className="hover:text-blue-600 transition-colors">Trust Center</Link></li>
               <li><Link to="/legal" className="hover:text-blue-600 transition-colors">Legal & Terms</Link></li>
-              <li><Link to="/compliance" className="hover:text-blue-600 transition-colors">Compliance</Link></li>
             </ul>
           </div>
 

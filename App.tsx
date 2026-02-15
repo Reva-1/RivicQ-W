@@ -6,6 +6,7 @@ import { Loader2 } from 'lucide-react';
 
 // Lazy Load Pages
 const Home = React.lazy(() => import('./pages/Home'));
+const Products = React.lazy(() => import('./pages/Products')); // New Page
 const Platform = React.lazy(() => import('./pages/Platform'));
 const CloudHSM = React.lazy(() => import('./pages/CloudHSM'));
 const RQSP = React.lazy(() => import('./pages/RQSP'));
@@ -34,6 +35,7 @@ const RouteHandler = () => {
     window.scrollTo(0, 0);
     const titles: Record<string, string> = {
       '/': 'RivicQ | Quantum-Safe Infrastructure',
+      '/products': 'Products & SaaS | RivicQ',
       '/rqsp': 'RQSP Protocol | RivicQ',
       '/platform': 'Platform Architecture | RivicQ',
       '/cloud-hsm': 'Cloud HSM vHSM | RivicQ',
@@ -75,6 +77,7 @@ const App: React.FC = () => {
         <Suspense fallback={<PageLoader />}>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/products" element={<Products />} />
             <Route path="/rqsp" element={<RQSP />} />
             <Route path="/platform" element={<Platform />} />
             <Route path="/cloud-hsm" element={<CloudHSM />} />

@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Check, Send, ShieldCheck, Mail, Building2, User } from 'lucide-react';
+import { Check, Send, ShieldCheck, Mail, Briefcase, Zap, Shield } from 'lucide-react';
 
 const PricingCard: React.FC<{ 
   title: string, 
@@ -25,7 +25,8 @@ const PricingCard: React.FC<{
       <h3 className="text-xl font-serif font-bold text-slate-900 m-0 mb-2">{title}</h3>
       <div className="flex items-baseline gap-1 mb-4">
         <span className="text-4xl font-bold tracking-tight text-slate-900">{price}</span>
-        {price !== 'Custom' && <span className="text-slate-500 font-medium">/mo</span>}
+        {/* Only show /mo if price looks like a monthly fee */}
+        {['Free', 'Custom', 'Inquire', 'Contact'].indexOf(price) === -1 && <span className="text-slate-500 font-medium">/mo</span>}
       </div>
       <p className="text-sm text-slate-600 leading-relaxed min-h-[40px]">{description}</p>
     </div>
@@ -72,32 +73,67 @@ const Pricing: React.FC = () => {
     <article className="prose prose-lg prose-slate max-w-none">
       <h1 className="text-4xl md:text-5xl font-bold mb-4">Pricing & Plans</h1>
       <p className="lead font-serif italic text-slate-500 mb-12">
-        Transparent pricing for quantum-safe products and classical security services.
+        Transparent pricing for quantum-safe products and professional security services.
       </p>
 
+      {/* CryptoBOM SaaS Section */}
       <section className="mb-20">
         <div className="flex items-center gap-3 mb-10">
-          <ShieldCheck className="text-blue-600" size={28} />
-          <h2 className="m-0 font-serif text-3xl">Platform & SaaS</h2>
+          <Zap className="text-blue-600" size={28} />
+          <h2 className="m-0 font-serif text-3xl">CryptoBOM SaaS</h2>
         </div>
         <div className="not-prose grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <PricingCard 
-            title="Community" price="Free" description="For researchers exploring PQC standards."
-            features={["Open Source Agent", "CycloneDX Export", "Public Git Support"]}
+            title="Community" 
+            price="Free" 
+            description="For researchers and developers exploring PQC standards."
+            features={["Open Source Agent", "Local JSON Export", "Public Git Scanning", "Community Support"]}
             cta="Start Building"
           />
           <PricingCard 
-            title="Business" price="€499" isFeatured badge="Most Popular"
-            description="Full visibility for regulated microservices."
-            features={["Continuous Scanning", "Central Dashboard", "Policy Enforcement"]}
-            cta="Start Trial"
+            title="Pilot Program" 
+            price="Inquire" 
+            isFeatured 
+            badge="Limited Slots"
+            description="Proof-of-Concept validation for organizations starting their migration."
+            features={["Deep Scan Analysis", "Remediation Roadmap", "Dedicated Engineer Support", "1 Month Access"]}
+            cta="Request Pilot"
           />
           <PricingCard 
-            title="Enterprise" price="Custom" badge="Q2 2026 Access"
-            description="Control for mission-critical infrastructure."
-            features={["Dedicated HSM clusters", "24/7 Support", "Compliance Reporting"]}
+            title="PQC Enterprise" 
+            price="€5,000" 
+            badge="Full Suite"
+            description="Total infrastructure control for regulated industries."
+            features={["Continuous Monitoring", "Cloud HSM Integration", "DORA Compliance Reports", "24/7 SLA Support"]}
             cta="Contact Sales"
           />
+        </div>
+      </section>
+
+      {/* CSaaS Section */}
+      <section className="mb-24">
+        <div className="flex items-center gap-3 mb-10">
+          <Shield className="text-indigo-600" size={28} />
+          <h2 className="m-0 font-serif text-3xl">Cyber Security as a Service (CSaaS)</h2>
+        </div>
+        <p className="text-slate-600 mb-8">
+          On-demand security expertise to harden your infrastructure against current and future threats.
+        </p>
+        <div className="not-prose grid grid-cols-1 md:grid-cols-2 gap-8">
+           <PricingCard 
+             title="Strategic Advisory" 
+             price="Contact" 
+             description="Leadership guidance for compliance and architecture."
+             features={["vCISO Services", "NIS2 & DORA Gap Analysis", "PQC Migration Strategy", "Architecture Review"]}
+             cta="Get Quote"
+           />
+           <PricingCard 
+             title="Offensive Security" 
+             price="Contact" 
+             description="Technical validation of your defenses."
+             features={["Red Teaming", "Penetration Testing (Web/Cloud)", "Smart Contract Audits", "Hardware Side-Channel Analysis"]}
+             cta="Get Quote"
+           />
         </div>
       </section>
 
@@ -111,7 +147,7 @@ const Pricing: React.FC = () => {
               </div>
               <h2 className="text-4xl font-serif font-bold mb-6 text-slate-900 m-0">Contact Sales</h2>
               <p className="text-slate-600 text-lg mb-10 leading-relaxed max-w-md">
-                Our specialized engineering team is ready to discuss your PQC migration path and enterprise security needs.
+                Ready to secure your future? Our engineering team is available to scope your Pilot or Enterprise needs.
               </p>
               <div className="flex items-center gap-4 text-xs font-bold text-slate-400 uppercase tracking-widest">
                 <Check size={16} className="text-emerald-500" /> Response within 24 hours
@@ -145,7 +181,7 @@ const Pricing: React.FC = () => {
                   </div>
                   <div className="space-y-1">
                     <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 ml-1">Your Inquiry</label>
-                    <textarea required className="w-full px-5 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-2 focus:ring-blue-500/20 transition-all min-h-[140px] resize-none" placeholder="How can we help with your transition?" value={formData.message} onChange={e => setFormData({...formData, message: e.target.value})}></textarea>
+                    <textarea required className="w-full px-5 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-2 focus:ring-blue-500/20 transition-all min-h-[140px] resize-none" placeholder="I am interested in the Pilot Program / CSaaS..." value={formData.message} onChange={e => setFormData({...formData, message: e.target.value})}></textarea>
                   </div>
                   <button type="submit" className="w-full py-4 bg-slate-900 text-white font-bold rounded-2xl hover:bg-blue-600 transition-all flex items-center justify-center gap-2 shadow-xl shadow-slate-200 uppercase tracking-widest text-xs mt-4">
                     Send Inquiry <Send size={16}/>
