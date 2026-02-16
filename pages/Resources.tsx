@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
-import { Copy, Check, ExternalLink, ShieldCheck, FileText, Github, Landmark, Lock, ChevronDown, ChevronUp, Zap, Activity, Workflow, ShieldAlert, ArrowRight, Layers, Search, Database, Repeat, Cpu, Terminal, Info, Target, LayoutGrid, Beaker, Gavel, Bookmark } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Copy, Check, ExternalLink, ShieldCheck, FileText, Globe, Landmark, Lock, ChevronDown, ChevronUp, Zap, Activity, Workflow, ShieldAlert, ArrowRight, Layers, Search, Database, Repeat, Cpu, Terminal, Info, Target, LayoutGrid, Beaker, Gavel, Bookmark, PhoneCall } from 'lucide-react';
 import CryptoBOMScannerDemo from '../components/CryptoBOMScannerDemo';
 
 const FAQItem: React.FC<{ question: string, answer: React.ReactNode, id: string }> = ({ question, answer, id }) => {
@@ -20,9 +21,9 @@ const FAQItem: React.FC<{ question: string, answer: React.ReactNode, id: string 
       </button>
       {isOpen && (
         <div id={`faq-answer-${id}`} className="mt-4 animate-fadeIn" role="region">
-          <p className="text-slate-600 leading-relaxed text-sm m-0">
+          <div className="text-slate-600 leading-relaxed text-sm m-0">
             {answer}
-          </p>
+          </div>
         </div>
       )}
     </div>
@@ -284,6 +285,24 @@ const Resources: React.FC = () => {
             question="Can the POC scan my private repository?"
             answer="The web-based POC is for preview. Full laboratory validation is in progress at Leap Berlin. For private repository scanning, we provide a secure CLI tool and a managed SaaS instance that connects via SSH/HTTPS."
           />
+        </div>
+      </section>
+
+      {/* Next Steps CTA Section */}
+      <section className="mb-24 not-prose">
+        <div className="bg-slate-50 border border-slate-200 rounded-[3rem] p-10 md:p-16 relative overflow-hidden">
+          <div className="absolute top-0 right-0 p-12 opacity-5 text-slate-900 pointer-events-none">
+            <PhoneCall size={160} />
+          </div>
+          <div className="relative z-10">
+            <h2 className="text-3xl font-serif font-bold text-slate-900 mb-6 m-0">Next Steps</h2>
+            <p className="text-xl text-slate-600 font-serif italic mb-10 max-w-2xl leading-relaxed">
+              Contact Sales for a PQC Consultation.
+            </p>
+            <Link to="/pricing" className="inline-flex items-center gap-3 px-10 py-5 bg-slate-900 text-white rounded-xl font-bold hover:bg-blue-600 transition-all shadow-xl shadow-slate-200 uppercase text-xs tracking-widest">
+              Consult with Sales <ArrowRight size={18} />
+            </Link>
+          </div>
         </div>
       </section>
 
