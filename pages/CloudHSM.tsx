@@ -116,7 +116,7 @@ const CloudHSM: React.FC = () => {
                 You use the <strong>RivicQ SDK</strong> to import that key material securely into the Cloud HSM.
               </p>
               <div className="text-[10px] font-mono text-blue-600 bg-blue-50 p-2 rounded border border-blue-100">
-                Action: Key Import > Wrap
+                Action: Key Import &gt; Wrap
               </div>
            </div>
 

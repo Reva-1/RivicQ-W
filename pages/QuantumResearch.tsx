@@ -62,7 +62,7 @@ const QuantumResearch: React.FC = () => {
                         Our primary research focuses on the optimization and implementation of <strong>NIST-standardized lattice-based algorithms</strong> (ML-KEM and ML-DSA).
                     </p>
                     <ul className="space-y-2 list-none p-0 m-0 text-slate-500 text-xs">
-                        <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-emerald-500 rounded-full"></div> <strong>Kyber (ML-KEM):</strong> Optimized for < 10ms TLS handshakes.</li>
+                        <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-emerald-500 rounded-full"></div> <strong>Kyber (ML-KEM):</strong> Optimized for &lt; 10ms TLS handshakes.</li>
                         <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-emerald-500 rounded-full"></div> <strong>Dilithium (ML-DSA):</strong> High-throughput signatures for blockchain.</li>
                     </ul>
                 </ResearchCard>
