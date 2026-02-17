@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Github, Mail, Linkedin, Globe, Shield, Lock, Cpu, Globe2, Sparkles, Layout, Building, Users, Scale, ShieldCheck, Microscope, BookOpen, Handshake, Briefcase, Cloud, Box, Atom, Star, Target } from 'lucide-react';
+import { Github, Mail, Linkedin, Globe, Shield, Lock, Cpu, Globe2, Sparkles, Layout, Building, Users, Scale, ShieldCheck, Microscope, BookOpen, Handshake, Briefcase, Cloud, Box, Atom, Star, Target, FileText } from 'lucide-react';
 
 const Sidebar: React.FC = () => {
   const groups = [
@@ -11,6 +11,7 @@ const Sidebar: React.FC = () => {
         { name: 'Home', path: '/', icon: <Layout size={12}/> },
         { name: 'Our Story', path: '/story', icon: <Sparkles size={12}/> },
         { name: 'Products & SaaS', path: '/products', icon: <Box size={12}/> },
+        { name: 'Use Cases', path: '/use-cases', icon: <FileText size={12}/> },
       ]
     },
     {
@@ -28,12 +29,13 @@ const Sidebar: React.FC = () => {
         { name: 'Quantum Research', path: '/research', icon: <Atom size={12}/> },
         { name: 'Trust Center', path: '/trust', icon: <ShieldCheck size={12}/> },
         { name: 'Methodology', path: '/methodology', icon: <Microscope size={12}/> },
-        { name: 'Compliance', path: '/compliance', icon: <ShieldCheck size={12}/> },
+        { name: 'Resources & Compliance', path: '/resources', icon: <ShieldCheck size={12}/> },
       ]
     },
     {
       label: 'Company',
       links: [
+        { name: 'Partner Program', path: '/partner', icon: <Handshake size={12}/> },
         { name: 'Roadmap', path: '/roadmap', icon: <Globe2 size={12}/> },
         { name: 'Pricing', path: '/pricing', icon: <Layout size={12}/> },
         { name: 'Team', path: '/team', icon: <Users size={12}/> },

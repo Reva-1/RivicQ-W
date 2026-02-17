@@ -1,38 +1,38 @@
 
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ShieldCheck, ArrowRight, Lock, Zap, Activity, Cloud, Search, CheckCircle2, ShieldAlert, Cpu, Globe, Info, Target, Users, Microscope, Database, RefreshCw, Layers, Terminal } from 'lucide-react';
+import { ShieldCheck, ArrowRight, Lock, Zap, Activity, Cloud, Search, CheckCircle2, ShieldAlert, Cpu, Globe, Info, Target, Users, Microscope, Database, RefreshCw, Layers, Terminal, Server, CreditCard, Key, Settings, BarChart3 } from 'lucide-react';
 import HSMBlueprint from '../components/HSMBlueprint';
 
-const EndToEndProcess: React.FC = () => {
+const EndToEndScope: React.FC = () => {
   const [activeStep, setActiveStep] = useState(0);
   const steps = [
     {
-      title: "1. Discover",
+      title: "1. AI Discovery",
       icon: <Search className="text-blue-500" />,
-      desc: "Our AI scanner finds hidden security holes in your software.",
-      status: "Scanning: Legacy RSA-2048 keys",
+      desc: "Scan codebases and cloud VPCs to find hidden cryptographic liabilities.",
+      action: "SaaS Layer: GitHub/GitLab Scanners",
       bg: "bg-blue-50"
     },
     {
-      title: "2. Inventory",
+      title: "2. Dynamic Inventory",
       icon: <Database className="text-indigo-500" />,
-      desc: "We build a complete list (CryptoBOM) of all your digital keys.",
-      status: "Cataloging: 42 vulnerable assets",
+      desc: "Generate a live Cryptographic Bill of Materials (CryptoBOM) for compliance.",
+      action: "Asset Layer: CycloneDX Reporting",
       bg: "bg-indigo-50"
     },
     {
-      title: "3. Vaulting",
+      title: "3. HSM Transformation",
       icon: <RefreshCw className="text-emerald-500" />,
-      desc: "Move keys from code into our secure, physical Cloud HSM.",
-      status: "Migration: Secure Key Wrapping",
+      desc: "Wrap vulnerable keys in NIST-standard PQC layers within physical vaults.",
+      action: "Hardware Layer: FIPS 140-3 HSM",
       bg: "bg-emerald-50"
     },
     {
-      title: "4. Fortify",
-      icon: <Lock className="text-slate-900" />,
-      desc: "Upgrade to unbreakable, quantum-safe encryption forever.",
-      status: "Active: NIST ML-KEM Protection",
+      title: "4. Unified Governance",
+      icon: <Settings className="text-slate-900" />,
+      desc: "Manage multi-tenant isolation, policies, and quantum-safe identity.",
+      action: "Orchestration Layer: RQSP Control Plane",
       bg: "bg-slate-100"
     }
   ];
@@ -45,10 +45,10 @@ const EndToEndProcess: React.FC = () => {
   }, []);
 
   return (
-    <div className="not-prose grid md:grid-cols-2 gap-12 items-center bg-white p-10 md:p-16 rounded-[4rem] border border-slate-100 shadow-sm relative overflow-hidden">
+    <div className="not-prose grid lg:grid-cols-2 gap-12 items-center bg-white p-10 md:p-16 rounded-[4rem] border border-slate-100 shadow-sm relative overflow-hidden">
       <div className="absolute inset-0 bg-technical opacity-5"></div>
       
-      <div className="relative z-10 space-y-8">
+      <div className="relative z-10 space-y-6">
         {steps.map((step, i) => (
           <div key={i} className={`flex items-start gap-4 p-6 rounded-3xl transition-all duration-500 border ${activeStep === i ? 'bg-white border-blue-100 shadow-xl scale-[1.02]' : 'bg-transparent border-transparent opacity-40 scale-95'}`}>
             <div className={`p-3 rounded-2xl ${activeStep === i ? step.bg : 'bg-slate-50'}`}>
@@ -57,6 +57,7 @@ const EndToEndProcess: React.FC = () => {
             <div>
               <h4 className="text-lg font-bold text-slate-900 m-0">{step.title}</h4>
               <p className="text-sm text-slate-500 mt-1 m-0">{step.desc}</p>
+              {activeStep === i && <p className="text-[10px] font-bold text-blue-600 uppercase mt-3 tracking-widest">{step.action}</p>}
             </div>
           </div>
         ))}
@@ -68,13 +69,8 @@ const EndToEndProcess: React.FC = () => {
            <div className={`w-24 h-24 rounded-[2.5rem] flex items-center justify-center mb-6 shadow-2xl transition-colors duration-1000 ${activeStep === 3 ? 'bg-emerald-600 text-white' : 'bg-blue-600 text-white'}`}>
              {steps[activeStep].icon}
            </div>
-           <div className="font-mono text-[10px] text-blue-500 font-bold uppercase tracking-widest mb-2">Automated Lifecycle</div>
-           <div className="text-slate-900 font-bold text-lg leading-tight h-14">{steps[activeStep].status}</div>
-           <div className="flex gap-1.5 mt-8">
-             {steps.map((_, i) => (
-               <div key={i} className={`h-1 rounded-full transition-all duration-500 ${activeStep === i ? 'w-8 bg-blue-600' : 'w-2 bg-slate-200'}`}></div>
-             ))}
-           </div>
+           <div className="font-mono text-[10px] text-blue-500 font-bold uppercase tracking-widest mb-2">Operational Scope</div>
+           <div className="text-slate-900 font-bold text-lg leading-tight h-14">{steps[activeStep].action}</div>
         </div>
       </div>
     </div>
@@ -90,35 +86,89 @@ const Home: React.FC = () => {
         <div className="max-w-4xl">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-slate-900 text-white text-[9px] font-bold uppercase tracking-[0.2em] mb-8 shadow-sm">
             <Activity size={10} className="text-blue-400 animate-pulse"/>
-            System Status: 2030 Ready • Berlin Hub
+            System Status: R&D Lab • Berlin Innovation
           </div>
           <h1 className="text-6xl md:text-8xl font-bold mb-8 leading-[0.95] tracking-tight text-slate-900">
-            Fix your security <br/> before the <span className="text-blue-600">machines do.</span>
+            Secure your <br/>infrastructure for the <span className="text-blue-600">next 50 years.</span>
           </h1>
           <p className="text-2xl text-slate-500 font-serif italic leading-relaxed m-0 max-w-3xl">
-            Today's encryption is being harvested now to be decrypted later. RivicQ provides the complete transition layer to protect your data forever.
+            Robust Integrated Verified Infrastructure Computing & Quantum (R.I.V.I.C.Q). We are building the transition layer between legacy encryption and the quantum future.
           </p>
           <div className="flex flex-wrap gap-4 not-prose mt-12">
-            <a href="#process" className="px-10 py-5 bg-slate-900 text-white rounded-2xl font-bold text-xs uppercase tracking-widest hover:bg-blue-600 transition-all shadow-xl shadow-slate-200 flex items-center gap-2 group">
-              See the Process <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform"/>
+            <a href="#scope" className="px-10 py-5 bg-slate-900 text-white rounded-2xl font-bold text-xs uppercase tracking-widest hover:bg-blue-600 transition-all shadow-xl shadow-slate-200 flex items-center gap-2 group">
+              See the Scope <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform"/>
             </a>
-            <Link to="/products" className="px-10 py-5 bg-white border border-slate-200 text-slate-600 rounded-2xl font-bold text-xs uppercase tracking-widest hover:border-slate-900 transition-all">
-              Explore Our Tools
+            <Link to="/pricing" className="px-10 py-5 bg-white border border-slate-200 text-slate-600 rounded-2xl font-bold text-xs uppercase tracking-widest hover:border-slate-900 transition-all">
+              Request Lab Access
             </Link>
           </div>
         </div>
       </section>
 
       {/* 2. End-to-End Scope Rework */}
-      <section id="process" className="py-24 scroll-mt-24">
+      <section id="scope" className="py-24 scroll-mt-24">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-serif font-bold text-slate-900 m-0">The Full Lifecycle</h2>
-          <p className="text-slate-500 text-sm mt-3 uppercase tracking-widest font-bold">RivicQ's End-to-End Scope of Protection</p>
+          <p className="text-slate-500 text-sm mt-3 uppercase tracking-widest font-bold">End-to-End Cryptographic Resiliency</p>
         </div>
-        <EndToEndProcess />
+        <EndToEndScope />
       </section>
 
-      {/* 3. Simple Identity Triad */}
+      {/* 3. Addressing the Enterprise Gaps: Roadmap Section */}
+      <section className="py-24 border-y border-slate-100 bg-slate-50 -mx-8 md:-mx-16 px-8 md:px-16 not-prose">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-serif font-bold text-slate-900 m-0">Roadmap to Enterprise Launch</h2>
+            <p className="text-xs text-blue-600 font-bold uppercase tracking-[0.2em] mt-3">Filling the Gaps for RivicQ CryptoBOM SaaS</p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="p-8 bg-white rounded-3xl border border-slate-200 shadow-sm">
+               <div className="flex items-center gap-3 mb-6">
+                 <Server size={20} className="text-blue-500"/>
+                 <h4 className="text-sm font-bold text-slate-900 m-0 uppercase tracking-widest">SaaS Architecture</h4>
+               </div>
+               <ul className="space-y-3 m-0 p-0 text-xs text-slate-500">
+                 <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-blue-500"></div> Cloud Deployment (In Progress)</li>
+                 <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-slate-200"></div> Kratos Auth & Multi-tenancy</li>
+                 <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-slate-200"></div> PostgreSQL Production Instance</li>
+               </ul>
+            </div>
+            
+            <div className="p-8 bg-white rounded-3xl border border-slate-200 shadow-sm">
+               <div className="flex items-center gap-3 mb-6">
+                 <Cpu size={20} className="text-indigo-500"/>
+                 <h4 className="text-sm font-bold text-slate-900 m-0 uppercase tracking-widest">Quantum Engine</h4>
+               </div>
+               <ul className="space-y-3 m-0 p-0 text-xs text-slate-500">
+                 <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-indigo-500"></div> IBM Q / KIPU API Integration</li>
+                 <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-slate-200"></div> Real-world Entanglement Validation</li>
+                 <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-slate-200"></div> REST Enterprise Endpoints</li>
+               </ul>
+            </div>
+
+            <div className="p-8 bg-white rounded-3xl border border-slate-200 shadow-sm">
+               <div className="flex items-center gap-3 mb-6">
+                 <CreditCard size={20} className="text-emerald-500"/>
+                 <h4 className="text-sm font-bold text-slate-900 m-0 uppercase tracking-widest">Enterprise Operations</h4>
+               </div>
+               <ul className="space-y-3 m-0 p-0 text-xs text-slate-500">
+                 <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-slate-200"></div> Stripe Payment & Subscriptions</li>
+                 <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-slate-200"></div> Prometheus/Grafana Observability</li>
+                 <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-slate-200"></div> SOC2 Readiness Audit</li>
+               </ul>
+            </div>
+
+            <div className="p-8 bg-slate-900 rounded-3xl border border-slate-800 shadow-xl flex flex-col justify-center items-center text-center">
+                <span className="text-blue-400 font-bold text-3xl mb-2">Q4 2025</span>
+                <span className="text-slate-400 text-[10px] uppercase tracking-widest font-bold">Planned Enterprise Beta</span>
+                <Link to="/roadmap" className="mt-6 text-white text-xs font-bold uppercase tracking-widest border-b border-blue-500 pb-1 hover:text-blue-400 transition-colors">See Detailed Roadmap</Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Identity Triad */}
       <section className="py-24 border-y border-slate-100 not-prose">
         <div className="grid md:grid-cols-3 gap-12">
           <div className="space-y-6">
@@ -151,34 +201,8 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* 4. The Challenge */}
-      <section className="py-24">
-        <div className="max-w-3xl">
-          <span className="text-blue-600 font-bold text-[10px] uppercase tracking-[0.3em] mb-4 block">The Problem</span>
-          <h2 className="text-4xl md:text-5xl font-serif font-bold text-slate-900 mb-8 m-0">Data has a shelf life.</h2>
-          <p className="text-xl text-slate-600 leading-relaxed mb-12">
-            Most companies use encryption (RSA/ECC) designed decades ago. While safe today, quantum computers will break these in minutes. Hackers are stealing data <strong>today</strong> to unlock it in a few years.
-          </p>
-          <div className="not-prose p-10 bg-slate-900 rounded-[3rem] text-white relative overflow-hidden">
-             <div className="absolute top-0 right-0 p-8 opacity-10 pointer-events-none">
-               <ShieldAlert size={120} />
-             </div>
-             <div className="relative z-10 grid sm:grid-cols-2 gap-10">
-                <div className="space-y-2">
-                   <div className="text-emerald-400 font-bold text-3xl">50+ Years</div>
-                   <p className="text-slate-400 text-xs uppercase tracking-widest font-bold">Secure Duration with RivicQ</p>
-                </div>
-                <div className="space-y-2">
-                   <div className="text-red-400 font-bold text-3xl">&lt; 24 Hours</div>
-                   <p className="text-slate-400 text-xs uppercase tracking-widest font-bold">Legacy Cracking Time</p>
-                </div>
-             </div>
-          </div>
-        </div>
-      </section>
-
       {/* 5. Hardware Visualization */}
-      <section className="not-prose -mx-8 md:-mx-16 mb-24 bg-slate-50 py-24 border-y border-slate-100">
+      <section className="not-prose -mx-8 md:-mx-16 mb-24 bg-white py-24 border-y border-slate-50">
         <div className="px-8 md:px-16 mb-12 text-center">
             <h2 className="text-3xl font-serif font-bold text-slate-900 m-0">Rooted in Physics</h2>
             <p className="text-sm text-slate-500 mt-3 font-bold uppercase tracking-widest">Virtualized HSM Boundary (FIPS 140-3)</p>

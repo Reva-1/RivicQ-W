@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Copy, Check, Terminal, Cpu, Lock, Globe, Zap, ArrowRight } from 'lucide-react';
+import { Copy, Check, Terminal, Cpu, Lock, Globe, Zap, ArrowRight, ShieldCheck, Key } from 'lucide-react';
 
 const CodeSnippet: React.FC<{ code: string, lang: string }> = ({ code, lang }) => {
   const [copied, setCopied] = useState(false);
@@ -47,12 +47,40 @@ const SDK: React.FC = () => {
         </div>
       </section>
 
-      <h2>Example: Python Integration</h2>
+      <h2>Basic Integration: Python Signing</h2>
       <CodeSnippet lang="python" code={`from rivicq import RivicQClient
 client = RivicQClient(api_key="hsm_key")
 signature = client.sign(payload="Authorize", algorithm="ML-DSA-65")`} />
 
-      {/* CTA SECTION - UPDATED TO MATCH IMAGE 3 */}
+      <div className="my-16">
+        <div className="flex items-center gap-3 mb-6">
+          <div className="p-2 bg-emerald-50 text-emerald-600 rounded-lg">
+            <Key size={20} />
+          </div>
+          <h2 className="m-0 text-2xl font-serif font-bold">KMS API: PQC Session Management</h2>
+        </div>
+        <p className="text-sm text-slate-600 mb-6">
+          RivicQ's Key Management Service (KMS) allows for the creation and automated rotation of high-entropy session keys. Session keys are generated within the physical HSM boundary using quantum-tunneling entropy sources.
+        </p>
+        <CodeSnippet lang="python" code={`# Create and manage a Quantum-Safe Session Key
+kms_client = client.kms()
+
+# Initialize a PQC-wrapped session key with 24h expiration
+session = kms_client.create_session_key(
+    algorithm="ML-KEM-768",
+    usage="ENCRYPT_DATA",
+    ttl_seconds=86400,
+    tags={"env": "prod", "tenant_id": "8c29"}
+)
+
+print(f"Session Key ID: {session.id}")
+print(f"Quantum Risk Score: {session.risk_score}")
+
+# Transparently rotate the key based on policy
+new_session = kms_client.rotate_key(session.id)`} />
+      </div>
+
+      {/* CTA SECTION */}
       <section className="mt-16 not-prose">
         <div className="bg-[#0f172a] text-white rounded-[3rem] p-10 md:p-16 relative overflow-hidden group">
           <div className="absolute right-0 bottom-0 opacity-5 -mr-16 -mb-16 pointer-events-none group-hover:scale-110 transition-transform duration-1000">

@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Handshake, Percent, Award, Zap, ArrowRight, ShieldCheck, Users, Briefcase, Mail, Send, CheckCircle, Info, Loader2, Quote, Star, TrendingUp } from 'lucide-react';
+import { Handshake, Percent, Award, Zap, ArrowRight, ShieldCheck, Users, Briefcase, Mail, Send, CheckCircle, Info, Loader2, Quote, Star, TrendingUp, Sparkles, Rocket, Shield } from 'lucide-react';
 import { aiService } from '../services/aiService';
 
 const TierCard: React.FC<{ 
@@ -69,6 +69,39 @@ const Partner: React.FC = () => {
         </p>
       </header>
 
+      {/* Startup Discount Section */}
+      <section className="mb-24 not-prose">
+        <div className="bg-gradient-to-br from-indigo-600 to-blue-700 rounded-[3rem] p-10 md:p-16 text-white relative overflow-hidden shadow-2xl">
+           <div className="absolute top-0 right-0 p-12 opacity-10 pointer-events-none group-hover:rotate-12 transition-transform duration-1000">
+              <Rocket size={240} />
+           </div>
+           <div className="relative z-10 max-w-2xl">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="p-2 bg-white/20 rounded-lg backdrop-blur-md">
+                   <Sparkles size={20} className="text-blue-200" />
+                </div>
+                <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-blue-100">Founders First</span>
+              </div>
+              <h2 className="text-white text-4xl font-serif font-bold mb-6 m-0 leading-tight">Startup Catalyst Program</h2>
+              <p className="text-blue-100 text-lg mb-10 leading-relaxed">
+                 Are you an early-stage deep-tech startup building the future? Don't let cryptographic debt slow you down. RivicQ offers a <strong>50% discount</strong> on Cloud HSM slots and <strong>Free CryptoBOM Enterprise</strong> scanning for your first year.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                 <div className="px-6 py-4 bg-white text-indigo-900 rounded-2xl font-bold text-sm shadow-xl flex items-center gap-2">
+                    <Percent size={18}/> 50% Off Platform
+                 </div>
+                 <div className="px-6 py-4 bg-indigo-500/30 border border-white/20 text-white rounded-2xl font-bold text-sm shadow-xl flex items-center gap-2">
+                    {/* Fixed: Added Shield to lucide-react imports to resolve missing name error */}
+                    <Shield size={18}/> Priority Compliance Audit
+                 </div>
+              </div>
+              <div className="mt-12 text-[10px] text-blue-200 font-bold uppercase tracking-widest flex items-center gap-2">
+                 <Info size={14} /> Eligibility: Pre-seed to Series A startups with &lt; 25 employees.
+              </div>
+           </div>
+        </div>
+      </section>
+
       {/* Partner Success Stories Section */}
       <section className="mb-24 not-prose">
         <div className="flex items-center gap-3 mb-12">
@@ -116,64 +149,6 @@ const Partner: React.FC = () => {
               <div>
                 <h4 className="text-sm font-bold text-white m-0">Sarah Lin</h4>
                 <p className="text-[10px] text-slate-400 uppercase tracking-widest m-0">CTO, InfraGuard Global</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Discount with Us Section */}
-      <section className="not-prose mb-24">
-        <div className="bg-slate-50 border border-slate-200 rounded-[2.5rem] p-8 md:p-12 relative overflow-hidden">
-          <div className="absolute top-0 right-0 p-8 opacity-[0.03] pointer-events-none">
-            <Percent size={200} className="text-slate-900" />
-          </div>
-          
-          <div className="relative z-10">
-            <div className="flex items-center gap-3 mb-8">
-              <div className="p-3 bg-white border border-slate-200 rounded-xl text-blue-600 shadow-sm">
-                <Zap size={20} />
-              </div>
-              <div>
-                <h2 className="text-2xl font-serif font-bold text-slate-900 m-0">Incentive Program</h2>
-                <p className="text-[10px] font-bold text-blue-600 uppercase tracking-widest m-0">Discount with us</p>
-              </div>
-            </div>
-            
-            <p className="text-slate-600 text-base leading-relaxed mb-10 max-w-2xl">
-              Our partner discounts are designed to accelerate the adoption of Post-Quantum Cryptography (PQC). We offer transparent, tiered incentives for infrastructure migration and client referrals.
-            </p>
-            
-            <div className="grid md:grid-cols-2 gap-8 mb-12">
-              <div className="bg-white border border-slate-200 p-8 rounded-2xl shadow-sm hover:border-blue-300 transition-colors">
-                <div className="flex items-baseline gap-2 mb-4">
-                  <span className="text-5xl font-bold text-slate-900">25%</span>
-                  <span className="text-blue-600 font-bold uppercase text-[10px] tracking-widest">OFF</span>
-                </div>
-                <h4 className="text-sm font-bold text-slate-900 uppercase tracking-wide mb-3">Early Adopter Incentive</h4>
-                <p className="text-xs text-slate-500 leading-relaxed m-0">
-                  Applied to the first 12 months of service for all client referrals initiated by certified Infrastructure Partners.
-                </p>
-              </div>
-              
-              <div className="bg-white border border-slate-200 p-8 rounded-2xl shadow-sm hover:border-blue-300 transition-colors">
-                <div className="flex items-baseline gap-2 mb-4">
-                  <span className="text-5xl font-bold text-slate-900">15%</span>
-                  <span className="text-blue-600 font-bold uppercase text-[10px] tracking-widest">OFF</span>
-                </div>
-                <h4 className="text-sm font-bold text-slate-900 uppercase tracking-wide mb-3">Service Bundle Rebate</h4>
-                <p className="text-xs text-slate-500 leading-relaxed m-0">
-                  Automatic discount when combining HSM-as-a-Service with our CryptoBOM Enterprise scanning suite (Available Q2 2026).
-                </p>
-              </div>
-            </div>
-
-            <div className="flex flex-wrap items-center gap-6">
-              <a href="#partner-form" className="px-8 py-4 bg-slate-900 text-white rounded-lg font-bold text-xs uppercase tracking-widest hover:bg-blue-600 transition-all shadow-lg shadow-slate-200">
-                Register for Discounts
-              </a>
-              <div className="flex items-center gap-2 text-slate-400 text-[10px] font-bold uppercase tracking-widest">
-                <Info size={14} className="text-blue-500" /> Program Terms Apply
               </div>
             </div>
           </div>

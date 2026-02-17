@@ -1,12 +1,11 @@
 
 import React, { useState, useEffect } from 'react';
-import { Database, ArrowRight, Github, Terminal, Atom, Layers, Repeat, Search, Cloud, Shield, Cpu, Network } from 'lucide-react';
+import { Database, ArrowRight, Github, Terminal, Atom, Layers, Repeat, Search, Cloud, Shield, Cpu, Network, Zap, ShieldCheck, Activity } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SystemArchitecture3D from '../components/SystemArchitecture3D';
 
 const Platform: React.FC = () => {
   const [complexity, setComplexity] = useState(65);
-  const [shots] = useState(1024);
   const [riskScore, setRiskScore] = useState(0);
 
   useEffect(() => {
@@ -98,6 +97,93 @@ const Platform: React.FC = () => {
         </div>
       </section>
 
+      {/* Quantum Risk Simulation Section */}
+      <section className="my-24 not-prose">
+        <div className="flex items-center gap-4 mb-12">
+          <div className="p-3 bg-slate-900 text-white rounded-2xl shadow-xl shadow-blue-900/20">
+            <Atom size={24} className="animate-spin-slow" />
+          </div>
+          <div>
+            <h2 className="text-3xl font-serif font-bold text-slate-900 m-0">Risk Simulation Core</h2>
+            <p className="text-xs text-blue-600 font-bold uppercase tracking-widest mt-1">Qiskit-Driven Vulnerability Analysis</p>
+          </div>
+        </div>
+        
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-12">
+          <div className="bg-slate-950 rounded-[2.5rem] p-8 font-mono text-[11px] text-indigo-200 shadow-2xl relative overflow-hidden border border-slate-800">
+            <div className="flex items-center gap-2 mb-6 border-b border-slate-800 pb-4">
+              <Zap size={14} className="text-blue-400" />
+              <span className="text-slate-400">Simulation Kernel v2.1</span>
+            </div>
+            <pre className="overflow-x-auto leading-relaxed text-indigo-300 relative z-10">
+{`from qiskit import QuantumCircuit, execute, Aer
+from rivicq_core.audit import QuantumRiskAnalyzer
+
+# Initialize analyzer for critical infrastructure
+target = "cloud_hsm_primary_cluster"
+analyzer = QuantumRiskAnalyzer(target=target)
+
+# Adjust simulation complexity based on current hardware benchmarks
+analyzer.update_complexity(attack_power=${complexity})
+
+# Run Shor's Algorithm factorization simulation
+# Results are used to determine time-to-breach (TTB)
+sim_results = analyzer.simulate(backend="ibmq_qasm_simulator")
+
+# Post risk metrics to RivicQ Policy Engine
+analyzer.export_to_policy_service(
+    metrics=sim_results.risk_vector,
+    trigger_auto_rotation=(risk_score > 75)
+)`}
+            </pre>
+            <div className="mt-10 space-y-3 relative z-10">
+              <div className="flex justify-between items-center">
+                <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Simulated Attack Power</label>
+                <span className="text-blue-400 font-bold">{complexity} Qubits</span>
+              </div>
+              <input 
+                type="range" min="10" max="100" value={complexity} 
+                onChange={(e) => setComplexity(parseInt(e.target.value))}
+                className="w-full h-1 bg-slate-800 rounded-full appearance-none cursor-pointer accent-blue-500"
+              />
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-6">
+            <div className="bg-white border border-slate-100 rounded-[2.5rem] p-10 shadow-sm flex flex-col justify-between h-1/2">
+              <div className="text-center">
+                 <div className={`text-7xl font-bold font-mono transition-colors duration-500 ${riskScore > 75 ? 'text-red-500' : 'text-slate-900'}`}>
+                    {riskScore}<span className="text-2xl text-slate-200">/100</span>
+                 </div>
+                 <div className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.3em] mt-2">Quantum Risk Index (QRI)</div>
+              </div>
+              <p className="mt-6 text-[11px] text-slate-600 leading-relaxed text-center">
+                {riskScore > 75 ? 'CRITICAL: TTB estimated at < 12 hours. High probability of classical key factorization.' : 'STABLE: Current encryption primitives remain robust against simulated quantum adversaries.'}
+              </p>
+            </div>
+
+            <div className="bg-slate-50 rounded-[2.5rem] p-8 border border-slate-100 h-1/2 relative overflow-hidden">
+               <div className="absolute top-0 right-0 p-8 opacity-5 text-indigo-600">
+                 <ShieldCheck size={120} />
+               </div>
+               <h4 className="text-sm font-bold text-slate-900 uppercase tracking-widest mb-4 flex items-center gap-2">
+                 <Activity size={14} className="text-indigo-600"/> Policy Service Feedback
+               </h4>
+               <div className="space-y-4">
+                  <div className="flex gap-3">
+                    <div className={`w-1.5 h-1.5 rounded-full mt-1.5 shrink-0 ${riskScore > 75 ? 'bg-red-500 animate-pulse' : 'bg-emerald-500'}`}></div>
+                    <p className="text-[10px] text-slate-600 m-0"><strong>Dynamic Rotation:</strong> {riskScore > 75 ? 'Triggered: Forcing migration of all RSA-2048 keys to ML-KEM-768.' : 'Idle: Monitoring for risk delta.'}</p>
+                  </div>
+                  <div className="flex gap-3">
+                    <div className={`w-1.5 h-1.5 rounded-full mt-1.5 shrink-0 ${riskScore > 60 ? 'bg-amber-500' : 'bg-slate-200'}`}></div>
+                    <p className="text-[10px] text-slate-600 m-0"><strong>Compliance Alert:</strong> {riskScore > 60 ? 'Active: NIS2/DORA violation imminent. Alerting Security Office.' : 'Nominal: Compliance status verified.'}</p>
+                  </div>
+               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Strategic Integrations */}
       <section className="not-prose mb-24 border-t border-slate-100 pt-16">
          <h2 className="text-2xl font-serif font-bold text-slate-900 mb-8 text-center">We work with</h2>
@@ -115,55 +201,6 @@ const Platform: React.FC = () => {
                <span className="text-xs font-bold text-slate-700 uppercase tracking-widest">AWS Nitro</span>
             </div>
          </div>
-      </section>
-
-      <section className="my-24 not-prose">
-        <div className="flex items-center gap-4 mb-12">
-          <div className="p-3 bg-slate-900 text-white rounded-2xl">
-            <Atom size={24} className="animate-spin-slow" />
-          </div>
-          <div>
-            <h2 className="text-3xl font-serif font-bold text-slate-900 m-0">Risk Simulator</h2>
-            <p className="text-xs text-slate-500 font-bold uppercase tracking-widest mt-1">Check your Quantum Risk Score</p>
-          </div>
-        </div>
-        
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-          <div className="bg-slate-950 rounded-[2.5rem] p-8 font-mono text-[11px] text-indigo-200 shadow-2xl relative overflow-hidden">
-            <pre className="overflow-x-auto leading-relaxed text-indigo-300 relative z-10">
-{`from qiskit import QuantumCircuit
-from rivicq_core import QuantumRiskAnalyzer
-
-// Simulate attack complexity
-analyzer = QuantumRiskAnalyzer(target="cloud_hsm_cluster")
-analyzer.update_complexity(${complexity})
-results = analyzer.simulate(backend="ibmq_qasm_simulator")`}
-            </pre>
-            <div className="mt-10 space-y-3 relative z-10">
-              <div className="flex justify-between items-center">
-                <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Attack Power</label>
-                <span className="text-blue-400 font-bold">{complexity}</span>
-              </div>
-              <input 
-                type="range" min="10" max="100" value={complexity} 
-                onChange={(e) => setComplexity(parseInt(e.target.value))}
-                className="w-full h-1 bg-slate-800 rounded-full appearance-none cursor-pointer accent-blue-500"
-              />
-            </div>
-          </div>
-
-          <div className="bg-white border border-slate-100 rounded-[2.5rem] p-10 shadow-sm flex flex-col justify-between">
-            <div className="text-center">
-               <div className={`text-7xl font-bold font-mono ${riskScore > 75 ? 'text-red-500' : 'text-slate-900'}`}>
-                  {riskScore}<span className="text-2xl text-slate-200">/100</span>
-               </div>
-               <div className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.3em] mt-2">Risk Index</div>
-            </div>
-            <p className="mt-8 text-[11px] text-slate-600 leading-relaxed">
-              <strong>What this means:</strong> {riskScore > 75 ? 'Critical risk detected. Your encryption is weak against future attacks. You need to upgrade immediately.' : 'Your systems are relatively stable, but constant monitoring is recommended.'}
-            </p>
-          </div>
-        </div>
       </section>
     </article>
   );
