@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Handshake, Percent, Award, Zap, ArrowRight, ShieldCheck, Users, Briefcase, Mail, Send, CheckCircle, Info, Loader2 } from 'lucide-react';
+import { Handshake, Percent, Award, Zap, ArrowRight, ShieldCheck, Users, Briefcase, Mail, Send, CheckCircle, Info, Loader2, Quote, Star } from 'lucide-react';
 import { aiService } from '../services/aiService';
 
 const TierCard: React.FC<{ 
@@ -68,6 +68,49 @@ const Partner: React.FC = () => {
           We provide the infrastructure. You provide the integration. Together, we secure the future of global digital identity.
         </p>
       </header>
+
+      {/* Testimonials Section */}
+      <section className="mb-24 not-prose">
+        <div className="grid md:grid-cols-2 gap-8">
+          <div className="p-10 bg-white border border-slate-100 rounded-[3rem] shadow-sm relative group">
+            <div className="absolute top-8 right-10 text-blue-600/10 group-hover:text-blue-600/20 transition-colors">
+              <Quote size={64} fill="currentColor" />
+            </div>
+            <div className="flex gap-1 mb-6">
+              {[...Array(5)].map((_, i) => <Star key={i} size={14} className="fill-blue-500 text-blue-500" />)}
+            </div>
+            <p className="text-lg text-slate-700 font-serif italic leading-relaxed mb-8 relative z-10">
+              "Partnering with RivicQ allowed us to offer immediate PQC compliance to our financial clients. The growth in our security advisory wing has been exceptional since integrating their Cloud HSM mesh."
+            </p>
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center font-bold text-slate-400">MJ</div>
+              <div>
+                <h4 className="text-sm font-bold text-slate-900 m-0">Marcus Jensen</h4>
+                <p className="text-[10px] text-slate-500 uppercase tracking-widest m-0">CEO, NordSec Solutions</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="p-10 bg-slate-900 text-white rounded-[3rem] shadow-xl relative group">
+            <div className="absolute top-8 right-10 text-white/5 group-hover:text-white/10 transition-colors">
+              <Quote size={64} fill="currentColor" />
+            </div>
+            <div className="flex gap-1 mb-6">
+              {[...Array(5)].map((_, i) => <Star key={i} size={14} className="fill-emerald-500 text-emerald-500" />)}
+            </div>
+            <p className="text-lg text-slate-300 font-serif italic leading-relaxed mb-8 relative z-10">
+              "The technical support during our migration pilot was world-class. RivicQ doesn't just provide a protocol; they provide a mutual path to growth in the high-assurance infrastructure market."
+            </p>
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center font-bold text-white/30">SL</div>
+              <div>
+                <h4 className="text-sm font-bold text-white m-0">Sarah Lin</h4>
+                <p className="text-[10px] text-slate-400 uppercase tracking-widest m-0">CTO, InfraGuard Global</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Discount with Us Section */}
       <section className="not-prose mb-24">

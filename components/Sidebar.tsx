@@ -8,16 +8,14 @@ const Sidebar: React.FC = () => {
     {
       label: 'Corporate',
       links: [
-        { name: 'Introduction', path: '/', icon: <Layout size={12}/> },
-        { name: 'Enterprise Hub', path: '/enterprise', icon: <Star size={12}/> },
-        { name: 'Ideal Customer', path: '/ideal-customer', icon: <Target size={12}/> },
+        { name: 'Home', path: '/', icon: <Layout size={12}/> },
         { name: 'Our Story', path: '/story', icon: <Sparkles size={12}/> },
+        { name: 'Products & SaaS', path: '/products', icon: <Box size={12}/> },
       ]
     },
     {
-      label: 'Product Suite',
+      label: 'Technology',
       links: [
-        { name: 'Products & SaaS', path: '/products', icon: <Box size={12}/> },
         { name: 'Cloud HSM', path: '/cloud-hsm', icon: <Cloud size={12}/> },
         { name: 'Architecture', path: '/platform', icon: <Cpu size={12}/> },
         { name: 'RQSP Protocol', path: '/rqsp', icon: <Lock size={12}/> },
@@ -34,18 +32,11 @@ const Sidebar: React.FC = () => {
       ]
     },
     {
-      label: 'Resources',
+      label: 'Company',
       links: [
         { name: 'Roadmap', path: '/roadmap', icon: <Globe2 size={12}/> },
         { name: 'Pricing', path: '/pricing', icon: <Layout size={12}/> },
-        { name: 'Glossary', path: '/glossary', icon: <BookOpen size={12}/> },
-      ]
-    },
-    {
-      label: 'Company',
-      links: [
         { name: 'Team', path: '/team', icon: <Users size={12}/> },
-        { name: 'Careers', path: '/careers', icon: <Briefcase size={12}/> },
         { name: 'Legal & Rights', path: '/legal', icon: <Scale size={12}/> },
       ]
     }

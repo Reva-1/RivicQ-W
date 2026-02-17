@@ -87,24 +87,26 @@ const Resources: React.FC = () => {
               external: true
             },
             { 
-              title: "FIPS 140-3 Technical Standards", 
+              title: "FIPS 140-3 Validation Details", 
               icon: <ShieldCheck size={20} className="text-indigo-600" />,
-              link: "https://csrc.nist.gov/pubs/fips/140-3/final",
-              desc: "Detailed security requirements for cryptographic modules and physical tamper protection.",
-              external: true
+              link: "#",
+              desc: "Placeholder for detailed security requirements for cryptographic modules.",
+              external: false,
+              status: "PLACEHOLDER"
             },
             { 
-              title: "EU DORA Compliance Framework", 
+              title: "DORA Compliance Checklist", 
               icon: <Landmark size={20} className="text-emerald-600" />,
-              link: "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32022R2554",
-              desc: "Official legislative text for the Digital Operational Resilience Act and ICT risk requirements.",
-              external: true
+              link: "#",
+              desc: "Placeholder for regulatory checklist aligning with Digital Operational Resilience Act.",
+              external: false,
+              status: "PLACEHOLDER"
             },
             { 
               title: "BSI Germany Guidelines", 
               icon: <Lock size={20} className="text-slate-900" />,
               link: "https://www.bsi.bund.de/",
-              desc: "Technical guidelines TR-02102 for crypto-agility.",
+              desc: "Technical guidelines TR-02102 for crypto-agility in Germany.",
               external: true
             },
             { 
@@ -141,7 +143,7 @@ const Resources: React.FC = () => {
                   className={`flex items-center gap-1 text-[9px] font-bold uppercase tracking-widest transition-colors ${item.link === '#' ? 'text-slate-300 cursor-default' : 'text-blue-600 hover:text-slate-900'}`}
                   aria-label={`${item.title} (${item.external ? 'External' : 'Internal'} link)`}
                 >
-                  {item.link === '#' ? "Unavailable" : (item.external ? "External Resource" : "Access Guide")} <ExternalLink size={10} aria-hidden="true" />
+                  {item.link === '#' ? "Placeholder/Soon" : (item.external ? "External Resource" : "Access Guide")} <ExternalLink size={10} aria-hidden="true" />
                 </a>
               </div>
             </div>

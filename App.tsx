@@ -30,8 +30,6 @@ const Methodology = React.lazy(() => import('./pages/Methodology'));
 const Partner = React.lazy(() => import('./pages/Partner'));
 const Investors = React.lazy(() => import('./pages/Investors'));
 const QuantumResearch = React.lazy(() => import('./pages/QuantumResearch'));
-const Enterprise = React.lazy(() => import('./pages/Enterprise'));
-const IdealCustomer = React.lazy(() => import('./pages/IdealCustomer'));
 
 const RouteHandler = () => {
   const { pathname } = useLocation();
@@ -39,8 +37,6 @@ const RouteHandler = () => {
     window.scrollTo(0, 0);
     const titles: Record<string, string> = {
       '/': 'RivicQ | Quantum-Safe Infrastructure',
-      '/enterprise': 'Enterprise Solutions | RivicQ',
-      '/ideal-customer': 'Ideal Customer Profile | RivicQ',
       '/products': 'Products & SaaS | RivicQ',
       '/rqsp': 'RQSP Protocol | RivicQ',
       '/platform': 'Platform Architecture | RivicQ',
@@ -57,7 +53,7 @@ const RouteHandler = () => {
       '/blog': 'Blog & Insights | RivicQ',
       '/story': 'Our Story | RivicQ',
       '/compliance': 'PQC Compliance Deadlines | RivicQ',
-      '/pricing': 'Pricing & Enterprise Plans | RivicQ',
+      '/pricing': 'Pricing & Infrastructure | RivicQ',
       '/legal': 'Legal & IP Rights | RivicQ',
       '/privacy': 'Privacy Policy | RivicQ',
       '/trust': 'Trust Center | RivicQ',
@@ -85,8 +81,6 @@ const App: React.FC = () => {
         <Suspense fallback={<PageLoader />}>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/enterprise" element={<Enterprise />} />
-            <Route path="/ideal-customer" element={<IdealCustomer />} />
             <Route path="/products" element={<Products />} />
             <Route path="/rqsp" element={<RQSP />} />
             <Route path="/platform" element={<Platform />} />

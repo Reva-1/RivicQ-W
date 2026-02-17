@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Check, Send, ShieldCheck, Mail, Briefcase, Zap, Shield, Loader2, AlertTriangle, FileText, Clock } from 'lucide-react';
+import { Check, Send, ShieldCheck, Mail, Briefcase, Zap, Shield, Loader2, AlertTriangle, FileText, Clock, Cloud } from 'lucide-react';
 import { aiService } from '../services/aiService';
 
 const PricingCard: React.FC<{ 
@@ -12,7 +12,7 @@ const PricingCard: React.FC<{
   cta: string,
   badge?: string
 }> = ({ title, price, description, features, isFeatured, cta, badge }) => (
-  <div className={`flex flex-col p-8 rounded-3xl border transition-all duration-300 relative ${
+  <div className={`flex flex-col p-8 rounded-[3rem] border transition-all duration-300 relative ${
     isFeatured 
       ? 'border-blue-600 shadow-2xl shadow-blue-100 bg-white ring-2 ring-blue-600 ring-offset-4' 
       : 'border-slate-100 bg-slate-50 hover:border-slate-300'
@@ -26,8 +26,6 @@ const PricingCard: React.FC<{
       <h3 className="text-xl font-serif font-bold text-slate-900 m-0 mb-2">{title}</h3>
       <div className="flex items-baseline gap-1 mb-4">
         <span className="text-4xl font-bold tracking-tight text-slate-900">{price}</span>
-        {/* Only show /mo if price looks like a monthly fee */}
-        {['Free', 'Custom', 'Inquire', 'Contact'].indexOf(price) === -1 && <span className="text-slate-500 font-medium">/mo</span>}
       </div>
       <p className="text-sm text-slate-600 leading-relaxed min-h-[40px]">{description}</p>
     </div>
@@ -45,10 +43,10 @@ const PricingCard: React.FC<{
 
     <a 
       href="#contact-sales" 
-      className={`w-full py-4 rounded-xl font-bold text-sm text-center transition-all ${
+      className={`w-full py-4 rounded-xl font-bold text-xs uppercase tracking-widest text-center transition-all ${
         isFeatured 
-          ? 'bg-blue-600 text-white hover:bg-blue-700' 
-          : 'bg-white border-2 border-slate-900 text-slate-900 hover:bg-slate-900 hover:text-white'
+          ? 'bg-blue-600 text-white hover:bg-blue-700 shadow-lg shadow-blue-200' 
+          : 'bg-white border border-slate-200 text-slate-900 hover:bg-slate-900 hover:text-white hover:border-slate-900'
       }`}
     >
       {cta}
@@ -81,85 +79,85 @@ const Pricing: React.FC = () => {
 
   return (
     <article className="prose prose-lg prose-slate max-w-none">
-      <h1 className="text-4xl md:text-5xl font-bold mb-4">Pricing & Plans</h1>
+      <h1 className="text-5xl font-bold mb-4 tracking-tight">Access & Pricing</h1>
       <p className="lead font-serif italic text-slate-500 mb-12">
-        Transparent pricing for quantum-safe products and professional security services.
+        Infrastructure-grade security, simplified for modern adoption.
       </p>
 
-      {/* CryptoBOM SaaS Section */}
+      {/* Access Section */}
       <section className="mb-20">
         <div className="flex items-center gap-3 mb-10">
-          <Zap className="text-blue-600" size={28} />
-          <h2 className="m-0 font-serif text-3xl">CryptoBOM SaaS</h2>
+          <Cloud className="text-blue-600" size={28} />
+          <h2 className="m-0 font-serif text-3xl">Platform Access</h2>
         </div>
         <div className="not-prose grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <PricingCard 
-            title="Community" 
+            title="Discovery (OSS)" 
             price="Free" 
-            description="For researchers and developers exploring PQC standards."
-            features={["Open Source Agent", "Local JSON Export", "Public Git Scanning", "Community Support"]}
-            cta="Start Building"
+            description="Open source code auditing for researchers and small projects."
+            features={["CLI Scanner", "Local CBOM Output", "Public Repo Scanning", "Community Support"]}
+            cta="Get Source Code"
           />
           <PricingCard 
-            title="Pilot Program" 
+            title="Pilot Mesh" 
             price="Inquire" 
             isFeatured 
-            badge="Limited Slots"
-            description="Proof-of-Concept validation for organizations starting their migration."
-            features={["Deep Scan Analysis", "Remediation Roadmap", "Dedicated Engineer Support", "1 Month Access"]}
-            cta="Request Pilot"
+            badge="Managed Transition"
+            description="Full support for your first quantum-safe application migration."
+            features={["Deep Scan & Inventory", "Managed Cloud HSM Access", "Remediation Roadmap", "1-on-1 Engineering Support"]}
+            cta="Request Pilot Access"
           />
           <PricingCard 
-            title="PQC Enterprise" 
+            title="Sovereign Node" 
             price="Custom" 
-            badge="Full Suite"
-            description="Total infrastructure control for regulated industries."
-            features={["Continuous Monitoring", "Cloud HSM Integration", "DORA Compliance Reports", "24/7 Dedicated Support"]}
+            badge="Private HSM"
+            description="Physically isolated hardware for regulated industries (Banking, Defense)."
+            features={["Dedicated Hardware L3", "DORA Compliance Mesh", "24/7 Priority Support", "Full API Orchestration"]}
             cta="Contact Sales"
           />
         </div>
       </section>
 
-      {/* CSaaS Section */}
+      {/* Advisory Section */}
       <section className="mb-24">
         <div className="flex items-center gap-3 mb-10">
           <Shield className="text-indigo-600" size={28} />
-          <h2 className="m-0 font-serif text-3xl">Cyber Security as a Service (CSaaS)</h2>
+          <h2 className="m-0 font-serif text-3xl">Expert Services</h2>
         </div>
         <p className="text-slate-600 mb-8">
-          On-demand security expertise to harden your infrastructure against current and future threats.
+          Beyond technology, we provide the strategy needed for a safe transition.
         </p>
         <div className="not-prose grid grid-cols-1 md:grid-cols-2 gap-8">
            <PricingCard 
-             title="Strategic Advisory" 
-             price="Contact" 
-             description="Leadership guidance for compliance and architecture."
-             features={["vCISO Services", "NIS2 & DORA Gap Analysis", "PQC Migration Strategy", "Architecture Review"]}
-             cta="Get Quote"
+             title="PQC Migration Strategy" 
+             price="Consult" 
+             description="Strategic roadmap for high-assurance sectors."
+             features={["Compliance Gap Analysis", "Legacy Debt Discovery", "Board-level Reporting", "Migration Costing"]}
+             cta="Request Scoping"
            />
            <PricingCard 
-             title="Offensive Security" 
-             price="Contact" 
-             description="Technical validation of your defenses."
-             features={["Red Teaming", "Penetration Testing (Web/Cloud)", "Smart Contract Audits", "Hardware Side-Channel Analysis"]}
-             cta="Get Quote"
+             title="Red Team: Quantum" 
+             price="Consult" 
+             description="Validation of your current defenses against future threats."
+             features={["Adversary Simulation", "Hardware Audit", "Encapsulation Review", "Defensive Hardening"]}
+             cta="Request Scoping"
            />
         </div>
       </section>
 
       {/* Contact Sales Section */}
       <section id="contact-sales" className="not-prose scroll-mt-24 mb-24">
-        <div className="bg-slate-50 rounded-[3rem] p-10 md:p-16 border border-slate-100 shadow-sm">
-          <div className="grid lg:grid-cols-2 gap-16 items-start">
+        <div className="bg-slate-900 rounded-[4rem] p-10 md:p-20 text-white relative overflow-hidden shadow-2xl">
+          <div className="absolute inset-0 bg-technical opacity-10"></div>
+          <div className="grid lg:grid-cols-2 gap-16 items-start relative z-10">
             
-            {/* Left: Problems We Solve */}
             <div>
               <div className="p-3 bg-blue-600 text-white rounded-2xl w-fit mb-6">
                 <Mail size={24} />
               </div>
-              <h2 className="text-4xl font-serif font-bold mb-6 text-slate-900 m-0">Secure Your Infrastructure</h2>
-              <p className="text-slate-600 text-lg mb-8 leading-relaxed">
-                Our engineering team is ready to scope your Pilot or Enterprise needs. Tell us what challenge you are facing.
+              <h2 className="text-4xl font-serif font-bold mb-6 text-white m-0">Consult our Engineers</h2>
+              <p className="text-slate-400 text-lg mb-8 leading-relaxed">
+                Whether you need a Pilot slot or an architectural review, our team in Berlin is ready to assist.
               </p>
 
               <div className="space-y-6">
@@ -168,8 +166,8 @@ const Pricing: React.FC = () => {
                       <AlertTriangle size={18} className="text-amber-500" />
                     </div>
                     <div>
-                       <h4 className="font-bold text-slate-900 text-sm m-0">Regulatory Pressure?</h4>
-                       <p className="text-xs text-slate-500 m-0 mt-1">Need DORA or NIST compliance reports for auditors.</p>
+                       <h4 className="font-bold text-white text-sm m-0">Regulatory Pressure?</h4>
+                       <p className="text-xs text-slate-500 m-0 mt-1">Ask us about DORA Article 9 compliance mapping.</p>
                     </div>
                  </div>
                  <div className="flex gap-4">
@@ -177,65 +175,45 @@ const Pricing: React.FC = () => {
                       <Clock size={18} className="text-blue-500" />
                     </div>
                     <div>
-                       <h4 className="font-bold text-slate-900 text-sm m-0">Legacy Debt?</h4>
-                       <p className="text-xs text-slate-500 m-0 mt-1">Found hardcoded RSA-2048 keys in critical infrastructure.</p>
-                    </div>
-                 </div>
-                 <div className="flex gap-4">
-                    <div className="mt-1">
-                      <FileText size={18} className="text-emerald-500" />
-                    </div>
-                    <div>
-                       <h4 className="font-bold text-slate-900 text-sm m-0">Budgeting PQC?</h4>
-                       <p className="text-xs text-slate-500 m-0 mt-1">Need a Pilot to validate costs before full migration.</p>
+                       <h4 className="font-bold text-white text-sm m-0">Timing is Critical</h4>
+                       <p className="text-xs text-slate-500 m-0 mt-1">Average PQC migration takes 18-36 months. Start the clock now.</p>
                     </div>
                  </div>
               </div>
             </div>
 
-            {/* Right: The Form */}
-            <div className="bg-white rounded-[2.5rem] p-8 md:p-10 shadow-2xl border border-slate-100">
+            <div className="bg-white rounded-[3rem] p-8 md:p-12 shadow-2xl">
               {formSubmitted ? (
                 <div className="text-center py-12 animate-fadeIn">
                   <div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mb-6 mx-auto">
                     <Check size={28} />
                   </div>
-                  <h3 className="text-2xl font-bold mb-2">Request Received</h3>
-                  <p className="text-slate-500 text-sm">Our sales engineering team will review your requirements and contact you within 24 hours.</p>
-                  <button onClick={() => setFormSubmitted(false)} className="mt-6 text-blue-600 text-xs font-bold uppercase tracking-widest hover:underline">Send another request</button>
+                  <h3 className="text-2xl font-bold text-slate-900 mb-2">Message Received</h3>
+                  <p className="text-slate-500 text-sm leading-relaxed">Our infrastructure team will review your requirements and respond within 24 hours.</p>
+                  <button onClick={() => setFormSubmitted(false)} className="mt-8 text-blue-600 text-xs font-bold uppercase tracking-widest hover:underline">New Communication</button>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-5">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-1">
                       <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 ml-1">Full Name</label>
-                      <input required className="w-full px-5 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-2 focus:ring-blue-500/20 transition-all" placeholder="John Doe" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} />
+                      <input required className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-2 focus:ring-blue-500/20 text-slate-900 transition-all" placeholder="John Doe" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} />
                     </div>
                     <div className="space-y-1">
-                      <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 ml-1">Work Email</label>
-                      <input required type="email" className="w-full px-5 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-2 focus:ring-blue-500/20 transition-all" placeholder="name@company.com" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} />
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                    <div className="space-y-1">
-                      <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 ml-1">Company</label>
-                      <input required className="w-full px-5 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-2 focus:ring-blue-500/20 transition-all" placeholder="Organization Ltd." value={formData.company} onChange={e => setFormData({...formData, company: e.target.value})} />
-                    </div>
-                    <div className="space-y-1">
-                      <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 ml-1">Timeline</label>
-                      <select className="w-full px-5 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-2 focus:ring-blue-500/20 transition-all appearance-none" value={formData.timeline} onChange={e => setFormData({...formData, timeline: e.target.value})}>
-                        <option value="Immediate">Immediate (Audit/Breach)</option>
-                        <option value="Q3 2026">Q3 2026 (Planning)</option>
-                        <option value="2027+">2027+ (Research)</option>
-                      </select>
+                      <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 ml-1">Email</label>
+                      <input required type="email" className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-2 focus:ring-blue-500/20 text-slate-900 transition-all" placeholder="john@company.com" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} />
                     </div>
                   </div>
                   <div className="space-y-1">
-                    <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 ml-1">Challenge / Inquiry</label>
-                    <textarea required className="w-full px-5 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-2 focus:ring-blue-500/20 transition-all min-h-[140px] resize-none" placeholder="We are looking to migrate our core banking signing keys to PQC..." value={formData.message} onChange={e => setFormData({...formData, message: e.target.value})}></textarea>
+                    <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 ml-1">Company / Organization</label>
+                    <input required className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-2 focus:ring-blue-500/20 text-slate-900 transition-all" placeholder="Global Infrastructure Ltd." value={formData.company} onChange={e => setFormData({...formData, company: e.target.value})} />
                   </div>
-                  <button type="submit" disabled={isSubmitting} className="w-full py-4 bg-slate-900 text-white font-bold rounded-2xl hover:bg-blue-600 transition-all flex items-center justify-center gap-2 shadow-xl shadow-slate-200 uppercase tracking-widest text-xs mt-4 disabled:opacity-50 disabled:cursor-not-allowed">
-                    {isSubmitting ? <Loader2 size={16} className="animate-spin"/> : <><Send size={16}/> Submit Request</>}
+                  <div className="space-y-1">
+                    <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 ml-1">Message</label>
+                    <textarea required className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-2 focus:ring-blue-500/20 text-slate-900 transition-all min-h-[140px] resize-none" placeholder="How can we help you prepare for the quantum transition?" value={formData.message} onChange={e => setFormData({...formData, message: e.target.value})}></textarea>
+                  </div>
+                  <button type="submit" disabled={isSubmitting} className="w-full py-5 bg-slate-900 text-white font-bold rounded-2xl hover:bg-blue-600 transition-all flex items-center justify-center gap-3 shadow-xl uppercase tracking-widest text-xs disabled:opacity-50">
+                    {isSubmitting ? <Loader2 size={16} className="animate-spin"/> : <><Send size={16}/> Submit Inquiry</>}
                   </button>
                 </form>
               )}
