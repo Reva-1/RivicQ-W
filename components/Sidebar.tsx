@@ -1,16 +1,17 @@
 
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Github, Mail, Linkedin, Globe, Shield, Lock, Cpu, Globe2, Sparkles, Layout, Building, Users, Scale, ShieldCheck, Microscope, BookOpen, Handshake, Briefcase, Cloud, Box, Atom } from 'lucide-react';
+import { Github, Mail, Linkedin, Globe, Shield, Lock, Cpu, Globe2, Sparkles, Layout, Building, Users, Scale, ShieldCheck, Microscope, BookOpen, Handshake, Briefcase, Cloud, Box, Atom, Star, Target } from 'lucide-react';
 
 const Sidebar: React.FC = () => {
   const groups = [
     {
-      label: 'The Journey',
+      label: 'Corporate',
       links: [
         { name: 'Introduction', path: '/', icon: <Layout size={12}/> },
+        { name: 'Enterprise Hub', path: '/enterprise', icon: <Star size={12}/> },
+        { name: 'Ideal Customer', path: '/ideal-customer', icon: <Target size={12}/> },
         { name: 'Our Story', path: '/story', icon: <Sparkles size={12}/> },
-        { name: 'Roadmap', path: '/roadmap', icon: <Globe2 size={12}/> },
       ]
     },
     {
@@ -24,20 +25,19 @@ const Sidebar: React.FC = () => {
       ]
     },
     {
-      label: 'Enterprise',
-      links: [
-        { name: 'Solutions', path: '/solutions', icon: <Building size={12}/> },
-        { name: 'Services', path: '/services', icon: <Shield size={12}/> },
-        { name: 'Compliance', path: '/compliance', icon: <ShieldCheck size={12}/> },
-        { name: 'Pricing', path: '/pricing', icon: <Layout size={12}/> },
-      ]
-    },
-    {
       label: 'Intelligence',
       links: [
         { name: 'Quantum Research', path: '/research', icon: <Atom size={12}/> },
         { name: 'Trust Center', path: '/trust', icon: <ShieldCheck size={12}/> },
         { name: 'Methodology', path: '/methodology', icon: <Microscope size={12}/> },
+        { name: 'Compliance', path: '/compliance', icon: <ShieldCheck size={12}/> },
+      ]
+    },
+    {
+      label: 'Resources',
+      links: [
+        { name: 'Roadmap', path: '/roadmap', icon: <Globe2 size={12}/> },
+        { name: 'Pricing', path: '/pricing', icon: <Layout size={12}/> },
         { name: 'Glossary', path: '/glossary', icon: <BookOpen size={12}/> },
       ]
     },

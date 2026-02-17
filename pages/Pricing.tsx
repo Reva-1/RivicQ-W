@@ -111,10 +111,10 @@ const Pricing: React.FC = () => {
           />
           <PricingCard 
             title="PQC Enterprise" 
-            price="€5,000" 
+            price="Custom" 
             badge="Full Suite"
             description="Total infrastructure control for regulated industries."
-            features={["Continuous Monitoring", "Cloud HSM Integration", "DORA Compliance Reports", "24/7 SLA Support"]}
+            features={["Continuous Monitoring", "Cloud HSM Integration", "DORA Compliance Reports", "24/7 Dedicated Support"]}
             cta="Contact Sales"
           />
         </div>
