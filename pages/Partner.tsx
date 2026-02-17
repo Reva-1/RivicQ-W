@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Handshake, Percent, Award, Zap, ArrowRight, ShieldCheck, Users, Briefcase, Mail, Send, CheckCircle, Info, Loader2, Quote, Star } from 'lucide-react';
+import { Handshake, Percent, Award, Zap, ArrowRight, ShieldCheck, Users, Briefcase, Mail, Send, CheckCircle, Info, Loader2, Quote, Star, TrendingUp } from 'lucide-react';
 import { aiService } from '../services/aiService';
 
 const TierCard: React.FC<{ 
@@ -10,7 +10,7 @@ const TierCard: React.FC<{
   benefits: string[], 
   accentColor: string 
 }> = ({ title, icon, description, benefits, accentColor }) => (
-  <div className="flex flex-col p-8 rounded-[2rem] border border-slate-200 bg-white hover:border-slate-400 hover:shadow-xl transition-all duration-300 group">
+  <div className="flex flex-col p-8 rounded-[2.5rem] border border-slate-200 bg-white hover:border-slate-400 hover:shadow-xl transition-all duration-300 group">
     <div className={`mb-6 w-12 h-12 rounded-xl flex items-center justify-center border border-slate-100 shadow-sm ${accentColor}`}>
       {icon}
     </div>
@@ -69,10 +69,20 @@ const Partner: React.FC = () => {
         </p>
       </header>
 
-      {/* Testimonials Section */}
+      {/* Partner Success Stories Section */}
       <section className="mb-24 not-prose">
+        <div className="flex items-center gap-3 mb-12">
+          <div className="p-3 bg-blue-600 text-white rounded-2xl shadow-lg">
+            <TrendingUp size={24} />
+          </div>
+          <div>
+            <h2 className="m-0 text-3xl font-serif font-bold text-slate-900">Partner Success</h2>
+            <p className="text-xs text-blue-600 font-bold uppercase tracking-widest mt-1">Growth & Mutual Benefits</p>
+          </div>
+        </div>
+
         <div className="grid md:grid-cols-2 gap-8">
-          <div className="p-10 bg-white border border-slate-100 rounded-[3rem] shadow-sm relative group">
+          <div className="p-10 bg-white border border-slate-100 rounded-[3rem] shadow-sm relative group hover:border-blue-200 transition-colors">
             <div className="absolute top-8 right-10 text-blue-600/10 group-hover:text-blue-600/20 transition-colors">
               <Quote size={64} fill="currentColor" />
             </div>
@@ -80,7 +90,7 @@ const Partner: React.FC = () => {
               {[...Array(5)].map((_, i) => <Star key={i} size={14} className="fill-blue-500 text-blue-500" />)}
             </div>
             <p className="text-lg text-slate-700 font-serif italic leading-relaxed mb-8 relative z-10">
-              "Partnering with RivicQ allowed us to offer immediate PQC compliance to our financial clients. The growth in our security advisory wing has been exceptional since integrating their Cloud HSM mesh."
+              "Partnering with RivicQ allowed us to capture a new tier of high-assurance clients. The integration of the RQSP protocol into our MSSP stack resulted in a 40% increase in contract value for our cryptographic consulting services. It's a true mutual growth engine."
             </p>
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center font-bold text-slate-400">MJ</div>
@@ -99,7 +109,7 @@ const Partner: React.FC = () => {
               {[...Array(5)].map((_, i) => <Star key={i} size={14} className="fill-emerald-500 text-emerald-500" />)}
             </div>
             <p className="text-lg text-slate-300 font-serif italic leading-relaxed mb-8 relative z-10">
-              "The technical support during our migration pilot was world-class. RivicQ doesn't just provide a protocol; they provide a mutual path to growth in the high-assurance infrastructure market."
+              "The RivicQ Partner Program gave us early access to NIST-finalized primitives that our competitors simply didn't have. This allowed us to lead the DORA compliance migration for three major banks last year. The technical support is unrivaled."
             </p>
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center font-bold text-white/30">SL</div>

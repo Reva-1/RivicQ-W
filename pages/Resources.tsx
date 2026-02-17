@@ -83,14 +83,14 @@ const Resources: React.FC = () => {
               title: "NIST PQC Standards Overview", 
               icon: <FileText size={20} className="text-blue-600" />,
               link: "https://csrc.nist.gov/projects/post-quantum-cryptography",
-              desc: "Official finalized standards for ML-KEM and ML-DSA.",
+              desc: "Official finalized standards for ML-KEM and ML-DSA from the US National Institute of Standards.",
               external: true
             },
             { 
               title: "FIPS 140-3 Validation Details", 
               icon: <ShieldCheck size={20} className="text-indigo-600" />,
               link: "#",
-              desc: "Placeholder for detailed security requirements for cryptographic modules.",
+              desc: "Security requirements for cryptographic modules. (Active Validation Placeholder)",
               external: false,
               status: "PLACEHOLDER"
             },
@@ -98,22 +98,22 @@ const Resources: React.FC = () => {
               title: "DORA Compliance Checklist", 
               icon: <Landmark size={20} className="text-emerald-600" />,
               link: "#",
-              desc: "Placeholder for regulatory checklist aligning with Digital Operational Resilience Act.",
+              desc: "Mandatory ICT resilience mapping for European Financial Entities. (Interactive Checklist)",
               external: false,
               status: "PLACEHOLDER"
             },
             { 
-              title: "BSI Germany Guidelines", 
+              title: "BSI Germany (BSI Bund)", 
               icon: <Lock size={20} className="text-slate-900" />,
-              link: "https://www.bsi.bund.de/",
-              desc: "Technical guidelines TR-02102 for crypto-agility in Germany.",
+              link: "https://www.bsi.bund.de/EN/Service-Navi/Publications/TechnicalGuidelines/TechnicalGuidelines_node.html",
+              desc: "Technical guidelines TR-02102 for crypto-agility from Germany's Federal Office for IT Security.",
               external: true
             },
             { 
               title: "RivicQ Technical Paper", 
               icon: <Bookmark size={20} className="text-amber-600" />,
               link: "#",
-              desc: "Official mapping to NIST, EU DORA, and BSI standards.",
+              desc: "Official mapping to NIST, EU DORA, and BSI standards. (Q4 2026)",
               status: "COMING SOON",
               external: false
             }
