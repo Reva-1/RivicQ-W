@@ -15,8 +15,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       <div className="fixed bottom-[-10%] left-[-10%] w-[50%] h-[50%] bg-slate-100/30 blur-[120px] rounded-full pointer-events-none"></div>
 
       <Sidebar />
-      <main className="flex-grow md:ml-64 w-full relative z-10">
-        <div className="max-w-4xl px-8 py-12 md:py-24 mx-auto animate-fadeIn">
+      <main className="flex-grow md:ml-64 w-full relative z-10 pt-16 md:pt-0">
+        <div className="max-w-4xl px-6 md:px-8 py-12 md:py-24 mx-auto animate-fadeIn">
           {children}
         </div>
       </main>
