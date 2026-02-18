@@ -1,5 +1,7 @@
 
 import React from 'react';
+// Added missing Link import from react-router-dom
+import { Link } from 'react-router-dom';
 import { Github, Layout, ArrowRight, CheckCircle2, Shield, Zap, Database, Globe, Lock, Server, Search } from 'lucide-react';
 import ProductDemo from '../components/ProductDemo';
 
@@ -32,9 +34,8 @@ const ProductTier: React.FC<{
       ))}
     </div>
 
-    <a 
-      href={ctaLink} 
-      target={ctaLink.startsWith('http') ? '_blank' : '_self'}
+    <button 
+      onClick={() => window.location.href = ctaLink}
       className={`w-full py-4 rounded-xl font-bold text-xs uppercase tracking-widest flex items-center justify-center gap-2 transition-all ${
         isDark 
         ? 'bg-blue-600 text-white hover:bg-blue-500' 
@@ -42,7 +43,7 @@ const ProductTier: React.FC<{
       }`}
     >
       {ctaText} {ctaLink.includes('github') ? <Github size={14}/> : <ArrowRight size={14}/>}
-    </a>
+    </button>
   </div>
 );
 
@@ -51,13 +52,13 @@ const Products: React.FC = () => {
     <article className="prose prose-slate max-w-none">
       <header className="mb-16 text-center max-w-3xl mx-auto">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-600 text-[9px] font-bold uppercase tracking-[0.2em] mb-6">
-          Product Suite v1.0
+          RivicQ Product Suite
         </div>
         <h1 className="text-5xl md:text-6xl font-bold mb-6 tracking-tight text-slate-900">
           CryptoBOM <span className="text-blue-600">SaaS.</span>
         </h1>
         <p className="text-xl text-slate-500 font-serif italic leading-relaxed">
-          The world's first platform to automatically inventory, analyze, and secure your cryptographic assets against quantum threats.
+          Advanced infrastructure to inventory, analyze, and remediate cryptographic assets across global distributed environments.
         </p>
       </header>
 
@@ -65,103 +66,101 @@ const Products: React.FC = () => {
       <section className="not-prose mb-24">
         <ProductDemo />
         <div className="mt-6 flex justify-center gap-8 text-[10px] font-bold uppercase tracking-widest text-slate-400">
-          <div className="flex items-center gap-2"><Search size={12}/> 1. Discover (SaaS)</div>
-          <div className="flex items-center gap-2"><Database size={12}/> 2. Inventory (SaaS)</div>
-          <div className="flex items-center gap-2"><Shield size={12}/> 3. Secure (HSM)</div>
+          <div className="flex items-center gap-2"><Search size={12}/> 1. Discovery (SaaS)</div>
+          <div className="flex items-center gap-2"><Database size={12}/> 2. Inventory (CBOM)</div>
+          <div className="flex items-center gap-2"><Shield size={12}/> 3. Secure (vHSM)</div>
         </div>
       </section>
 
       {/* Product Tiers */}
       <section className="mb-24">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-serif font-bold text-slate-900 m-0">Choose your Engine</h2>
-          <p className="text-slate-500 mt-2">Open source for community, Enterprise for scale.</p>
+          <h2 className="text-3xl font-serif font-bold text-slate-900 m-0">Deployment Options</h2>
+          <p className="text-slate-500 mt-2">Open source for auditability, Enterprise for institutional scale.</p>
         </div>
 
         <div className="not-prose grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          {/* OSS Tier */}
           <ProductTier 
             title="Open Source (OSS)"
-            price="Free Forever"
-            badge="Community Edition"
+            price="Community Licensed"
+            badge="Developer Core"
             features={[
-              "Local CLI Scanner",
-              "Basic CryptoBOM Generation (JSON)",
-              "Detects RSA/ECC/Weak Hash",
-              "Community Support via GitHub"
+              "Local CLI Binary",
+              "CycloneDX CBOM Generation",
+              "Static Primitives Analysis",
+              "Community Governance"
             ]}
-            ctaText="View on GitHub"
-            ctaLink="https://github.com/rivic-q/cryptobom-saas"
+            ctaText="View Repository"
+            ctaLink="https://github.com/rivic-q"
           />
 
-          {/* Enterprise Tier */}
           <ProductTier 
             title="Enterprise SaaS"
-            price="Custom Pricing"
-            badge="Coming Soon • Join Waitlist"
+            price="Institutional Scale"
+            badge="Advanced Governance"
             isDark
             features={[
-              "Continuous CI/CD Monitoring",
-              "Automated NIST Remediation",
-              "Direct Cloud HSM Integration",
-              "DORA & FIPS Compliance Reports",
-              "24/7 Dedicated Support"
+              "CI/CD Orchestration",
+              "Managed NIST Remediation",
+              "Cloud HSM Root-of-Trust",
+              "Regulatory Compliance Mapping",
+              "SLA-backed Infrastructure"
             ]}
-            ctaText="Join Waitlist"
-            ctaLink="mailto:rivic.revan.ande@gmail.com?subject=Enterprise Waitlist Request"
+            ctaText="Join Enterprise Pilot"
+            ctaLink="mailto:contact@rivicq.xyz?subject=Enterprise Pilot Inquiry"
           />
         </div>
       </section>
 
-      {/* Why CryptoBOM? */}
+      {/* Value Pillars */}
       <section className="mb-24">
-        <h2 className="text-3xl font-serif font-bold text-slate-900 mb-10">Why you need a CryptoBOM</h2>
+        <h2 className="text-3xl font-serif font-bold text-slate-900 mb-10 text-center">Institutional Cryptographic Visibility</h2>
         <div className="not-prose grid md:grid-cols-3 gap-6">
            <div className="p-8 bg-slate-50 rounded-[2rem] border border-slate-100">
               <div className="w-10 h-10 bg-white rounded-xl shadow-sm flex items-center justify-center text-blue-600 mb-4">
                  <Zap size={20}/>
               </div>
-              <h4 className="font-bold text-slate-900 mb-2">Instant Visibility</h4>
-              <p className="text-sm text-slate-500 leading-relaxed">You can't fix what you can't see. We find every key, certificate, and algorithm hidden in your code.</p>
+              <h4 className="font-bold text-slate-900 mb-2 text-base">Full Stack Audit</h4>
+              <p className="text-xs text-slate-500 leading-relaxed m-0">Detect vulnerable keys, certificates, and legacy algorithms deep within binaries and container images.</p>
            </div>
            <div className="p-8 bg-slate-50 rounded-[2rem] border border-slate-100">
               <div className="w-10 h-10 bg-white rounded-xl shadow-sm flex items-center justify-center text-emerald-600 mb-4">
                  <Lock size={20}/>
               </div>
-              <h4 className="font-bold text-slate-900 mb-2">Automated Compliance</h4>
-              <p className="text-sm text-slate-500 leading-relaxed">Automatically generate the reports required by EU DORA and US NIST regulations.</p>
+              <h4 className="font-bold text-slate-900 mb-2 text-base">Automated Compliance</h4>
+              <p className="text-xs text-slate-500 leading-relaxed m-0">Generate verifiable evidence of state-of-the-art encryption for EU DORA and NIS2 regulatory reporting.</p>
            </div>
            <div className="p-8 bg-slate-50 rounded-[2rem] border border-slate-100">
               <div className="w-10 h-10 bg-white rounded-xl shadow-sm flex items-center justify-center text-purple-600 mb-4">
                  <Server size={20}/>
               </div>
-              <h4 className="font-bold text-slate-900 mb-2">Cloud HSM Integration</h4>
-              <p className="text-sm text-slate-500 leading-relaxed">Seamlessly move identified weak keys into our secure Cloud Hardware Security Modules for instant remediation.</p>
+              <h4 className="font-bold text-slate-900 mb-2 text-base">vHSM Remediation</h4>
+              <p className="text-xs text-slate-500 leading-relaxed m-0">Migrate legacy secrets directly into FIPS 140-3 hardware boundaries with one-click orchestration.</p>
            </div>
         </div>
       </section>
 
       {/* Final CTA */}
       <section className="not-prose bg-blue-600 text-white p-12 md:p-16 rounded-[3rem] text-center shadow-2xl relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
+        <div className="absolute inset-0 bg-technical opacity-10"></div>
         <div className="relative z-10">
-           <h2 className="text-3xl md:text-4xl font-serif font-bold mb-6 text-white m-0">Ready to Scan?</h2>
+           <h2 className="text-3xl md:text-4xl font-serif font-bold mb-6 text-white m-0">Infrastructure Health Audit</h2>
            <p className="text-blue-100 text-lg mb-10 max-w-xl mx-auto leading-relaxed">
-             Start with our open source tool today, or contact us to demo the full Enterprise platform.
+             Evaluate your organization's cryptographic debt today. Start with our open core or request a full enterprise assessment.
            </p>
            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-             <a href="https://github.com/rivic-q/cryptobom-saas" target="_blank" className="px-10 py-4 bg-slate-900 text-white font-bold rounded-xl hover:bg-slate-800 transition-all flex items-center gap-2 justify-center shadow-xl">
-               <Github size={18}/> Download OSS
-             </a>
-             <a href="mailto:rivic.revan.ande@gmail.com?subject=Product Demo Request" className="px-10 py-4 bg-white text-blue-600 font-bold rounded-xl hover:bg-blue-50 transition-all flex items-center gap-2 justify-center">
-               Book Enterprise Demo <ArrowRight size={18}/>
-             </a>
+             <button onClick={() => window.location.href='https://github.com/rivic-q'} className="px-10 py-4 bg-slate-900 text-white font-bold rounded-xl hover:bg-slate-800 transition-all flex items-center gap-2 justify-center shadow-xl">
+               <Github size={18}/> Access Open Core
+             </button>
+             <Link to="/pricing" className="px-10 py-4 bg-white text-blue-600 font-bold rounded-xl hover:bg-blue-50 transition-all flex items-center gap-2 justify-center shadow-lg">
+               Consult on Pricing <ArrowRight size={18}/>
+             </Link>
            </div>
         </div>
       </section>
       
       <footer className="mt-12 text-center text-[10px] text-slate-400 uppercase tracking-widest font-bold">
-        RivicQ Technologies • CryptoBOM Division
+        Robust Integrated Verified Infrastructure Computing & Quantum • Berlin
       </footer>
     </article>
   );
