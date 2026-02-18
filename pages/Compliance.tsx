@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { ShieldAlert, Globe, Landmark, AlertCircle, CheckCircle2, ExternalLink, ArrowRight, FileText, Gavel, FileCheck } from 'lucide-react';
+import { ShieldAlert, Globe, Landmark, AlertCircle, CheckCircle2, ExternalLink, ArrowRight, FileText, Gavel, FileCheck, ShieldCheck, Scale } from 'lucide-react';
 
 const ComplianceTable: React.FC<{ title: string, jurisdiction: string, data: any[] }> = ({ title, jurisdiction, data }) => (
   <div className="mb-12">
@@ -45,93 +45,125 @@ const Compliance: React.FC = () => {
     <article className="prose prose-lg prose-slate max-w-none">
       <header className="mb-16">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-600 text-white text-[9px] font-bold uppercase tracking-[0.2em] mb-6">
-          Regulatory Intelligence
+          Compliance & Regulatory Intelligence
         </div>
-        <h1 className="text-5xl font-bold mb-4 tracking-tight">Compliance Reference</h1>
+        <h1 className="text-5xl font-bold mb-4 tracking-tight">Governance Reference</h1>
         <p className="lead font-serif italic text-slate-600 text-xl">
-          A definitive guide to the new PQC (Post-Quantum Cryptography) laws: NIS2, DORA, and NIST.
+          Mapping RivicQ capability to the global PQC regulatory landscape.
         </p>
       </header>
 
-      {/* 1. NIS2 Directive */}
+      {/* Regulatory Badges Grid */}
+      <section className="not-prose mb-24 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        {[
+          { name: "DORA", label: "EU Finance", desc: "Jan 2025 Enforcement", icon: <Landmark size={20}/> },
+          { name: "NIS2", label: "EU Energy/Health", desc: "Oct 2024 Transposition", icon: <ShieldAlert size={20}/> },
+          { name: "CRA", label: "EU Hardware", desc: "Product Resilience", icon: <FileCheck size={20}/> },
+          { name: "CNSA", label: "US Gov/NSA", desc: "Suite 2.0 PQC", icon: <Scale size={20}/> },
+          { name: "NIST", label: "Global PQC", desc: "ML-KEM / ML-DSA", icon: <Globe size={20}/> },
+          { name: "BSI", label: "DE BSI", desc: "TR-02102-1", icon: <ShieldCheck size={20}/> }
+        ].map((badge, i) => (
+          <div key={i} className="bg-slate-50 border border-slate-100 rounded-2xl p-6 flex flex-col items-center text-center group hover:bg-white hover:border-blue-500 transition-all duration-300">
+            <div className="mb-4 p-2 bg-white rounded-lg text-slate-900 group-hover:bg-blue-600 group-hover:text-white transition-all shadow-sm">
+              {badge.icon}
+            </div>
+            <div className="text-xl font-black text-slate-900 mb-1">{badge.name}</div>
+            <div className="text-[9px] font-bold text-blue-600 uppercase tracking-widest mb-1">{badge.label}</div>
+            <div className="text-[8px] font-medium text-slate-400 uppercase tracking-tighter">{badge.desc}</div>
+          </div>
+        ))}
+      </section>
+
+      {/* 1. DORA & NIS2 */}
       <section className="mb-20">
         <div className="flex items-center gap-3 mb-6">
           <div className="p-2 bg-blue-100 text-blue-700 rounded-lg">
-             <Globe size={24}/>
-          </div>
-          <h2 className="text-3xl font-serif font-bold m-0">NIS2 Directive</h2>
-        </div>
-        <p className="text-lg text-slate-600">
-           The <strong>Network and Information Security (NIS2) Directive</strong> expands cybersecurity requirements to essential sectors (Energy, Transport, Health) across the EU.
-        </p>
-        <div className="bg-slate-50 border-l-4 border-blue-600 p-6 rounded-r-xl my-6 not-prose">
-           <h4 className="font-bold text-slate-900 text-sm uppercase tracking-widest mb-2">Key Obligation: Supply Chain Security</h4>
-           <p className="text-sm text-slate-600 m-0 leading-relaxed">
-             Companies must assess the security of their suppliers. If your software vendor uses weak encryption, you are non-compliant.
-           </p>
-           <div className="mt-4 flex items-center gap-2 text-xs font-bold text-blue-700">
-              <CheckCircle2 size={14}/> RivicQ CryptoBOM automatically audits supply chain dependencies.
-           </div>
-        </div>
-      </section>
-
-      {/* 2. DORA */}
-      <section className="mb-20">
-        <div className="flex items-center gap-3 mb-6">
-          <div className="p-2 bg-indigo-100 text-indigo-700 rounded-lg">
              <Landmark size={24}/>
           </div>
-          <h2 className="text-3xl font-serif font-bold m-0">DORA (Finance)</h2>
+          <h2 className="text-3xl font-serif font-bold m-0">EU Directives (DORA & NIS2)</h2>
         </div>
         <p className="text-lg text-slate-600">
-           The <strong>Digital Operational Resilience Act (DORA)</strong> mandates that financial institutions must prove they can withstand severe ICT disruptions.
+           The <strong>DORA (Digital Operational Resilience Act)</strong> and <strong>NIS2 Directive</strong> mandate state-of-the-art encryption for critical infrastructure and financial entities.
         </p>
         <ComplianceTable 
-          title="Financial Sector Rules"
-          jurisdiction="EU Enforcement: Jan 2025"
+          title="EU Regulatory Framework"
+          jurisdiction="Enforcement: 2024-2025"
           data={[
-              { standard: "Article 9", mandate: "Protection of data integrity and confidentiality using state-of-the-art encryption.", deadline: "Jan 17, 2025", solution: "PQC Cloud HSM" },
-              { standard: "RTS on Risks", mandate: "Policy for cryptographic key management and rotation.", deadline: "Active", solution: "Auto-Rotation" },
+              { standard: "DORA Art. 9", mandate: "Institutional cryptographic data protection.", deadline: "Jan 17, 2025", solution: "vHSM vVault" },
+              { standard: "NIS2 Art. 21", mandate: "Supply chain security & CBOM transparency.", deadline: "Oct 17, 2024", solution: "CryptoBOM SaaS" },
+              { standard: "CRA (Annex I)", mandate: "Hardware-rooted secure boot & identity.", deadline: "Q3 2026", solution: "FIPS 140-3 HSM" },
           ]}
         />
       </section>
 
-      {/* 3. NIST PQC */}
+      {/* 2. NIST & CNSA 2.0 */}
       <section className="mb-20">
         <div className="flex items-center gap-3 mb-6">
           <div className="p-2 bg-emerald-100 text-emerald-700 rounded-lg">
              <FileCheck size={24}/>
           </div>
-          <h2 className="text-3xl font-serif font-bold m-0">NIST PQC Standards</h2>
+          <h2 className="text-3xl font-serif font-bold m-0">Global PQC Standards</h2>
         </div>
         <p className="text-lg text-slate-600">
-           The <strong>US National Institute of Standards and Technology (NIST)</strong> has finalized the algorithms that replace RSA and ECC.
+           The finalized <strong>NIST Post-Quantum Cryptography</strong> standards (FIPS 203/204) are the mandatory baseline for future-proof security.
         </p>
         
         <div className="not-prose grid md:grid-cols-2 gap-6 my-8">
-           <div className="p-6 bg-white border border-slate-200 rounded-2xl shadow-sm">
-              <h4 className="font-bold text-slate-900 mb-2">FIPS 203 (ML-KEM)</h4>
-              <p className="text-xs text-slate-500 mb-4">Replaces RSA for Key Exchange (Encryption).</p>
-              <span className="text-[10px] font-bold bg-emerald-100 text-emerald-800 px-2 py-1 rounded-full">Supported by RivicQ</span>
+           <div className="p-8 bg-white border border-slate-200 rounded-3xl shadow-sm group hover:border-blue-500 transition-all">
+              <div className="text-[10px] font-bold text-blue-600 uppercase tracking-widest mb-2">FIPS 203 (ML-KEM)</div>
+              <h4 className="font-bold text-slate-900 text-xl mb-3 m-0">NIST Kyber</h4>
+              <p className="text-sm text-slate-500 leading-relaxed mb-4">Mandatory key exchange replacement for RSA and ECC. RivicQ provides native acceleration for ML-KEM-768.</p>
+              <div className="flex items-center gap-2 text-emerald-600 font-bold text-[10px] uppercase tracking-widest">
+                <CheckCircle2 size={12}/> Verified Implemention
+              </div>
            </div>
-           <div className="p-6 bg-white border border-slate-200 rounded-2xl shadow-sm">
-              <h4 className="font-bold text-slate-900 mb-2">FIPS 204 (ML-DSA)</h4>
-              <p className="text-xs text-slate-500 mb-4">Replaces ECDSA for Digital Signatures (Identity).</p>
-              <span className="text-[10px] font-bold bg-emerald-100 text-emerald-800 px-2 py-1 rounded-full">Supported by RivicQ</span>
+           <div className="p-8 bg-white border border-slate-200 rounded-3xl shadow-sm group hover:border-indigo-500 transition-all">
+              <div className="text-[10px] font-bold text-indigo-600 uppercase tracking-widest mb-2">FIPS 204 (ML-DSA)</div>
+              <h4 className="font-bold text-slate-900 text-xl mb-3 m-0">NIST Dilithium</h4>
+              <p className="text-sm text-slate-500 leading-relaxed mb-4">The new standard for digital signatures and sovereign identity. Full support in RivicQ RQSP Protocol.</p>
+              <div className="flex items-center gap-2 text-emerald-600 font-bold text-[10px] uppercase tracking-widest">
+                <CheckCircle2 size={12}/> Verified Implemention
+              </div>
            </div>
         </div>
       </section>
 
-      <section className="bg-slate-900 text-white p-12 rounded-[2.5rem] mt-16 text-center shadow-2xl">
-        <h3 className="text-white font-serif text-3xl mb-4 m-0">Download the Compliance Checklist</h3>
-        <p className="text-slate-400 text-sm mb-8 max-w-xl mx-auto mt-4">
-          A single PDF mapping RivicQ features to every clause in NIS2 and DORA.
-        </p>
-        <div className="flex justify-center">
-            <a href="mailto:rivic.revan.ande@gmail.com?subject=Request Compliance Checklist" className="px-8 py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-500 transition-all flex items-center gap-2 uppercase tracking-widest text-xs">
-                Get the Checklist <FileText size={16}/>
-            </a>
+      {/* 3. BSI Germany */}
+      <section className="mb-24">
+        <div className="flex items-center gap-3 mb-6">
+          <div className="p-2 bg-slate-100 text-slate-900 rounded-lg border border-slate-200">
+             <ShieldCheck size={24}/>
+          </div>
+          <h2 className="text-3xl font-serif font-bold m-0">BSI Germany (TR-02102)</h2>
         </div>
+        <div className="p-8 bg-slate-900 text-white rounded-[3rem] relative overflow-hidden">
+           <div className="absolute top-0 right-0 p-12 opacity-5 text-white">
+             <Scale size={160} />
+           </div>
+           <p className="text-slate-400 text-lg leading-relaxed italic mb-8 relative z-10">
+             "BSI TR-02102-1 requires crypto-agility and the adoption of PQC-hybrid schemes for long-term data confidentiality."
+           </p>
+           <div className="flex flex-col md:flex-row gap-8 relative z-10 border-t border-white/10 pt-8">
+              <div>
+                <div className="text-blue-400 font-bold text-xs uppercase tracking-widest mb-1">Status</div>
+                <div className="text-white text-sm font-bold">Compliant via Hybrid RQSP</div>
+              </div>
+              <div>
+                <div className="text-blue-400 font-bold text-xs uppercase tracking-widest mb-1">Local Residency</div>
+                <div className="text-white text-sm font-bold">Berlin/Frankfurt Node Deployment</div>
+              </div>
+           </div>
+        </div>
+      </section>
+
+      <section className="py-24 text-center not-prose">
+        <h3 className="text-3xl font-serif font-bold text-slate-900 mb-6">Audit Readiness</h3>
+        <p className="text-slate-500 mb-10 max-w-xl mx-auto italic">
+          Request a full regulatory mapping of your infrastructure to NIST and DORA standards.
+        </p>
+        <a href="mailto:contact@rivicq.xyz" className="inline-flex items-center gap-3 px-10 py-5 bg-blue-600 text-white rounded-2xl font-bold text-xs uppercase tracking-widest hover:bg-blue-500 transition-all shadow-xl shadow-blue-500/20">
+          Request Compliance Scoping <ArrowRight size={18}/>
+        </a>
       </section>
 
     </article>

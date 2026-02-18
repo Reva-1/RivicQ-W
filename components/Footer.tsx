@@ -1,13 +1,34 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Lock, MapPin, Copyright, Linkedin, Github, Youtube, Send, Activity, Globe } from 'lucide-react';
+import { Mail, Lock, MapPin, Copyright, Linkedin, Github, Youtube, Send, Activity, Globe, Landmark, Microscope } from 'lucide-react';
 
 const Footer: React.FC = () => {
   return (
     <footer className="bg-white border-t border-slate-100 pt-20 pb-10 text-slate-500">
       <div className="max-w-7xl mx-auto px-8">
         
+        {/* Institutional Support Strip */}
+        <div className="mb-20 py-8 border-y border-slate-50 overflow-hidden">
+          <div className="flex flex-wrap justify-center md:justify-between items-center gap-12 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-700">
+             <div className="flex items-center gap-2">
+                <Landmark size={18}/>
+                <span className="text-[10px] font-bold uppercase tracking-widest text-slate-900">SIB Berlin Support</span>
+             </div>
+             <div className="flex items-center gap-2">
+                <Activity size={18}/>
+                <span className="text-[10px] font-bold uppercase tracking-widest text-slate-900">Leap Berlin Resident</span>
+             </div>
+             <div className="flex items-center gap-2">
+                <Microscope size={18}/>
+                <span className="text-[10px] font-bold uppercase tracking-widest text-slate-900">TU Berlin R&D Partner</span>
+             </div>
+             <div className="hidden lg:flex items-center gap-2">
+                <span className="text-[10px] font-bold uppercase tracking-widest text-slate-900">NIST PQC Standards</span>
+             </div>
+          </div>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-16 mb-20">
           <div className="lg:col-span-2">
              <Link to="/" className="inline-flex items-center gap-4 mb-8 group">

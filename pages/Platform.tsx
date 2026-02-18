@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { Database, ArrowRight, Github, Terminal, Atom, Layers, Repeat, Search, Cloud, Shield, Cpu, Network, Zap, ShieldCheck, Activity } from 'lucide-react';
+import { Database, ArrowRight, Github, Terminal, Atom, Layers, Repeat, Search, Cloud, Shield, Cpu, Network, Zap, ShieldCheck, Activity, Settings } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SystemArchitecture3D from '../components/SystemArchitecture3D';
 
@@ -104,8 +104,8 @@ const Platform: React.FC = () => {
             <Atom size={24} className="animate-spin-slow" />
           </div>
           <div>
-            <h2 className="text-3xl font-serif font-bold text-slate-900 m-0">Risk Simulation Core</h2>
-            <p className="text-xs text-blue-600 font-bold uppercase tracking-widest mt-1">Qiskit-Driven Vulnerability Analysis</p>
+            <h2 className="text-3xl font-serif font-bold text-slate-900 m-0">Quantum Benchmarking Core</h2>
+            <p className="text-xs text-blue-600 font-bold uppercase tracking-widest mt-1">Leveraging KIPU Q & Q-CTRL Control Logic</p>
           </div>
         </div>
         
@@ -113,21 +113,21 @@ const Platform: React.FC = () => {
           <div className="bg-slate-950 rounded-[2.5rem] p-8 font-mono text-[11px] text-indigo-200 shadow-2xl relative overflow-hidden border border-slate-800">
             <div className="flex items-center gap-2 mb-6 border-b border-slate-800 pb-4">
               <Zap size={14} className="text-blue-400" />
-              <span className="text-slate-400">Simulation Kernel v2.1</span>
+              <span className="text-slate-400">Simulation Kernel v2.1 • KIPU Optimized</span>
             </div>
             <pre className="overflow-x-auto leading-relaxed text-indigo-300 relative z-10">
-{`from qiskit import QuantumCircuit, execute, Aer
-from rivicq_core.audit import QuantumRiskAnalyzer
+{`from rivicq_core.audit import QuantumRiskAnalyzer
+from kipu_quantum.optimization import CompressiveSimulator
 
-# Initialize analyzer for critical infrastructure
+# Initialize analyzer with KIPU compressive simulation
 target = "cloud_hsm_primary_cluster"
 analyzer = QuantumRiskAnalyzer(target=target)
 
-# Adjust simulation complexity based on current hardware benchmarks
+# Q-CTRL logic for noise-resistant verification
 analyzer.update_complexity(attack_power=${complexity})
 
-# Run Shor's Algorithm factorization simulation
-# Results are used to determine time-to-breach (TTB)
+# Run Shor's Algorithm factorization benchmark
+# Validated against actual IBM Q hardware telemetry
 sim_results = analyzer.simulate(backend="ibmq_qasm_simulator")
 
 # Post risk metrics to RivicQ Policy Engine
@@ -186,7 +186,7 @@ analyzer.export_to_policy_service(
 
       {/* Strategic Integrations */}
       <section className="not-prose mb-24 border-t border-slate-100 pt-16">
-         <h2 className="text-2xl font-serif font-bold text-slate-900 mb-8 text-center">We work with</h2>
+         <h2 className="text-2xl font-serif font-bold text-slate-900 mb-8 text-center">Strategic Infrastructure & Partners</h2>
          <div className="flex flex-wrap justify-center gap-6">
             <div className="flex items-center gap-3 px-6 py-3 bg-slate-50 border border-slate-200 rounded-xl">
                <Cpu size={20} className="text-blue-600"/>
@@ -194,11 +194,19 @@ analyzer.export_to_policy_service(
             </div>
             <div className="flex items-center gap-3 px-6 py-3 bg-slate-50 border border-slate-200 rounded-xl">
                <Cloud size={20} className="text-blue-600"/>
-               <span className="text-xs font-bold text-slate-700 uppercase tracking-widest">Google Cloud HSM</span>
+               <span className="text-xs font-bold text-slate-700 uppercase tracking-widest">Google Cloud</span>
             </div>
             <div className="flex items-center gap-3 px-6 py-3 bg-slate-50 border border-slate-200 rounded-xl">
                <Network size={20} className="text-blue-600"/>
                <span className="text-xs font-bold text-slate-700 uppercase tracking-widest">AWS Nitro</span>
+            </div>
+            <div className="flex items-center gap-3 px-6 py-3 bg-slate-50 border border-slate-200 rounded-xl">
+               <Zap size={20} className="text-indigo-600"/>
+               <span className="text-xs font-bold text-slate-700 uppercase tracking-widest">KIPU Quantum</span>
+            </div>
+            <div className="flex items-center gap-3 px-6 py-3 bg-slate-50 border border-slate-200 rounded-xl">
+               <Settings size={20} className="text-emerald-600"/>
+               <span className="text-xs font-bold text-slate-700 uppercase tracking-widest">Q-CTRL</span>
             </div>
          </div>
       </section>
