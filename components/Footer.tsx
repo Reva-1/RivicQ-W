@@ -35,7 +35,7 @@ const Footer: React.FC = () => {
                 <div className="flex gap-4">
                   <a href="https://linkedin.com/company/rivicq" target="_blank" className="p-2 bg-slate-50 rounded-lg text-slate-400 hover:text-blue-600 hover:bg-blue-50 transition-all" aria-label="LinkedIn"><Linkedin size={18}/></a>
                   <a href="https://github.com/rivic-q" target="_blank" className="p-2 bg-slate-50 rounded-lg text-slate-400 hover:text-slate-900 hover:bg-slate-100 transition-all" aria-label="GitHub"><Github size={18}/></a>
-                  <a href="https://youtube.com/@rivicq" target="_blank" className="p-2 bg-slate-50 rounded-lg text-slate-400 hover:text-red-600 hover:bg-red-50 transition-all" aria-label="YouTube"><Youtube size={18}/></a>
+                  <a href="https://www.youtube.com/@RivicQ" target="_blank" className="p-2 bg-slate-50 rounded-lg text-slate-400 hover:text-red-600 hover:bg-red-50 transition-all" aria-label="YouTube"><Youtube size={18}/></a>
                   <a href="mailto:contact@rivicq.xyz" className="p-2 bg-slate-50 rounded-lg text-slate-400 hover:text-blue-600 hover:bg-blue-50 transition-all" aria-label="Email"><Mail size={18}/></a>
                 </div>
              </div>

@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { Github, Mail, Linkedin, Globe, Shield, Lock, Cpu, Globe2, Sparkles, Layout, Building, Users, Scale, ShieldCheck, Microscope, BookOpen, Handshake, Briefcase, Cloud, Box, Atom, Star, Target, FileText, Menu, X } from 'lucide-react';
+import { Github, Mail, Linkedin, Youtube, Globe, Shield, Lock, Cpu, Globe2, Sparkles, Layout, Building, Users, Scale, ShieldCheck, Microscope, BookOpen, Handshake, Briefcase, Cloud, Box, Atom, Star, Target, FileText, Menu, X } from 'lucide-react';
 
 const Sidebar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -115,6 +115,7 @@ const Sidebar: React.FC = () => {
           <div className="flex gap-4 mb-6">
             <a href="https://github.com/rivic-q" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-slate-900 transition-colors focus:text-slate-900" title="GitHub"><Github size={16} /></a>
             <a href="https://www.linkedin.com/company/rivic-q" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-blue-600 transition-colors focus:text-blue-600" title="LinkedIn"><Linkedin size={16} /></a>
+            <a href="https://www.youtube.com/@RivicQ" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-red-600 transition-colors focus:text-red-600" title="YouTube"><Youtube size={16} /></a>
             <a href="mailto:rivic.revan.ande@gmail.com" className="text-slate-400 hover:text-slate-900 transition-colors focus:text-slate-900" title="Email Contact"><Mail size={16} /></a>
           </div>
           <div className="flex items-center gap-2 text-[9px] font-bold text-slate-400 uppercase tracking-tight">
